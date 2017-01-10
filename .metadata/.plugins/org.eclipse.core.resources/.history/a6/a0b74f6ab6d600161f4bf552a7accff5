@@ -1,0 +1,57 @@
+package org.team537.robot.commands;
+
+import org.team537.robot.Robot;
+import org.team537.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.command.Command;
+
+public class VisionShoot extends Command {
+	private double goalAngle;
+	
+	public VisionShoot() {
+		requires(Robot.swerve);
+		requires(Robot.shooter);
+		this.goalAngle = 0.0;
+	}
+
+	/**
+	 * Called just before this Command runs the first time.
+	 */
+	@Override
+	protected void initialize() {
+		Robot.shooter.reset();
+		goalAngle = 0.0;
+	}
+
+	/**
+	 * The execute method is called repeatedly until this Command either finishes or is canceled.
+	 */
+	@Override
+	protected void execute() {
+		double rate = 1.0; // M/S
+		Robot.shooter.shoot(rate);
+	}
+
+	/**
+	 * This returns true when this Command no longer needs to run execute.
+	 */
+	@Override
+	protected boolean isFinished() {
+		return false;
+	}
+
+	/**
+	 * Called once after isFinished returns true.
+	 */
+	@Override
+	protected void end() {
+		Robot.shooter.stop();
+	}
+
+	/**
+	 * Called when another command which requires one or more of the same subsystems is scheduled to run.
+	 */
+	@Override
+	protected void interrupted() {
+	}
+}

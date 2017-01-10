@@ -1,0 +1,41 @@
+package org.team537.robot.subsystems;
+
+import org.team537.robot.RobotMap;
+import org.team537.robot.commands.ClimberDefault;
+
+import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+public class Shooter extends Subsystem {
+	private final CANTalon shooter = new CANTalon(RobotMap.CAN.CLIMBER_SIM);
+	
+	public Shooter() {
+		shooter.changeControlMode(TalonControlMode.Speed);
+		shooter.enable();
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		setDefaultCommand(new ClimberDefault());
+	}
+	
+	public void climb(double speed) {
+		shooter.set(speed);
+	}
+
+	public void reset() {
+		shooter.enable();
+		shooter.set(0.0);
+	}
+
+	public void stop() {
+		shooter.set(0.0);
+	}
+
+	public void dashboard() {
+		SmartDashboard.putNumber("Climber Speed", shooter.get());
+	}
+}

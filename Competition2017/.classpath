@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="libs/cscore.jar" sourcepath="libs/cscore-sources.jar"/>
+	<classpathentry kind="lib" path="libs/NetworkTables.jar" sourcepath="libs/NetworkTables-sources.jar"/>
+	<classpathentry kind="lib" path="libs/opencv.jar" sourcepath="libs/opencv-sources.jar"/>
+	<classpathentry kind="lib" path="libs/WPILib.jar" sourcepath="libs/WPILib-sources.jar"/>
+	<classpathentry kind="lib" path="libs/TalonSRXLibJava.jar"/>
+	<classpathentry kind="lib" path="libs/navx_frc.jar" sourcepath="libs/navx-sources.zip"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,5 @@
+package org.team537.robot.subsystems;
+
+public class Vision {
+
+}

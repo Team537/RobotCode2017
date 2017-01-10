@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.team537.robot.RobotMap.Driver"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
+<fullyQualifiedTypeName name="org.team537.robot.RobotMap"/>
+<fullyQualifiedTypeName name="org.team537.robot.RobotMap.CAN"/>
+<fullyQualifiedTypeName name="com.ctre.CANTalon"/>
+<fullyQualifiedTypeName name="org.team537.robot.subsystems.Climber"/>
+<fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickKeys"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.buttons.JoystickButton"/>
+<fullyQualifiedTypeName name="org.team537.robot.commands.ClimberAction"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.command.Subsystem"/>
+<fullyQualifiedTypeName name="org.team537.robot.subsystems.Vision"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.smartdashboard.SmartDashboard"/>
+<fullyQualifiedTypeName name="org.team537.robot.commands.ClimberDefault"/>
+<fullyQualifiedTypeName name="org.team537.robot.RobotMap.Robot"/>
+<fullyQualifiedTypeName name="org.team537.robot.subsystems.Shooter"/>
+<fullyQualifiedTypeName name="com.ctre.CANTalon.FeedbackDevice"/>
+<fullyQualifiedTypeName name="org.team537.robot.commands.ShooterDefault"/>
+</qualifiedTypeNameHistroy>
