@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="WPILib">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/WPILib Template/libs" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/WPILib Template/libs" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/WPILib Template/libs" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/WPILib Template/libs" recursive="false" type="SOURCES" />
+  </library>
+</component>
