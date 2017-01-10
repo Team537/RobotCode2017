@@ -10,27 +10,27 @@ import java.util.TimerTask;
  * A example subsystem.
  */
 public class SubsystemExample extends Subsystem {
-    /**
-     * Creates a new example subsystem.
-     */
-    public SubsystemExample() {
-        Timer timerDashboard = new Timer();
-        timerDashboard.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                dashboard();
-            }
-        }, 0, 1000);
-    }
+	/**
+	 * Creates a new example subsystem.
+	 */
+	public SubsystemExample() {
+		Timer timerDashboard = new Timer();
+		timerDashboard.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				dashboard();
+			}
+		}, 0, 1000);
+	}
 
-    /**
-     * Initializes the default command for this subsystem.
-     */
-    @Override
-    protected void initDefaultCommand() {
-        setDefaultCommand(new CommandExample());
-    }
+	/**
+	 * Initializes the default command for this subsystem.
+	 */
+	@Override
+	protected void initDefaultCommand() {
+		setDefaultCommand(new CommandExample());
+	}
 
-    public void dashboard() {
-    }
+	public void dashboard() {
+	}
 }

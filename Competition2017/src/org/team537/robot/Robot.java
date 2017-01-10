@@ -25,118 +25,118 @@ import org.team537.robot.subsystems.Shooter;
  * directory.
  */
 public class Robot extends IterativeRobot {
-    // Interfaces.
-    public static OI oi;
-    public static AHRS ahrs;
-    public static Compressor compressor;
-    public static UsbCamera camera;
+	// Interfaces.
+	public static OI oi;
+	public static AHRS ahrs;
+	public static Compressor compressor;
+	public static UsbCamera camera;
 
-    // Subsystems.
-    public static GRIP grip;
-    public static Climber climber;
-    public static Drive drive;
-    public static Shooter shooter;
+	// Subsystems.
+	public static GRIP grip;
+	public static Climber climber;
+	public static Drive drive;
+	public static Shooter shooter;
 
-    // Autonomous.
-    private SendableChooser<Command> autoChooser;
-    private Command autoCommand;
+	// Autonomous.
+	private SendableChooser<Command> autoChooser;
+	private Command autoCommand;
 
-    /**
-     * This function is for robot-wide initialization code.
-     */
-    @Override
-    public void robotInit() {
-        // Interfaces.
-        oi = new OI();
+	/**
+	 * This function is for robot-wide initialization code.
+	 */
+	@Override
+	public void robotInit() {
+		// Interfaces.
+		oi = new OI();
 
-        try {
-            ahrs = new AHRS(Port.kMXP);
-        } catch (final RuntimeException ex) {
-            DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
-        }
+		try {
+			ahrs = new AHRS(Port.kMXP);
+		} catch (final RuntimeException ex) {
+			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
+		}
 
-        compressor = new Compressor();
-        compressor.setClosedLoopControl(true);
+		compressor = new Compressor();
+		compressor.setClosedLoopControl(true);
 
-        UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-        camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH, RobotMap.GRIP.IMAGE_HEIGHT);
+		camera = CameraServer.getInstance().startAutomaticCapture();
+		camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH, RobotMap.GRIP.IMAGE_HEIGHT);
 
-        // Subsystems.
-        grip = new GRIP();
-        climber = new Climber();
-        drive = new Drive();
-        shooter = new Shooter();
+		// Subsystems.
+		grip = new GRIP();
+		climber = new Climber();
+		drive = new Drive();
+		shooter = new Shooter();
 
-        // Autonomous chooser to display on the dashboard.
-        autoChooser = new SendableChooser<>();
-        autoChooser.addObject("Nothing", null);
-        SmartDashboard.putData("Autonomous", autoChooser);
-    }
+		// Autonomous chooser to display on the dashboard.
+		autoChooser = new SendableChooser<>();
+		autoChooser.addObject("Nothing", null);
+		SmartDashboard.putData("Autonomous", autoChooser);
+	}
 
-    /**
-     * This function is called when the disabled button is hit.
-     */
-    @Override
-    public void disabledInit() {
-        if (autoCommand != null) {
-            autoCommand.cancel();
-        }
-    }
+	/**
+	 * This function is called when the disabled button is hit.
+	 */
+	@Override
+	public void disabledInit() {
+		if (autoCommand != null) {
+			autoCommand.cancel();
+		}
+	}
 
-    /**
-     * Periodic code for disabled mode should go here.
-     */
-    @Override
-    public void disabledPeriodic() {
-        Scheduler.getInstance().run();
-    }
+	/**
+	 * Periodic code for disabled mode should go here.
+	 */
+	@Override
+	public void disabledPeriodic() {
+		Scheduler.getInstance().run();
+	}
 
-    /**
-     * This function is called at the start of autonomous period.
-     */
-    @Override
-    public void autonomousInit() {
-        // Schedules the autonomous command.
-        autoCommand = autoChooser.getSelected();
+	/**
+	 * This function is called at the start of autonomous period.
+	 */
+	@Override
+	public void autonomousInit() {
+		// Schedules the autonomous command.
+		autoCommand = autoChooser.getSelected();
 
-        if (autoCommand != null) {
-            autoCommand.start();
-        }
-    }
+		if (autoCommand != null) {
+			autoCommand.start();
+		}
+	}
 
-    /**
-     * This function is called periodically during autonomous.
-     */
-    @Override
-    public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
-    }
+	/**
+	 * This function is called periodically during autonomous.
+	 */
+	@Override
+	public void autonomousPeriodic() {
+		Scheduler.getInstance().run();
+	}
 
-    /**
-     * This function is called at the start of operator control period.
-     */
-    @Override
-    public void teleopInit() {
-        // This makes sure that the autonomous stops running when teleop starts running.
-        if (autoCommand != null) {
-            autoCommand.cancel();
-            autoCommand = null;
-        }
-    }
+	/**
+	 * This function is called at the start of operator control period.
+	 */
+	@Override
+	public void teleopInit() {
+		// This makes sure that the autonomous stops running when teleop starts running.
+		if (autoCommand != null) {
+			autoCommand.cancel();
+			autoCommand = null;
+		}
+	}
 
-    /**
-     * This function is called periodically during operator control.
-     */
-    @Override
-    public void teleopPeriodic() {
-        Scheduler.getInstance().run();
-    }
+	/**
+	 * This function is called periodically during operator control.
+	 */
+	@Override
+	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
+	}
 
-    /**
-     * This function is called periodically during test mode.
-     */
-    @Override
-    public void testPeriodic() {
-        LiveWindow.run();
-    }
+	/**
+	 * This function is called periodically during test mode.
+	 */
+	@Override
+	public void testPeriodic() {
+		LiveWindow.run();
+	}
 }

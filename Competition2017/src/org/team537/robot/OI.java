@@ -10,16 +10,16 @@ import org.team537.robot.commands.ShooterShoot;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    public final Joystick joystickPrimary;
-    public final Joystick joystickSecondary;
+	public final Joystick joystickPrimary;
+	public final Joystick joystickSecondary;
 
-    public OI() {
-        joystickPrimary = new Joystick(RobotMap.Driver.PRIMARY_PORT);
-        joystickSecondary = new Joystick(RobotMap.Driver.SECONDARY_PORT);
+	public OI() {
+		joystickPrimary = new Joystick(RobotMap.Driver.PRIMARY_PORT);
+		joystickSecondary = new Joystick(RobotMap.Driver.SECONDARY_PORT);
 
-        new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.X).whileHeld(new ClimberAction(true));
-        new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.Y).whileHeld(new ClimberAction(false));
+		new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.X).whileHeld(new ClimberAction(true));
+		new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.Y).whileHeld(new ClimberAction(false));
 
-        new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.A).whileHeld(new ShooterShoot());
-    }
+		new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.A).whileHeld(new ShooterShoot());
+	}
 }

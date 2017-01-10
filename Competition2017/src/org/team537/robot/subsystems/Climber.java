@@ -11,40 +11,40 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Climber extends Subsystem {
-    private final CANTalon climber = new CANTalon(RobotMap.CAN.CLIMBER_SIM);
+	private final CANTalon climber = new CANTalon(RobotMap.CAN.CLIMBER_SIM);
 
-    public Climber() {
-        climber.changeControlMode(TalonControlMode.PercentVbus);
-        climber.enable();
+	public Climber() {
+		climber.changeControlMode(TalonControlMode.PercentVbus);
+		climber.enable();
 
-        Timer timerDashboard = new Timer();
-        timerDashboard.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                dashboard();
-            }
-        }, 0, 1000);
-    }
+		Timer timerDashboard = new Timer();
+		timerDashboard.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				dashboard();
+			}
+		}, 0, 1000);
+	}
 
-    @Override
-    protected void initDefaultCommand() {
-        setDefaultCommand(new ClimberDefault());
-    }
+	@Override
+	protected void initDefaultCommand() {
+		setDefaultCommand(new ClimberDefault());
+	}
 
-    public void climb(double speed) {
-        climber.set(RobotMap.Robot.CLIMB_SPEED * speed * 12.0);
-    }
+	public void climb(double speed) {
+		climber.set(RobotMap.Robot.CLIMB_SPEED * speed * 12.0);
+	}
 
-    public void reset() {
-        climber.enable();
-        climber.set(0.0);
-    }
+	public void reset() {
+		climber.enable();
+		climber.set(0.0);
+	}
 
-    public void stop() {
-        climber.set(0.0);
-    }
+	public void stop() {
+		climber.set(0.0);
+	}
 
-    public void dashboard() {
-        SmartDashboard.putNumber("Climber Speed", climber.get());
-    }
+	public void dashboard() {
+		SmartDashboard.putNumber("Climber Speed", climber.get());
+	}
 }
