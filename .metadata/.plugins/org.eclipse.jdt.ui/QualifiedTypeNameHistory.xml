@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.Driver"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.CAN"/>
 <fullyQualifiedTypeName name="com.ctre.CANTalon"/>
@@ -17,4 +16,11 @@
 <fullyQualifiedTypeName name="org.team537.robot.subsystems.Shooter"/>
 <fullyQualifiedTypeName name="com.ctre.CANTalon.FeedbackDevice"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.ShooterDefault"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
+<fullyQualifiedTypeName name="java.util.Timer"/>
+<fullyQualifiedTypeName name="java.util.TimerTask"/>
+<fullyQualifiedTypeName name="com.kauailabs.navx.frc.AHRS"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.DriverStation"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.SPI.Port"/>
+<fullyQualifiedTypeName name="org.team537.robot.Robot"/>
 </qualifiedTypeNameHistroy>

@@ -2,11 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="var" path="wpilib" sourcepath="wpilib.sources"/>
+	<classpathentry kind="var" path="networktables" sourcepath="networktables.sources"/>
+	<classpathentry kind="var" path="opencv" sourcepath="opencv.sources"/>
+	<classpathentry kind="var" path="cscore" sourcepath="cscore.sources"/>
 	<classpathentry kind="lib" path="libs/cscore.jar" sourcepath="libs/cscore-sources.jar"/>
-	<classpathentry kind="lib" path="libs/NetworkTables.jar" sourcepath="libs/NetworkTables-sources.jar"/>
+	<classpathentry kind="lib" path="libs/navx.jar" sourcepath="libs/navx-sources.jar"/>
+	<classpathentry kind="lib" path="libs/networktables.jar" sourcepath="libs/networktables-sources.jar"/>
 	<classpathentry kind="lib" path="libs/opencv.jar" sourcepath="libs/opencv-sources.jar"/>
-	<classpathentry kind="lib" path="libs/WPILib.jar" sourcepath="libs/WPILib-sources.jar"/>
-	<classpathentry kind="lib" path="libs/TalonSRXLibJava.jar"/>
-	<classpathentry kind="lib" path="libs/navx_frc.jar" sourcepath="libs/navx-sources.zip"/>
+	<classpathentry kind="lib" path="libs/talonsrx.jar" sourcepath="libs/talonsrx-sources.jar"/>
+	<classpathentry kind="lib" path="libs/wpilib.jar" sourcepath="libs/wpilib-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
