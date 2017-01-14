@@ -12,10 +12,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.team537.robot.subsystems.Climber;
-import org.team537.robot.subsystems.Drive;
-import org.team537.robot.subsystems.GRIP;
-import org.team537.robot.subsystems.Shooter;
+import org.team537.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,6 +30,7 @@ public class Robot extends IterativeRobot {
 
 	// Subsystems.
 	public static GRIP grip;
+	public static LEDs leds;
 	public static Climber climber;
 	public static Drive drive;
 	public static Shooter shooter;
@@ -63,6 +61,7 @@ public class Robot extends IterativeRobot {
 
 		// Subsystems.
 		grip = new GRIP();
+		leds = new LEDs();
 		climber = new Climber();
 		drive = new Drive();
 		shooter = new Shooter();

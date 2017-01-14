@@ -33,6 +33,20 @@ public class RobotMap {
 	public static class GRIP {
 		public static final int IMAGE_WIDTH = 320;
 		public static final int IMAGE_HEIGHT = 240;
+
+		public static final double WEBCAM_FOV = 68.5;
+		public static final double PERCEIVED_FOCAL_LENGTH = 0.0; // (F = (P * D) / H) Focal = (apparent height / distance real) / known height)
+
+		public static final double BOILER_HIGH_VISION = 0.4318; // 86" - 69"; the distance between the vision rectangles on the boiler (in metres).
+	}
+
+	/**
+	 * A class that holds static values for the robots LED strips.
+	 */
+	public static class LEDs {
+		public static final double CHARGER_R = 0.90196078431;
+		public static final double CHARGER_G = 0.08235294117;
+		public static final double CHARGER_B = 0.08235294117;
 	}
 
 	/**

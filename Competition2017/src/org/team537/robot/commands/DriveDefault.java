@@ -15,6 +15,7 @@ public class DriveDefault extends Command {
 	@Override
 	protected void initialize() {
 		Robot.drive.reset();
+		Robot.leds.setColour(0.0, 0.0, 1.0, 1.0);
 	}
 
 	/**
@@ -41,6 +42,7 @@ public class DriveDefault extends Command {
 	@Override
 	protected void end() {
 		Robot.drive.stop();
+		Robot.leds.reset();
 	}
 
 	/**

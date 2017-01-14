@@ -17,8 +17,11 @@ import java.util.List;
 public class GRIP implements VisionPipeline {
 
 	//Outputs
+	private Mat resizeImageOutput = new Mat();
+	private Mat blurOutput = new Mat();
 	private Mat hslThresholdOutput = new Mat();
 	private ArrayList<MatOfPoint> findContoursOutput = new ArrayList<MatOfPoint>();
+	private ArrayList<MatOfPoint> convexHullsOutput = new ArrayList<MatOfPoint>();
 	private ArrayList<MatOfPoint> filterContoursOutput = new ArrayList<MatOfPoint>();
 
 	static {
@@ -30,8 +33,21 @@ public class GRIP implements VisionPipeline {
 	 */
 	@Override
 	public void process(Mat source0) {
+		// Step Resize_Image0:
+		Mat resizeImageInput = source0;
+		double resizeImageWidth = 320.0;
+		double resizeImageHeight = 240.0;
+		int resizeImageInterpolation = Imgproc.INTER_LINEAR;
+		resizeImage(resizeImageInput, resizeImageWidth, resizeImageHeight, resizeImageInterpolation, resizeImageOutput);
+
+		// Step Blur0:
+		Mat blurInput = resizeImageOutput;
+		BlurType blurType = BlurType.get("Box Blur");
+		double blurRadius = 2.7027027027027026;
+		blur(blurInput, blurType, blurRadius, blurOutput);
+
 		// Step HSL_Threshold0:
-		Mat hslThresholdInput = source0;
+		Mat hslThresholdInput = blurOutput;
 		double[] hslThresholdHue = {63.12949640287769, 95.51336504864496};
 		double[] hslThresholdSaturation = {171.98741007194243, 255.0};
 		double[] hslThresholdLuminance = {43.57014388489208, 255.0};
@@ -42,21 +58,43 @@ public class GRIP implements VisionPipeline {
 		boolean findContoursExternalOnly = false;
 		findContours(findContoursInput, findContoursExternalOnly, findContoursOutput);
 
+		// Step Convex_Hulls0:
+		ArrayList<MatOfPoint> convexHullsContours = findContoursOutput;
+		convexHulls(convexHullsContours, convexHullsOutput);
+
 		// Step Filter_Contours0:
-		ArrayList<MatOfPoint> filterContoursContours = findContoursOutput;
-		double filterContoursMinArea = 125.0;
-		double filterContoursMinPerimeter = 0.0;
-		double filterContoursMinWidth = 0.0;
-		double filterContoursMaxWidth = 1000.0;
-		double filterContoursMinHeight = 0.0;
-		double filterContoursMaxHeight = 1000.0;
+		ArrayList<MatOfPoint> filterContoursContours = convexHullsOutput;
+		double filterContoursMinArea = 0;
+		double filterContoursMinPerimeter = 0;
+		double filterContoursMinWidth = 0;
+		double filterContoursMaxWidth = 1000;
+		double filterContoursMinHeight = 0;
+		double filterContoursMaxHeight = 1000;
 		double[] filterContoursSolidity = {0, 100};
-		double filterContoursMaxVertices = 1000000.0;
-		double filterContoursMinVertices = 0.0;
-		double filterContoursMinRatio = 0.0;
-		double filterContoursMaxRatio = 1000.0;
+		double filterContoursMaxVertices = 1000000;
+		double filterContoursMinVertices = 0;
+		double filterContoursMinRatio = 0;
+		double filterContoursMaxRatio = 1000;
 		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
 
+	}
+
+	/**
+	 * This method is a generated getter for the output of a Resize_Image.
+	 *
+	 * @return Mat output from Resize_Image.
+	 */
+	public Mat resizeImageOutput() {
+		return resizeImageOutput;
+	}
+
+	/**
+	 * This method is a generated getter for the output of a Blur.
+	 *
+	 * @return Mat output from Blur.
+	 */
+	public Mat blurOutput() {
+		return blurOutput;
 	}
 
 	/**
@@ -78,6 +116,15 @@ public class GRIP implements VisionPipeline {
 	}
 
 	/**
+	 * This method is a generated getter for the output of a Convex_Hulls.
+	 *
+	 * @return ArrayList<MatOfPoint> output from Convex_Hulls.
+	 */
+	public ArrayList<MatOfPoint> convexHullsOutput() {
+		return convexHullsOutput;
+	}
+
+	/**
 	 * This method is a generated getter for the output of a Filter_Contours.
 	 *
 	 * @return ArrayList<MatOfPoint> output from Filter_Contours.
@@ -86,6 +133,83 @@ public class GRIP implements VisionPipeline {
 		return filterContoursOutput;
 	}
 
+
+	/**
+	 * Scales and image to an exact size.
+	 *
+	 * @param input         The image on which to perform the Resize.
+	 * @param width         The width of the output in pixels.
+	 * @param height        The height of the output in pixels.
+	 * @param interpolation The type of interpolation.
+	 * @param output        The image in which to store the output.
+	 */
+	private void resizeImage(Mat input, double width, double height,
+	                         int interpolation, Mat output) {
+		Imgproc.resize(input, output, new Size(width, height), 0.0, 0.0, interpolation);
+	}
+
+	/**
+	 * An indication of which type of filter to use for a blur.
+	 * Choices are BOX, GAUSSIAN, MEDIAN, and BILATERAL
+	 */
+	enum BlurType {
+		BOX("Box Blur"), GAUSSIAN("Gaussian Blur"), MEDIAN("Median Filter"),
+		BILATERAL("Bilateral Filter");
+
+		private final String label;
+
+		BlurType(String label) {
+			this.label = label;
+		}
+
+		public static BlurType get(String type) {
+			if (BILATERAL.label.equals(type)) {
+				return BILATERAL;
+			} else if (GAUSSIAN.label.equals(type)) {
+				return GAUSSIAN;
+			} else if (MEDIAN.label.equals(type)) {
+				return MEDIAN;
+			} else {
+				return BOX;
+			}
+		}
+
+		@Override
+		public String toString() {
+			return this.label;
+		}
+	}
+
+	/**
+	 * Softens an image using one of several filters.
+	 *
+	 * @param input        The image on which to perform the blur.
+	 * @param type         The blurType to perform.
+	 * @param doubleRadius The radius for the blur.
+	 * @param output       The image in which to store the output.
+	 */
+	private void blur(Mat input, BlurType type, double doubleRadius,
+	                  Mat output) {
+		int radius = (int) (doubleRadius + 0.5);
+		int kernelSize;
+		switch (type) {
+			case BOX:
+				kernelSize = 2 * radius + 1;
+				Imgproc.blur(input, output, new Size(kernelSize, kernelSize));
+				break;
+			case GAUSSIAN:
+				kernelSize = 6 * radius + 1;
+				Imgproc.GaussianBlur(input, output, new Size(kernelSize, kernelSize), radius);
+				break;
+			case MEDIAN:
+				kernelSize = 2 * radius + 1;
+				Imgproc.medianBlur(input, output, kernelSize);
+				break;
+			case BILATERAL:
+				Imgproc.bilateralFilter(input, output, -1, radius, radius);
+				break;
+		}
+	}
 
 	/**
 	 * Segment an image based on hue, saturation, and luminance ranges.
@@ -123,6 +247,30 @@ public class GRIP implements VisionPipeline {
 		}
 		int method = Imgproc.CHAIN_APPROX_SIMPLE;
 		Imgproc.findContours(input, contours, hierarchy, mode, method);
+	}
+
+	/**
+	 * Compute the convex hulls of contours.
+	 *
+	 * @param inputContours  The contours on which to perform the operation.
+	 * @param outputContours The contours where the output will be stored.
+	 */
+	private void convexHulls(List<MatOfPoint> inputContours,
+	                         ArrayList<MatOfPoint> outputContours) {
+		final MatOfInt hull = new MatOfInt();
+		outputContours.clear();
+		for (int i = 0; i < inputContours.size(); i++) {
+			final MatOfPoint contour = inputContours.get(i);
+			final MatOfPoint mopHull = new MatOfPoint();
+			Imgproc.convexHull(contour, hull);
+			mopHull.create((int) hull.size().height, 1, CvType.CV_32SC2);
+			for (int j = 0; j < hull.size().height; j++) {
+				int index = (int) hull.get(j, 0)[0];
+				double[] point = new double[]{contour.get(index, 0)[0], contour.get(index, 0)[1]};
+				mopHull.put(j, 0, point);
+			}
+			outputContours.add(mopHull);
+		}
 	}
 
 
