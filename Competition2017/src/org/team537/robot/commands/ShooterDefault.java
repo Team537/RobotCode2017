@@ -1,7 +1,8 @@
 package org.team537.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.team537.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 public class ShooterDefault extends Command {
 	public ShooterDefault() {
@@ -13,7 +14,7 @@ public class ShooterDefault extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		Robot.shooter.reset();
+	//	Robot.shooter.reset();
 	}
 
 	/**
@@ -21,7 +22,7 @@ public class ShooterDefault extends Command {
 	 */
 	@Override
 	protected void execute() {
-		Robot.shooter.stop();
+	//	Robot.shooter.stop();
 	}
 
 	/**
@@ -37,7 +38,7 @@ public class ShooterDefault extends Command {
 	 */
 	@Override
 	protected void end() {
-		Robot.shooter.stop();
+	//	Robot.shooter.stop();
 	}
 
 	/**

@@ -1,8 +1,9 @@
 package org.team537.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.team537.robot.Robot;
 import org.team537.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveDefault extends Command {
 	public DriveDefault() {
@@ -14,8 +15,8 @@ public class DriveDefault extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		Robot.drive.reset();
-		Robot.leds.setColour(0.0, 0.0, 1.0, 1.0);
+	//	Robot.drive.reset();
+	//	Robot.leds.setColour(0.0, 0.0, 1.0, 1.0);
 	}
 
 	/**
@@ -25,7 +26,7 @@ public class DriveDefault extends Command {
 	protected void execute() {
 		double left = Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxes.LEFT_Y);
 		double right = Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxes.RIGHT_Y);
-		Robot.drive.drive(left, -right);
+	//	Robot.drive.drive(left, -right);
 	}
 
 	/**
@@ -41,8 +42,8 @@ public class DriveDefault extends Command {
 	 */
 	@Override
 	protected void end() {
-		Robot.drive.stop();
-		Robot.leds.reset();
+	//	Robot.drive.stop();
+	//	Robot.leds.reset();
 	}
 
 	/**

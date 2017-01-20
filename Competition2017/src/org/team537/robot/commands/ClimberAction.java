@@ -1,7 +1,8 @@
 package org.team537.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.team537.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 public class ClimberAction extends Command {
 	private boolean climbingUp;
@@ -16,7 +17,7 @@ public class ClimberAction extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		Robot.climber.reset();
+	//	Robot.climber.reset();
 	}
 
 	/**
@@ -24,7 +25,7 @@ public class ClimberAction extends Command {
 	 */
 	@Override
 	protected void execute() {
-		Robot.climber.climb((climbingUp ? 1.0 : -1.0));
+	//	Robot.climber.climb((climbingUp ? 1.0 : -1.0));
 	}
 
 	/**
@@ -40,7 +41,7 @@ public class ClimberAction extends Command {
 	 */
 	@Override
 	protected void end() {
-		Robot.climber.stop();
+	//	Robot.climber.stop();
 	}
 
 	/**

@@ -1,7 +1,20 @@
 package org.team537.robot;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+import org.team537.robot.autonomous.BlueDefault;
+import org.team537.robot.autonomous.RedDefault;
+import org.team537.robot.subsystems.*;
+import org.team537.robot.toolbox.Maths;
+
 import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -12,7 +25,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.team537.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,10 +35,9 @@ import org.team537.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 	// Interfaces.
-	public static OI oi;
 	public static AHRS ahrs;
-	public static Compressor compressor;
 	public static UsbCamera camera;
+	public static MjpegServer mjpegServer;
 
 	// Subsystems.
 	public static GRIP grip;
@@ -35,29 +46,50 @@ public class Robot extends IterativeRobot {
 	public static Drive drive;
 	public static Shooter shooter;
 
+	// OI.
+	public static OI oi;
+	
 	// Autonomous.
 	private SendableChooser<Command> autoChooser;
 	private Command autoCommand;
-
+	
 	/**
 	 * This function is for robot-wide initialization code.
 	 */
 	@Override
 	public void robotInit() {
 		// Interfaces.
-		oi = new OI();
-
 		try {
 			ahrs = new AHRS(Port.kMXP);
 		} catch (final RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
 		}
 
-		compressor = new Compressor();
-		compressor.setClosedLoopControl(true);
-
-		camera = CameraServer.getInstance().startAutomaticCapture();
+		camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
 		camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH, RobotMap.GRIP.IMAGE_HEIGHT);
+		
+		mjpegServer = new MjpegServer("server_cam0", 1181);
+		mjpegServer.setSource(camera); 
+
+		Timer timerDashboard = new Timer();
+		timerDashboard.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				if (ahrs != null) {
+		            SmartDashboard.putNumber("NavX Angle", Maths.roundToPlace(ahrs.getAngle(), 3));
+		            SmartDashboard.putNumber("NavX Angle Pitch", Maths.roundToPlace(ahrs.getPitch(), 3));
+		            SmartDashboard.putNumber("NavX Angle Yaw", Maths.roundToPlace(ahrs.getYaw(), 3));
+		            SmartDashboard.putNumber("NavX Angle Roll", Maths.roundToPlace(ahrs.getRoll(), 3));
+		            SmartDashboard.putNumber("NavX Velocity X", Maths.roundToPlace(ahrs.getVelocityX(), 3));
+		            SmartDashboard.putNumber("NavX Velocity Y", Maths.roundToPlace(ahrs.getVelocityY(), 3));
+		            SmartDashboard.putNumber("NavX Velocity Z", Maths.roundToPlace(ahrs.getVelocityZ(), 3));
+				}
+	            
+				if (camera != null) {
+					SmartDashboard.putBoolean("Camera Conected", Robot.camera.isConnected());
+				}
+			}
+		}, 0, 100);
 
 		// Subsystems.
 		grip = new GRIP();
@@ -66,9 +98,14 @@ public class Robot extends IterativeRobot {
 		drive = new Drive();
 		shooter = new Shooter();
 
+		// OI.
+		oi = new OI();
+		
 		// Autonomous chooser to display on the dashboard.
 		autoChooser = new SendableChooser<>();
 		autoChooser.addObject("Nothing", null);
+		autoChooser.addObject("Blue Default", new BlueDefault());
+		autoChooser.addObject("Red Default", new RedDefault());
 		SmartDashboard.putData("Autonomous", autoChooser);
 	}
 
@@ -80,6 +117,8 @@ public class Robot extends IterativeRobot {
 		if (autoCommand != null) {
 			autoCommand.cancel();
 		}
+		
+		ahrs.reset();
 	}
 
 	/**
@@ -101,6 +140,8 @@ public class Robot extends IterativeRobot {
 		if (autoCommand != null) {
 			autoCommand.start();
 		}
+		
+		ahrs.reset();
 	}
 
 	/**
@@ -121,6 +162,8 @@ public class Robot extends IterativeRobot {
 			autoCommand.cancel();
 			autoCommand = null;
 		}
+		
+		ahrs.reset();
 	}
 
 	/**

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.team537.robot.toolbox.Maths"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.SPI"/>
+<fullyQualifiedTypeName name="com.kauailabs.navx.frc.AHRS"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.smartdashboard.SmartDashboard"/>
+<fullyQualifiedTypeName name="org.team537.robot.commands.ShooterShoot"/>
+<fullyQualifiedTypeName name="edu.wpi.cscore.VideoMode"/>
+<fullyQualifiedTypeName name="org.team537.robot.autonomous.ShootCross"/>
+<fullyQualifiedTypeName name="org.team537.robot.autonomous.BlueDefault"/>
+<fullyQualifiedTypeName name="edu.wpi.cscore.MjpegServer"/>
+<fullyQualifiedTypeName name="edu.wpi.cscore.CvSink"/>
+<fullyQualifiedTypeName name="edu.wpi.cscore.CvSource"/>
+<fullyQualifiedTypeName name="edu.wpi.cscore.VideoMode.PixelFormat"/>
+</qualifiedTypeNameHistroy>

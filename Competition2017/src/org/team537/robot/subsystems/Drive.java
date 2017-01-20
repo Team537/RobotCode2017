@@ -3,12 +3,13 @@ package org.team537.robot.subsystems;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.team537.robot.RobotMap;
-import org.team537.robot.commands.DriveDefault;
-import org.team537.robot.toolbox.Maths;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import org.team537.robot.RobotMap;
+import org.team537.robot.commands.DriveDefault;
+import org.team537.robot.toolbox.Maths;
 
 public class Drive extends Subsystem {
 	private final CANTalon driveLeft1 = new CANTalon(0);
@@ -24,7 +25,7 @@ public class Drive extends Subsystem {
 			public void run() {
 				dashboard();
 			}
-		}, 0, 1000);
+		}, 0, 100);
 
 		driveLeft1.changeControlMode(CANTalon.TalonControlMode.Speed);
 		driveLeft1.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
@@ -46,8 +47,8 @@ public class Drive extends Subsystem {
 
 	public void drive(double left, double right) {
 		// Logs drive inputs.
-		SmartDashboard.putNumber("Drive Input Left", left);
-		SmartDashboard.putNumber("Drive Input Right", right);
+	//	SmartDashboard.putNumber("Drive Input Left", left);
+	//	SmartDashboard.putNumber("Drive Input Right", right);
 
 		// Makes sure the Talons are in the right mode.
 		if (!driveLeft1.getControlMode().equals(CANTalon.TalonControlMode.Speed)) {
@@ -91,9 +92,6 @@ public class Drive extends Subsystem {
 		// TODO: Rotate!
 	}
 
-	public void dashboard() {
-	}
-
 	public void reset() {
 		driveLeft1.reset();
 		driveLeft2.reset();
@@ -102,5 +100,8 @@ public class Drive extends Subsystem {
 	public void stop() {
 		driveLeft1.set(0);
 		driveLeft2.set(0);
+	}
+
+	public void dashboard() {
 	}
 }

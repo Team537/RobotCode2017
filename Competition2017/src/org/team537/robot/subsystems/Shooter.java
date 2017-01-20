@@ -5,11 +5,13 @@ import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.team537.robot.RobotMap;
-import org.team537.robot.commands.ShooterDefault;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import org.team537.robot.RobotMap;
+import org.team537.robot.commands.ShooterDefault;
+import org.team537.robot.commands.ShooterShoot;
 
 public class Shooter extends Subsystem {
 	private final CANTalon shooter = new CANTalon(RobotMap.CAN.CLIMBER_SIM);
@@ -25,12 +27,12 @@ public class Shooter extends Subsystem {
 			public void run() {
 				dashboard();
 			}
-		}, 0, 1000);
+		}, 0, 100);
 	}
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new ShooterDefault());
+		setDefaultCommand(new ShooterShoot()); // ShooterDefault
 	}
 
 	public void shoot(double rate) {
@@ -48,6 +50,6 @@ public class Shooter extends Subsystem {
 	}
 
 	public void dashboard() {
-		SmartDashboard.putNumber("Climber Speed", shooter.get());
+	//	SmartDashboard.putNumber("Climber Speed", shooter.get());
 	}
 }

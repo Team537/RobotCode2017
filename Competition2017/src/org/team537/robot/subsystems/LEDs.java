@@ -2,11 +2,12 @@ package org.team537.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.team537.robot.RobotMap;
-import org.team537.robot.commands.DriveDefault;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import org.team537.robot.RobotMap;
+import org.team537.robot.commands.DriveDefault;
 
 public class LEDs extends Subsystem {
 	private double r, g, b, a;
@@ -18,7 +19,7 @@ public class LEDs extends Subsystem {
 			public void run() {
 				dashboard();
 			}
-		}, 0, 1000);
+		}, 0, 100);
 
 		// Creates initial colours.
 		reset();
@@ -26,7 +27,7 @@ public class LEDs extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new DriveDefault());
+	//	setDefaultCommand(new DriveDefault());
 	}
 
 	public void setColour(double r, double g, double b, double a) {
@@ -44,9 +45,9 @@ public class LEDs extends Subsystem {
 	}
 
 	public void dashboard() {
-		SmartDashboard.getNumber("LEDs r", r);
-		SmartDashboard.getNumber("LEDs g", g);
-		SmartDashboard.getNumber("LEDs b", b);
-		SmartDashboard.getNumber("LEDs a", a);
+	//	SmartDashboard.putNumber("LEDs r", r);
+	//	SmartDashboard.putNumber("LEDs g", g);
+	//	SmartDashboard.putNumber("LEDs b", b);
+	//	SmartDashboard.putNumber("LEDs a", a);
 	}
 }
