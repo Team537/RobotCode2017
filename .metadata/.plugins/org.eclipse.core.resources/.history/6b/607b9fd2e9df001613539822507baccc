@@ -1,0 +1,127 @@
+package org.team537.robot.subsystems;
+
+import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.TalonControlMode;
+
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import org.team537.robot.Robot;
+import org.team537.robot.RobotMap;
+import org.team537.robot.commands.ShooterDefault;
+import org.team537.robot.toolbox.Maths;
+
+public class Shooter extends Subsystem {
+	private final CANTalon shooter1 = new CANTalon(RobotMap.CAN.SHOOTER_1);
+	private final CANTalon shooter2 = new CANTalon(RobotMap.CAN.SHOOTER_2);
+
+	private double rateScalar;
+	private boolean paused;
+	private int wheelSpeed2;
+
+	public Shooter() {
+		shooter1.changeControlMode(TalonControlMode.PercentVbus);
+		//shooter1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+	//	shooter1.configEncoderCodesPerRev(1024);
+		shooter1.enable();
+
+		shooter2.changeControlMode(TalonControlMode.PercentVbus);
+		shooter2.enable();
+	//	shooter2.set(RobotMap.CAN.SHOOTER_1);
+		
+		rateScalar = 1.0;
+		paused = false;
+		wheelSpeed2 = 1;
+
+		Timer timerDashboard = new Timer();
+		timerDashboard.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				dashboard();
+			}
+		}, 0, 100);
+	}
+	
+	public void callMeDumb() {
+		new JoystickButton(Robot.oi.joystickPrimary, RobotMap.JoystickKeysX3D.STICK_6).whenPressed(new Command() {
+			@Override
+			protected void execute() {
+				paused = !paused;
+			}
+
+			@Override
+			protected boolean isFinished() {
+				return true;
+			}
+			
+		});
+
+		new JoystickButton(Robot.oi.joystickPrimary, RobotMap.JoystickKeysX3D.BASE_10).whenPressed(new Command() {
+			@Override
+			protected void execute() {
+				wheelSpeed2++;
+				
+				if (wheelSpeed2 > 7) {
+					wheelSpeed2 = 0;
+				}
+			}
+
+			@Override
+			protected boolean isFinished() {
+				return true;
+			}
+			
+		});
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		setDefaultCommand(new ShooterDefault());
+	}
+
+	public void shoot(double rate) {
+		if (paused) {
+			shooter1.set(0.0);
+			shooter2.set(0.0);
+			return;
+		}
+		
+		rateScalar = (-Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxesX3D.SLIDER) + 1.0) / 2.0;
+		
+		rate = Maths.roundToPlace(rateScalar, 3); //  * 1024 * 3
+		SmartDashboard.putNumber("Shooter Setpoint", rate);
+		shooter1.set(-rate); // TODO: Convert M/S => Encoder Ticks / Second.
+		shooter2.set(rate); //  * (wheelSpeed2  / 7.0)
+	}
+
+	public void reset() {
+		shooter1.enable();
+		shooter1.setPosition(0.0);
+		shooter1.set(0.0);
+		
+
+		shooter2.enable();
+	//	shooter2.setPosition(0.0);
+	//	shooter2.set(0.0);
+	}
+
+	public void stop() {
+		shooter1.set(0.0);
+	//	shooter2.set(0.0);
+	}
+
+	public void dashboard() {
+		SmartDashboard.putNumber("Shooter Rate Scalar", Maths.roundToPlace(rateScalar, 3));
+		SmartDashboard.putNumber("Shooter Encoder Velocity", shooter1.getEncVelocity());
+		SmartDashboard.putNumber("Shooter Encoder Position", shooter1.getEncPosition());
+		SmartDashboard.putNumber("Shooter Voltage 1", shooter1.getBusVoltage());
+		SmartDashboard.putNumber("Shooter Voltage 2", shooter2.getBusVoltage());
+		SmartDashboard.putNumber("Shooter Wheel Speed / 7", wheelSpeed2);
+	}
+}

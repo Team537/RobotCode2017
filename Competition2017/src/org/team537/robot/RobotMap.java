@@ -1,9 +1,10 @@
 package org.team537.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name.
- * This provides flexibility changing wiring, makes checking the wiring easier and significantly
- * reduces the number of magic numbers floating around.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into
+ * to a variable name. This provides flexibility changing wiring, makes checking
+ * the wiring easier and significantly reduces the number of magic numbers
+ * floating around.
  */
 public class RobotMap {
 	/**
@@ -35,9 +36,23 @@ public class RobotMap {
 		public static final int IMAGE_HEIGHT = 240;
 
 		public static final double WEBCAM_FOV = 68.5;
-		public static final double PERCEIVED_FOCAL_LENGTH = 0.0; // (F = (P * D) / H) Focal = (apparent height / distance real) / known height)
+		public static final double PERCEIVED_FOCAL_LENGTH = 0.0; // (F = (P * D)
+																	// / H)
+																	// Focal =
+																	// (apparent
+																	// height /
+																	// distance
+																	// real) /
+																	// known
+																	// height)
 
-		public static final double BOILER_HIGH_VISION = 0.4318; // 86" - 69"; the distance between the vision rectangles on the boiler (in metres).
+		public static final double BOILER_HIGH_VISION = 0.4318; // 86" - 69";
+																// the distance
+																// between the
+																// vision
+																// rectangles on
+																// the boiler
+																// (in metres).
 	}
 
 	/**
@@ -116,6 +131,9 @@ public class RobotMap {
 	 */
 	public static class CAN {
 		public static final int CLIMBER_SIM = 9;
+
+		public static final int SHOOTER_1 = 6;
+		public static final int SHOOTER_2 = 8;
 
 		public static final int DRIVE_BACK_LEFT_ANGLE = 4;
 		public static final int DRIVE_BACK_LEFT_DRIVE = 3;

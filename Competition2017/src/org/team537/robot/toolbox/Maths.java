@@ -13,7 +13,8 @@ public class Maths {
 	/**
 	 * Gets the maximum value.
 	 *
-	 * @param fs The values to sort though.
+	 * @param fs
+	 *            The values to sort though.
 	 * @return The maximum value.
 	 */
 	public static double maxValue(double... fs) {
@@ -31,7 +32,8 @@ public class Maths {
 	/**
 	 * Gets the minimum value.
 	 *
-	 * @param fs The values to sort though.
+	 * @param fs
+	 *            The values to sort though.
 	 * @return The minimum value.
 	 */
 	public static double minValue(double... fs) {
@@ -49,9 +51,12 @@ public class Maths {
 	/**
 	 * Gets if a value is near to the target.
 	 *
-	 * @param value     The current value reading.
-	 * @param target    The target to get to.
-	 * @param tolerance The allowed tolerance.
+	 * @param value
+	 *            The current value reading.
+	 * @param target
+	 *            The target to get to.
+	 * @param tolerance
+	 *            The allowed tolerance.
 	 * @return If the value is acceptable under the tolerance.
 	 */
 	public static boolean nearTarget(double value, double target, double tolerance) {
@@ -61,7 +66,8 @@ public class Maths {
 	/**
 	 * Normalizes a angle into the range of 0-360.
 	 *
-	 * @param angle The source angle.
+	 * @param angle
+	 *            The source angle.
 	 * @return The normalized angle.
 	 */
 	public static double normalizeAngle(double angle) {
@@ -73,12 +79,14 @@ public class Maths {
 
 		return angle;
 	}
-	
+
 	/**
 	 * Rounds a value to a amount of places after the decimal point.
 	 *
-	 * @param value The value to round.
-	 * @param place How many places after the decimal to round to.
+	 * @param value
+	 *            The value to round.
+	 * @param place
+	 *            How many places after the decimal to round to.
 	 *
 	 * @return The rounded value.
 	 */
@@ -90,8 +98,10 @@ public class Maths {
 	/**
 	 * Rounds a value to a amount of places after the decimal point.
 	 *
-	 * @param value The value to round.
-	 * @param place How many places after the decimal to round to.
+	 * @param value
+	 *            The value to round.
+	 * @param place
+	 *            How many places after the decimal to round to.
 	 *
 	 * @return The rounded value.
 	 */
@@ -103,8 +113,10 @@ public class Maths {
 	/**
 	 * Used to floor the value if less than the min.
 	 *
-	 * @param min   The minimum value.
-	 * @param value The value.
+	 * @param min
+	 *            The minimum value.
+	 * @param value
+	 *            The value.
 	 * @return Returns a value with deadband applied.
 	 */
 	public static double deadband(double min, double value) {
@@ -112,11 +124,17 @@ public class Maths {
 	}
 
 	/**
-	 * Ensures {@code value} is in the range of {@code min} to {@code max}. If {@code value} is greater than {@code max}, this will return {@code max}. If {@code value} is less than {@code min}, this will return {@code min}. Otherwise, {@code value} is returned unchanged.
+	 * Ensures {@code value} is in the range of {@code min} to {@code max}. If
+	 * {@code value} is greater than {@code max}, this will return {@code max}.
+	 * If {@code value} is less than {@code min}, this will return {@code min}.
+	 * Otherwise, {@code value} is returned unchanged.
 	 *
-	 * @param value The value to clamp.
-	 * @param min   The smallest value of the result.
-	 * @param max   The largest value of the result.
+	 * @param value
+	 *            The value to clamp.
+	 * @param min
+	 *            The smallest value of the result.
+	 * @param max
+	 *            The largest value of the result.
 	 * @return {@code value}, clamped between {@code min} and {@code max}.
 	 */
 	public static double clamp(double value, double min, double max) {
@@ -126,8 +144,10 @@ public class Maths {
 	/**
 	 * Limits the value.
 	 *
-	 * @param value The value.
-	 * @param limit The limit.
+	 * @param value
+	 *            The value.
+	 * @param limit
+	 *            The limit.
 	 * @return A limited value.
 	 */
 	public static double limit(double value, double limit) {
@@ -137,9 +157,12 @@ public class Maths {
 	/**
 	 * Interpolates two values by a blendFactor using cos interpolation.
 	 *
-	 * @param a     The first value.
-	 * @param b     The second value.
-	 * @param blend The blend value.
+	 * @param a
+	 *            The first value.
+	 * @param b
+	 *            The second value.
+	 * @param blend
+	 *            The blend value.
 	 * @return Returns a interpolated value.
 	 */
 	public static double cosInterpolate(double a, double b, double blend) {

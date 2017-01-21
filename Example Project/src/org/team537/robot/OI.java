@@ -7,13 +7,10 @@ import edu.wpi.first.wpilibj.Joystick;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public final Joystick joystickPrimary;
-	public final Joystick joystickSecondary;
+	public final Joystick joystickPrimary = new Joystick(RobotMap.Driver.PRIMARY_PORT);
+	public final Joystick joystickSecondary = new Joystick(RobotMap.Driver.SECONDARY_PORT);
 
 	public OI() {
-		joystickPrimary = new Joystick(RobotMap.Driver.PRIMARY_PORT);
-		joystickSecondary = new Joystick(RobotMap.Driver.SECONDARY_PORT);
-
 		//// Space for creating buttons.
 		// One type of button is a joystick button which is any button on a joystick. You create one by telling it which joystick it's on and which button number it is.
 		// Joystick joystick = new Joystick(port);

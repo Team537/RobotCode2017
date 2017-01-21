@@ -5,18 +5,14 @@ import java.util.TimerTask;
 
 import org.team537.robot.autonomous.BlueDefault;
 import org.team537.robot.autonomous.RedDefault;
-import org.team537.robot.subsystems.*;
+import org.team537.robot.subsystems.GRIP;
+import org.team537.robot.subsystems.Shooter;
 import org.team537.robot.toolbox.Maths;
 
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoMode.PixelFormat;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI.Port;
@@ -41,18 +37,15 @@ public class Robot extends IterativeRobot {
 
 	// Subsystems.
 	public static GRIP grip;
-	public static LEDs leds;
-	public static Climber climber;
-	public static Drive drive;
 	public static Shooter shooter;
 
 	// OI.
 	public static OI oi;
-	
+
 	// Autonomous.
 	private SendableChooser<Command> autoChooser;
 	private Command autoCommand;
-	
+
 	/**
 	 * This function is for robot-wide initialization code.
 	 */
@@ -65,26 +58,27 @@ public class Robot extends IterativeRobot {
 			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
 		}
 
-		camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
-		camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH, RobotMap.GRIP.IMAGE_HEIGHT);
-		
-		mjpegServer = new MjpegServer("server_cam0", 1181);
-		mjpegServer.setSource(camera); 
+		// camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
+		// camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH,
+		// RobotMap.GRIP.IMAGE_HEIGHT);
+
+		// mjpegServer = new MjpegServer("server_cam0", 1181);
+		// mjpegServer.setSource(camera);
 
 		Timer timerDashboard = new Timer();
 		timerDashboard.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				if (ahrs != null) {
-		            SmartDashboard.putNumber("NavX Angle", Maths.roundToPlace(ahrs.getAngle(), 3));
-		            SmartDashboard.putNumber("NavX Angle Pitch", Maths.roundToPlace(ahrs.getPitch(), 3));
-		            SmartDashboard.putNumber("NavX Angle Yaw", Maths.roundToPlace(ahrs.getYaw(), 3));
-		            SmartDashboard.putNumber("NavX Angle Roll", Maths.roundToPlace(ahrs.getRoll(), 3));
-		            SmartDashboard.putNumber("NavX Velocity X", Maths.roundToPlace(ahrs.getVelocityX(), 3));
-		            SmartDashboard.putNumber("NavX Velocity Y", Maths.roundToPlace(ahrs.getVelocityY(), 3));
-		            SmartDashboard.putNumber("NavX Velocity Z", Maths.roundToPlace(ahrs.getVelocityZ(), 3));
+					SmartDashboard.putNumber("NavX Angle", Maths.roundToPlace((double) ahrs.getAngle(), 3));
+					SmartDashboard.putNumber("NavX Angle Pitch", Maths.roundToPlace((double) ahrs.getPitch(), 3));
+					SmartDashboard.putNumber("NavX Angle Yaw", Maths.roundToPlace((double) ahrs.getYaw(), 3));
+					SmartDashboard.putNumber("NavX Angle Roll", Maths.roundToPlace((double) ahrs.getRoll(), 3));
+					SmartDashboard.putNumber("NavX Velocity X", Maths.roundToPlace((double) ahrs.getVelocityX(), 3));
+					SmartDashboard.putNumber("NavX Velocity Y", Maths.roundToPlace((double) ahrs.getVelocityY(), 3));
+					SmartDashboard.putNumber("NavX Velocity Z", Maths.roundToPlace((double) ahrs.getVelocityZ(), 3));
 				}
-	            
+
 				if (camera != null) {
 					SmartDashboard.putBoolean("Camera Conected", Robot.camera.isConnected());
 				}
@@ -93,14 +87,11 @@ public class Robot extends IterativeRobot {
 
 		// Subsystems.
 		grip = new GRIP();
-		leds = new LEDs();
-		climber = new Climber();
-		drive = new Drive();
 		shooter = new Shooter();
 
 		// OI.
 		oi = new OI();
-		
+
 		// Autonomous chooser to display on the dashboard.
 		autoChooser = new SendableChooser<>();
 		autoChooser.addObject("Nothing", null);
@@ -117,7 +108,7 @@ public class Robot extends IterativeRobot {
 		if (autoCommand != null) {
 			autoCommand.cancel();
 		}
-		
+
 		ahrs.reset();
 	}
 
@@ -140,7 +131,7 @@ public class Robot extends IterativeRobot {
 		if (autoCommand != null) {
 			autoCommand.start();
 		}
-		
+
 		ahrs.reset();
 	}
 
@@ -157,12 +148,13 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopInit() {
-		// This makes sure that the autonomous stops running when teleop starts running.
+		// This makes sure that the autonomous stops running when teleop starts
+		// running.
 		if (autoCommand != null) {
 			autoCommand.cancel();
 			autoCommand = null;
 		}
-		
+
 		ahrs.reset();
 	}
 

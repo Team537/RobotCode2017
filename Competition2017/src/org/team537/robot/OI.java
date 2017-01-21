@@ -1,7 +1,9 @@
 package org.team537.robot;
 
-import org.team537.robot.commands.ClimberAction;
-import org.team537.robot.commands.ShooterShoot;
+import org.team537.robot.commands.ShooterAddSpeedWheel1;
+import org.team537.robot.commands.ShooterAutoFire;
+import org.team537.robot.commands.ShooterEnableWheel1;
+import org.team537.robot.commands.ShooterEnableWheel2;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -11,15 +13,21 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public final Joystick joystickPrimary;
-	public final Joystick joystickSecondary;
+	public final Joystick joystickPrimary = new Joystick(RobotMap.Driver.PRIMARY_PORT);
+	public final Joystick joystickSecondary = new Joystick(RobotMap.Driver.SECONDARY_PORT);
 
 	public OI() {
-		joystickPrimary = new Joystick(RobotMap.Driver.PRIMARY_PORT);
-		joystickSecondary = new Joystick(RobotMap.Driver.SECONDARY_PORT);
+		// new JoystickButton(joystickSecondary,
+		// RobotMap.JoystickKeys.X).whileHeld(new ClimberAction(true));
+		// new JoystickButton(joystickSecondary,
+		// RobotMap.JoystickKeys.Y).whileHeld(new ClimberAction(false));
+		// new JoystickButton(joystickPrimary,
+		// RobotMap.JoystickKeys.A).whileHeld(new ShooterShoot());
 
-	//	new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.X).whileHeld(new ClimberAction(true));
-	//	new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.Y).whileHeld(new ClimberAction(false));
-	//	new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.A).whileHeld(new ShooterShoot());
+		new JoystickButton(joystickPrimary, RobotMap.JoystickKeysX3D.STICK_5).whenPressed(new ShooterEnableWheel1());
+		new JoystickButton(joystickPrimary, RobotMap.JoystickKeysX3D.STICK_3).whenPressed(new ShooterEnableWheel2());
+		new JoystickButton(joystickPrimary, RobotMap.JoystickKeysX3D.BASE_10).whenPressed(new ShooterAddSpeedWheel1());
+
+		new JoystickButton(joystickPrimary, RobotMap.JoystickKeysX3D.INDEX_TRIGGER).whileHeld(new ShooterAutoFire());
 	}
 }
