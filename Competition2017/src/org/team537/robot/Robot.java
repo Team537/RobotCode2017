@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 import org.team537.robot.autonomous.BlueDefault;
 import org.team537.robot.autonomous.RedDefault;
+import org.team537.robot.subsystems.Climber;
 import org.team537.robot.subsystems.GRIP;
 import org.team537.robot.subsystems.Shooter;
 import org.team537.robot.toolbox.Maths;
@@ -37,6 +38,7 @@ public class Robot extends IterativeRobot {
 
 	// Subsystems.
 	public static GRIP grip;
+	public static Climber climber;
 	public static Shooter shooter;
 
 	// OI.
@@ -87,6 +89,7 @@ public class Robot extends IterativeRobot {
 
 		// Subsystems.
 		grip = new GRIP();
+		climber = new Climber();
 		shooter = new Shooter();
 
 		// OI.

@@ -24,10 +24,10 @@ public class OI {
 		// new JoystickButton(joystickPrimary,
 		// RobotMap.JoystickKeys.A).whileHeld(new ShooterShoot());
 
-		new JoystickButton(joystickPrimary, RobotMap.JoystickKeysX3D.STICK_5).whenPressed(new ShooterEnableWheel1());
-		new JoystickButton(joystickPrimary, RobotMap.JoystickKeysX3D.STICK_3).whenPressed(new ShooterEnableWheel2());
-		new JoystickButton(joystickPrimary, RobotMap.JoystickKeysX3D.BASE_10).whenPressed(new ShooterAddSpeedWheel1());
+		new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.B).whenPressed(new ShooterEnableWheel1());
+		new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.X).whenPressed(new ShooterEnableWheel2());
+		new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.START).whenPressed(new ShooterAddSpeedWheel1());
 
-		new JoystickButton(joystickPrimary, RobotMap.JoystickKeysX3D.INDEX_TRIGGER).whileHeld(new ShooterAutoFire());
+		new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.A).whileHeld(new ShooterAutoFire());
 	}
 }

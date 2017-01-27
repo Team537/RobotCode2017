@@ -36,13 +36,15 @@ public class Shooter extends Subsystem {
 		shooter2.disable();
 		shooter2.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		shooter2.changeControlMode(TalonControlMode.Speed);
-		shooter2.configEncoderCodesPerRev(1024);
+		//shooter2.configEncoderCodesPerRev(1024);
+		//shooter2.setPulseWidthPosition(4);
 		shooter2.setPID(1.0, 0.0, 0.0);
+		shooter2.setF(1.0f);
 		shooter2.enable();
 
 		rateScalar = 0.615;
 		enabledWheel1 = false;
-		enabledWheel2 = false;
+		enabledWheel2 = true;
 		wheelSpeed1 = 4;
 
 		Timer timerDashboard = new Timer();
@@ -56,11 +58,16 @@ public class Shooter extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new ShooterDefault());
+	//	setDefaultCommand(new ShooterDefault());
 	}
 
 	public void shoot(double rate) {
-		rateScalar = (-Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxesX3D.SLIDER) + 1.0) / 2.0;
+		//if (Robot.oi.joystickPrimary.getRawButton(RobotMap.JoystickKeys.START)) {
+		//rateScalar = 0.8;
+		//} else {
+		//	rateScalar = 0.0;
+		//}
+		rateScalar = Maths.deadband(0.05, Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxes.RIGHT_Y)); // (- wwww + 1.0) / 2.0
 
 		rate = Maths.roundToPlace(rateScalar, 3);
 		SmartDashboard.putNumber("Shooter Setpoint", rate);
@@ -72,7 +79,9 @@ public class Shooter extends Subsystem {
 		}
 		
 		if (enabledWheel2) {
-			shooter2.set(-rate * 1024);
+		//	shooter2.set((-rate * 5700.0f) / 7.2f); //  * 1024
+			shooter2.set(64);
+			SmartDashboard.putNumber("Shooter Testing", -rate * (5700.0f / 7.2f));
 		} else {
 			shooter2.set(0.0);
 		}
@@ -133,7 +142,7 @@ public class Shooter extends Subsystem {
 		SmartDashboard.putBoolean("Shooter Wheel 2 Enabled", enabledWheel2);
 		SmartDashboard.putNumber("Shooter Wheel Speed (7 Speed)", wheelSpeed1);
 		SmartDashboard.putNumber("Shooter Rate Scalar", Maths.roundToPlace(rateScalar, 3));
-		SmartDashboard.putNumber("Shooter Encoder Velocity", shooter2.getEncVelocity());
+		SmartDashboard.putNumber("Shooter Encoder Velocity", ((float) shooter2.getEncVelocity()) * 7.2f); // (72.0f / 10.0f)
 		SmartDashboard.putNumber("Shooter Encoder Position", shooter2.getEncPosition());
 		SmartDashboard.putNumber("Shooter Voltage 1", shooter1.getBusVoltage());
 		SmartDashboard.putNumber("Shooter Voltage 2", shooter2.getBusVoltage());
