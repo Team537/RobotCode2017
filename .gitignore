@@ -52,6 +52,7 @@ local.properties
 
 .idea
 
-Competition2017/dist/
+dist/
+build/
 
 *.class
