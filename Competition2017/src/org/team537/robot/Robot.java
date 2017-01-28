@@ -101,6 +101,8 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Blue Default", new BlueDefault());
 		autoChooser.addObject("Red Default", new RedDefault());
 		SmartDashboard.putData("Autonomous", autoChooser);
+		
+		SmartDashboard.putData(shooter);
 	}
 
 	/**

@@ -2,6 +2,7 @@ package org.team537.robot;
 
 import org.team537.robot.commands.ShooterAddSpeedWheel1;
 import org.team537.robot.commands.ShooterAutoFire;
+import org.team537.robot.commands.ShooterDefault;
 import org.team537.robot.commands.ShooterEnableWheel1;
 import org.team537.robot.commands.ShooterEnableWheel2;
 
@@ -22,12 +23,12 @@ public class OI {
 		// new JoystickButton(joystickSecondary,
 		// RobotMap.JoystickKeys.Y).whileHeld(new ClimberAction(false));
 		// new JoystickButton(joystickPrimary,
-		// RobotMap.JoystickKeys.A).whileHeld(new ShooterShoot());
+		new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.A).toggleWhenPressed(new ShooterDefault());
 
 		new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.B).whenPressed(new ShooterEnableWheel1());
-		new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.X).whenPressed(new ShooterEnableWheel2());
-		new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.START).whenPressed(new ShooterAddSpeedWheel1());
+		//new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.X).whenPressed(new ShooterEnableWheel2());
+		//new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.START).whenPressed(new ShooterAddSpeedWheel1());
 
-		new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.A).whileHeld(new ShooterAutoFire());
+		//new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.A).whileHeld(new ShooterAutoFire());
 	}
 }

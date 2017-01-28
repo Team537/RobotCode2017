@@ -132,8 +132,8 @@ public class RobotMap {
 	public static class CAN {
 		public static final int CLIMBER_1 = 8;
 
-		public static final int SHOOTER_1 = 7;
-		public static final int SHOOTER_2 = 6;
+		public static final int SHOOTER_1 = 6;
+		public static final int SHOOTER_2 = 7;
 
 		public static final int DRIVE_BACK_LEFT_ANGLE = 4;
 		public static final int DRIVE_BACK_LEFT_DRIVE = 3;
