@@ -1,10 +1,8 @@
 package org.team537.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name.
+ * This provides flexibility changing wiring, makes checking the wiring easier and significantly reduces the number of magic numbers floating around.
  */
 public class RobotMap {
 	/**
@@ -36,23 +34,9 @@ public class RobotMap {
 		public static final int IMAGE_HEIGHT = 240;
 
 		public static final double WEBCAM_FOV = 68.5;
-		public static final double PERCEIVED_FOCAL_LENGTH = 0.0; // (F = (P * D)
-																	// / H)
-																	// Focal =
-																	// (apparent
-																	// height /
-																	// distance
-																	// real) /
-																	// known
-																	// height)
+		public static final double PERCEIVED_FOCAL_LENGTH = 0.0; // (F = (P * D) / H) Focal = (apparent height / distance real) / known height)
 
-		public static final double BOILER_HIGH_VISION = 0.4318; // 86" - 69";
-																// the distance
-																// between the
-																// vision
-																// rectangles on
-																// the boiler
-																// (in metres).
+		public static final double BOILER_HIGH_VISION = 0.4318; // 86" - 69"; the distance between the vision rectangles on the boiler (in metres).
 	}
 
 	/**
@@ -130,28 +114,27 @@ public class RobotMap {
 	 * A class that holds static values for CAN bus Channels.
 	 */
 	public static class CAN {
-		public static final int CLIMBER_1 = 8;
+		public static final int DRIVE_LEFT_1 = 0;
+		public static final int DRIVE_LEFT_2 = 1;
+		public static final int DRIVE_LEFT_3 = 2;
+		public static final int DRIVE_RIGHT_1 = 3;
+		public static final int DRIVE_RIGHT_2 = 4;
+		public static final int DRIVE_RIGHT_3 = 5;
 
-		public static final int SHOOTER_1 = 7;
-		public static final int SHOOTER_2 = 6;
-
-		public static final int DRIVE_BACK_LEFT_ANGLE = 4;
-		public static final int DRIVE_BACK_LEFT_DRIVE = 3;
-
-		public static final int DRIVE_BACK_RIGHT_ANGLE = 5;
-		public static final int DRIVE_BACK_RIGHT_DRIVE = 6;
-
-		public static final int DRIVE_FRONT_LEFT_ANGLE = 2;
-		public static final int DRIVE_FRONT_LEFT_DRIVE = 1;
-
-		public static final int DRIVE_FRONT_RIGHT_ANGLE = 7;
-		public static final int DRIVE_FRONT_RIGHT_DRIVE = 8;
+		public static final int SHOOTER_1 = 6;
+		public static final int SHOOTER_2 = 7;
+		public static final int SHOOTER_3 = 8;
+		
+		public static final int COLLECTOR_1 = 9;
+		
+		public static final int CLIMBER_1 = 10;
 	}
 
 	/**
 	 * A class that holds static values for Digital Inputs.
 	 */
 	public static class Digital {
+		public static final double DRIVE_IN_TO_ENCODER = 504.0163; // 1000 Edges Per Revolution: ((ticks / 1rev) * (3rev / 1rev) * (64revs / 20rev) * (1rev / 19.047in))
 	}
 
 	/**

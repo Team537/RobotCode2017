@@ -6,6 +6,8 @@ import java.util.TimerTask;
 import org.team537.robot.autonomous.BlueDefault;
 import org.team537.robot.autonomous.RedDefault;
 import org.team537.robot.subsystems.Climber;
+import org.team537.robot.subsystems.Collector;
+import org.team537.robot.subsystems.Drive;
 import org.team537.robot.subsystems.GRIP;
 import org.team537.robot.subsystems.Shooter;
 import org.team537.robot.toolbox.Maths;
@@ -14,6 +16,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI.Port;
@@ -24,11 +27,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
+ * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as described in the IterativeRobot documentation. 
+ * If you change the name of this class or the package after creating this project, you must also update the manifest file in the resource directory.
  */
 public class Robot extends IterativeRobot {
 	// Interfaces.
@@ -38,7 +38,9 @@ public class Robot extends IterativeRobot {
 
 	// Subsystems.
 	public static GRIP grip;
+	public static Collector collector;
 	public static Climber climber;
+	public static Drive drive;
 	public static Shooter shooter;
 
 	// OI.
@@ -60,12 +62,11 @@ public class Robot extends IterativeRobot {
 			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
 		}
 
-		// camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
-		// camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH,
-		// RobotMap.GRIP.IMAGE_HEIGHT);
+		camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
+		camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH, RobotMap.GRIP.IMAGE_HEIGHT);
 
-		// mjpegServer = new MjpegServer("server_cam0", 1181);
-		// mjpegServer.setSource(camera);
+		mjpegServer = new MjpegServer("server_cam0", 1181);
+		mjpegServer.setSource(camera);
 
 		Timer timerDashboard = new Timer();
 		timerDashboard.schedule(new TimerTask() {
@@ -89,7 +90,9 @@ public class Robot extends IterativeRobot {
 
 		// Subsystems.
 		grip = new GRIP();
+		collector = new Collector();
 		climber = new Climber();
+		drive = new Drive();
 		shooter = new Shooter();
 
 		// OI.

@@ -3,14 +3,10 @@ package org.team537.robot.subsystems;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.team537.robot.Robot;
 import org.team537.robot.RobotMap;
 import org.team537.robot.commands.ClimberDefault;
-import org.team537.robot.commands.ShooterDefault;
-import org.team537.robot.toolbox.Maths;
 
 import com.ctre.CANTalon;
-import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -44,7 +40,6 @@ public class Climber extends Subsystem {
 	}
 
 	public void reset() {
-		climber1.setPosition(0.0);
 		climber1.set(0.0);
 		climber1.enable();
 	}
@@ -54,8 +49,6 @@ public class Climber extends Subsystem {
 	}
 
 	public void dashboard() {
-		SmartDashboard.putNumber("Climber Encoder Velocity", climber1.getEncVelocity());
-		SmartDashboard.putNumber("Climber Encoder Position", climber1.getEncPosition());
-		SmartDashboard.putNumber("Climber Voltage 1", climber1.getBusVoltage());
+		SmartDashboard.putNumber("Climber Voltage", climber1.getBusVoltage());
 	}
 }

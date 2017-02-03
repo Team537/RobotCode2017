@@ -28,4 +28,5 @@
 <fullyQualifiedTypeName name="org.team537.robot.Robot"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickAxes"/>
+<fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickKeys"/>
 </qualifiedTypeNameHistroy>
