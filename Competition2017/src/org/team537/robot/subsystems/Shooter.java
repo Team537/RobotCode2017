@@ -19,7 +19,6 @@ public class Shooter extends Subsystem {
 	private final CANTalon shooter2 = new CANTalon(RobotMap.CAN.SHOOTER_2);
 
 	public Shooter() {
-		shooter1.disable();
 		shooter1.changeControlMode(TalonControlMode.PercentVbus);
 		shooter1.enable();
 
@@ -58,7 +57,7 @@ public class Shooter extends Subsystem {
 	public void shoot(double rate) {
 		SmartDashboard.putNumber("Shooter Setpoint", rate);
 		
-		shooter1.set(rate * (4.0 / 7.0));
+		shooter1.set((rate / 5670.0f) * (4.0 / 7.0));
 		shooter2.set(rate);
 	}
 
