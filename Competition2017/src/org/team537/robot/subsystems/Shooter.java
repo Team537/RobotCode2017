@@ -28,11 +28,11 @@ public class Shooter extends Subsystem {
 		shooter2.configEncoderCodesPerRev(20);
 		// shooter2.setPulseWidthPosition(4);
 		shooter2.setPID(
-				(0.12f * 1023.0f) / (70.0f * (1.0f / 60.0f) * (1.0f / 10.0f) * 80.0f), 
+				(0.12 * 1023.0) / (70.0 * (1.0 / 60.0) * (1.0 / 10.0) * 80.0), 
 				0.0, 
-				(1.20f * 1023.0f) / (70.0f * (1.0f / 60.0f) * (1.0f / 10.0f) * 80.0f)
+				(1.20 * 1023.0) / (70.0 * (1.0 / 60.0) * (1.0 / 10.0) * 80.0)
 		);
-		shooter2.setF(1023.0f / (5670.0f * (1.0f / 60.0f) * (1.0f / 10.0f) * 80.0f));
+		shooter2.setF(1023.0 / (5670.0 * (1.0 / 60.0) * (1.0 / 10.0) * 80.0));
 		shooter2.configPeakOutputVoltage(+12.0, 0.0);
 		shooter2.enable();
 
@@ -54,6 +54,11 @@ public class Shooter extends Subsystem {
 		setDefaultCommand(new ShooterDefault());
 	}
 
+	/**
+	 * Drives the shooter from the input rate.
+	 * 
+	 * @param rate The input speed.
+	 */
 	public void shoot(double rate) {
 		SmartDashboard.putNumber("Shooter Setpoint", rate);
 		

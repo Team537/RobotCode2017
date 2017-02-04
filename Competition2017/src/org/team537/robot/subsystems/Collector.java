@@ -34,6 +34,11 @@ public class Collector extends Subsystem {
 		setDefaultCommand(new CollectorDefault());
 	}
 
+	/**
+	 * Drives the collector from the input rate.
+	 * 
+	 * @param rate The input speed.
+	 */
 	public void collector(double rate) {
 		SmartDashboard.putNumber("Collector Rate", rate);
 		collector1.set(rate);

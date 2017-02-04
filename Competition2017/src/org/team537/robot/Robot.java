@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 			@Override
 			public void run() {
 				if (ahrs != null) {
-					SmartDashboard.putNumber("NavX Angle", Maths.roundToPlace((double) ahrs.getAngle(), 3));
+					SmartDashboard.putNumber("NavX Angle", Maths.roundToPlace(ahrs.getAngle(), 3));
 					SmartDashboard.putNumber("NavX Angle Pitch", Maths.roundToPlace((double) ahrs.getPitch(), 3));
 					SmartDashboard.putNumber("NavX Angle Yaw", Maths.roundToPlace((double) ahrs.getYaw(), 3));
 					SmartDashboard.putNumber("NavX Angle Roll", Maths.roundToPlace((double) ahrs.getRoll(), 3));
@@ -182,3 +182,4 @@ public class Robot extends IterativeRobot {
 		LiveWindow.run();
 	}
 }
+

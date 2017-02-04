@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.SPI"/>
 <fullyQualifiedTypeName name="com.kauailabs.navx.frc.AHRS"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.smartdashboard.SmartDashboard"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.ShooterShoot"/>
 <fullyQualifiedTypeName name="edu.wpi.cscore.VideoMode"/>
 <fullyQualifiedTypeName name="org.team537.robot.autonomous.ShootCross"/>
@@ -19,7 +18,6 @@
 <fullyQualifiedTypeName name="org.team537.robot.commands.ShooterEnableWheel1"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.ShooterEnableWheel2"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.ShooterAddSpeedWheel1"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.ShooterAutoFire"/>
 <fullyQualifiedTypeName name="com.ctre.CANTalon.FeedbackDevice"/>
 <fullyQualifiedTypeName name="com.ctre.CANTalon"/>
@@ -29,4 +27,12 @@
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickAxes"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickKeys"/>
+<fullyQualifiedTypeName name="org.team537.robot.subsystems.Drive"/>
+<fullyQualifiedTypeName name="org.team537.robot.commands.CollectorDefault"/>
+<fullyQualifiedTypeName name="org.team537.robot.subsystems.Collector"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CameraServer"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.smartdashboard.SmartDashboard"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDController"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDOutput"/>
 </qualifiedTypeNameHistroy>

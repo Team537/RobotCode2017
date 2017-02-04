@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ClimberDefault extends Command {
 	public ClimberDefault() {
 		requires(Robot.climber);
+		this.setInterruptible(true);
 	}
 
 	/**
@@ -47,5 +48,6 @@ public class ClimberDefault extends Command {
 	 */
 	@Override
 	protected void interrupted() {
+		this.end();
 	}
 }

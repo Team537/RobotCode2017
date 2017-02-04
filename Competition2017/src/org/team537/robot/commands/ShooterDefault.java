@@ -5,12 +5,8 @@ import org.team537.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ShooterDefault extends Command {
-	
-	private boolean isFinished;
-	
 	public ShooterDefault() {
 		requires(Robot.shooter);
-		
 		this.setInterruptible(true);
 	}
 
@@ -20,7 +16,6 @@ public class ShooterDefault extends Command {
 	@Override
 	protected void initialize() {
 		Robot.shooter.reset();
-		isFinished = false;
 	}
 
 	/**
@@ -37,7 +32,7 @@ public class ShooterDefault extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return isFinished;
+		return false;
 	}
 
 	/**

@@ -1,17 +1,22 @@
 package org.team537.robot.subsystems;
 
 import com.ctre.CANTalon;
+
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.team537.robot.Robot;
 import org.team537.robot.RobotMap;
 import org.team537.robot.commands.DriveDefault;
 import org.team537.robot.toolbox.Maths;
 
-public class Drive extends Subsystem {
+public class Drive extends Subsystem implements PIDOutput {
 	private final CANTalon driveLeft1 = new CANTalon(RobotMap.CAN.DRIVE_LEFT_1);
 	private final CANTalon driveLeft2 = new CANTalon(RobotMap.CAN.DRIVE_LEFT_2);
 	private final CANTalon driveLeft3 = new CANTalon(RobotMap.CAN.DRIVE_LEFT_3);
@@ -19,6 +24,8 @@ public class Drive extends Subsystem {
 	private final CANTalon driveRight1 = new CANTalon(RobotMap.CAN.DRIVE_RIGHT_1);
 	private final CANTalon driveRight2 = new CANTalon(RobotMap.CAN.DRIVE_RIGHT_2);
 	private final CANTalon driveRight3 = new CANTalon(RobotMap.CAN.DRIVE_RIGHT_3);
+	
+	private final PIDController anglePID = new PIDController(0.03, 0.00, 0.00, 0.00, Robot.ahrs, this);
 
 	public Drive() {
 		driveLeft1.changeControlMode(CANTalon.TalonControlMode.Speed);
@@ -38,6 +45,12 @@ public class Drive extends Subsystem {
 		
 		driveRight3.changeControlMode(CANTalon.TalonControlMode.Follower);
 		driveRight3.set(RobotMap.CAN.DRIVE_RIGHT_1);
+		
+		anglePID.setInputRange(-180.0, 180.0);
+		anglePID.setOutputRange(-1.0, 1.0);
+		anglePID.setAbsoluteTolerance(2.0);
+		anglePID.setContinuous(true);
+	    LiveWindow.addActuator("Drive", "Angle PID", anglePID);
 
 		Timer timerDashboard = new Timer();
 		timerDashboard.schedule(new TimerTask() {
@@ -72,6 +85,7 @@ public class Drive extends Subsystem {
 		// Sets the Talons to the drive at % speeds.
 		driveLeft1.set(Maths.clamp(speedLeft * RobotMap.Robot.DRIVE_SPEED, -1.0, 1.0));
 		driveRight1.set(-Maths.clamp(speedRight * RobotMap.Robot.DRIVE_SPEED, -1.0, 1.0));
+		anglePID.disable();
 	}
 
 	/**
@@ -93,6 +107,7 @@ public class Drive extends Subsystem {
 		// Sets the Talons to the drive at rates.
 		driveLeft1.set(left);
 		driveRight2.set(-right);
+		anglePID.disable();
 	}
 
 	/**
@@ -114,12 +129,13 @@ public class Drive extends Subsystem {
 		// Sets the Talons to the drive distances.
 		driveLeft1.set(left * RobotMap.Digital.DRIVE_IN_TO_ENCODER);
 		driveRight1.set(-right * RobotMap.Digital.DRIVE_IN_TO_ENCODER);
+		anglePID.disable();
 	}
 
 	/**
 	 * Drives the drive train to a angle.
 	 * 
-	 * @param angle The angle to go to (degrees).
+	 * @param angle The angle to go to (degrees), this is a absolute angle (this + robotAngle = setpoint).
 	 */
 	public void angle(double angle) {
 		// Makes sure the Talons are in the right mode.
@@ -131,7 +147,16 @@ public class Drive extends Subsystem {
 			driveRight2.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		}
 
-		// TODO: Rotate!
+		anglePID.setSetpoint(angle);
+		anglePID.enable();
+	}
+
+
+	@Override
+	public void pidWrite(double output) {
+		// (NEGATIVE -> LEFT), (POSITIVE -> RIGHT).
+		driveLeft1.set(output);
+		driveRight2.set(-output);
 	}
 	
 	/**
@@ -146,8 +171,8 @@ public class Drive extends Subsystem {
 					return true;
 				}
 			}
-		} else if (driveLeft1.getControlMode().equals(CANTalon.TalonControlMode.PercentVbus)) { // Angle.
-			return false; // TODO!
+		} else if (anglePID.isEnabled()) { // Angle
+			return anglePID.onTarget();
 		}
 
 		return false;
@@ -155,23 +180,20 @@ public class Drive extends Subsystem {
 	
 	public void reset() {
 		driveLeft1.reset();
-		driveLeft2.reset();
-		driveLeft3.reset();
 		driveLeft1.setPosition(0);
 		
 		driveRight1.reset();
-		driveRight2.reset();
-		driveRight3.reset();
 		driveRight1.setPosition(0);
+		
+		anglePID.reset();
 	}
 
 	public void stop() {
 		driveLeft1.set(0);
-		driveLeft2.set(0);
-		driveLeft3.set(0);
+		
 		driveRight1.set(0);
-		driveRight2.set(0);
-		driveRight3.set(0);
+		
+		anglePID.disable();
 	}
 
 	public void dashboard() {

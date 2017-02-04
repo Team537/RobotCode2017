@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveDefault extends Command {
 	public DriveDefault() {
 		requires(Robot.drive);
+		this.setInterruptible(true);
 	}
 
 	/**
@@ -48,5 +49,6 @@ public class DriveDefault extends Command {
 	 */
 	@Override
 	protected void interrupted() {
+		this.end();
 	}
 }

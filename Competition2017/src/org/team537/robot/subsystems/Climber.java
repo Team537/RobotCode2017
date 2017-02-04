@@ -34,6 +34,11 @@ public class Climber extends Subsystem {
 		setDefaultCommand(new ClimberDefault());
 	}
 
+	/**
+	 * Drives the climber from the input rate.
+	 * 
+	 * @param rate The input speed.
+	 */
 	public void climb(double rate) {
 		SmartDashboard.putNumber("Climber Rate", rate);
 		climber1.set(rate);

@@ -90,21 +90,6 @@ public class Maths {
 	 *
 	 * @return The rounded value.
 	 */
-	public static float roundToPlace(float value, int place) {
-		float placeMul = (float) (Math.pow(10.0f, place));
-		return (float) Math.round((value) * placeMul) / placeMul;
-	}
-
-	/**
-	 * Rounds a value to a amount of places after the decimal point.
-	 *
-	 * @param value
-	 *            The value to round.
-	 * @param place
-	 *            How many places after the decimal to round to.
-	 *
-	 * @return The rounded value.
-	 */
 	public static double roundToPlace(double value, int place) {
 		double placeMul = Math.pow(10.0, place);
 		return Math.round((value) * placeMul) / placeMul;
