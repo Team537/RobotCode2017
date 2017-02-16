@@ -11,19 +11,19 @@ public class RobotMap {
 	public static class Driver {
 		public static final int PRIMARY_PORT = 0;
 		public static final int SECONDARY_PORT = 1;
+		public static final int TERTIARY_PORT = 2;
+
+		public static final boolean ARCADE_DRIVE = false;
 	}
 
 	/**
 	 * A class that holds static values for extra robot constants.
 	 */
 	public static class Robot {
-		public static final double WIDTH = 26.0;
-		public static final double LENGTH = 26.0;
-		public static final double RATIO = Math.sqrt((LENGTH * LENGTH) + (WIDTH * WIDTH));
-		public static final boolean DRIVE_ENABLED = true;
-		public static final double DRIVE_SPEED_MIN = 0.07; // Speeds from 0-1.
+		public static final double DRIVE_SPEED_MIN = 0.1; 
 		public static final double DRIVE_SPEED = 1.0;
-		public static final double CLIMB_SPEED = 1.0; // Speeds from 0-1.
+		public static final double CLIMB_SPEED = 1.0;
+		public static final double COLLECT_SPEED = 1.0;
 	}
 
 	/**
@@ -32,11 +32,6 @@ public class RobotMap {
 	public static class GRIP {
 		public static final int IMAGE_WIDTH = 320;
 		public static final int IMAGE_HEIGHT = 240;
-
-		public static final double WEBCAM_FOV = 68.5;
-		public static final double PERCEIVED_FOCAL_LENGTH = 0.0; // (F = (P * D) / H) Focal = (apparent height / distance real) / known height)
-
-		public static final double BOILER_HIGH_VISION = 0.4318; // 86" - 69"; the distance between the vision rectangles on the boiler (in metres).
 	}
 
 	/**
@@ -114,27 +109,28 @@ public class RobotMap {
 	 * A class that holds static values for CAN bus Channels.
 	 */
 	public static class CAN {
-		public static final int DRIVE_LEFT_1 = 0;
-		public static final int DRIVE_LEFT_2 = 1;
-		public static final int DRIVE_LEFT_3 = 2;
-		public static final int DRIVE_RIGHT_1 = 3;
-		public static final int DRIVE_RIGHT_2 = 4;
-		public static final int DRIVE_RIGHT_3 = 5;
+		public static final int DRIVE_LEFT_MASTER = 2;
+		public static final int DRIVE_LEFT_NORMAL = 1;
+		public static final int DRIVE_LEFT_MINI = 3;
+		public static final int DRIVE_RIGHT_MASTER = 5;
+		public static final int DRIVE_RIGHT_NORMAL = 4;
+		public static final int DRIVE_RIGHT_MINI = 6;
 
-		public static final int SHOOTER_1 = 6;
-		public static final int SHOOTER_2 = 7;
-		public static final int SHOOTER_3 = 8;
+		public static final int SHOOTER_MASTER = 7;
+		public static final int SHOOTER_SLAVE = 8;
 		
-		public static final int COLLECTOR_1 = 9;
+		public static final int COLLECTOR = 9;
 		
-		public static final int CLIMBER_1 = 10;
+		public static final int FEEDER = 10;
+		
+		public static final int CLIMBER = 11;
 	}
 
 	/**
 	 * A class that holds static values for Digital Inputs.
 	 */
 	public static class Digital {
-		public static final double DRIVE_IN_TO_ENCODER = 504.0163; // 1000 Edges Per Revolution: ((ticks / 1rev) * (3rev / 1rev) * (64revs / 20rev) * (1rev / 19.047in))
+		public static final double DRIVE_IN_TO_ENCODER = 1.0 / (0.14605 * Math.PI); // Metre => Encoder Ticks: (distance 'm' / (wheel diameter 'm' * PI)).
 	}
 
 	/**

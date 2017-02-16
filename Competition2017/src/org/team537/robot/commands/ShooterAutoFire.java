@@ -1,12 +1,14 @@
 package org.team537.robot.commands;
 
 import org.team537.robot.Robot;
+import org.team537.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ShooterAutoFire extends Command {
 	public ShooterAutoFire() {
 		requires(Robot.shooter);
+		setInterruptible(true);
 	}
 
 	/**
@@ -22,7 +24,8 @@ public class ShooterAutoFire extends Command {
 	 */
 	@Override
 	protected void execute() {
-		Robot.shooter.shoot(4200.0);
+	//	Robot.shooter.shoot(Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y));
+		Robot.shooter.shoot(3400.0);
 	}
 
 	/**
@@ -46,6 +49,6 @@ public class ShooterAutoFire extends Command {
 	 */
 	@Override
 	protected void interrupted() {
-		Robot.shooter.stop();
+		this.end();
 	}
 }

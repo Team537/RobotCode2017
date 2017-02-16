@@ -1,13 +1,14 @@
 package org.team537.robot.commands;
 
 import org.team537.robot.Robot;
+import org.team537.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ShooterDefault extends Command {
 	public ShooterDefault() {
 		requires(Robot.shooter);
-		this.setInterruptible(true);
+		setInterruptible(true);
 	}
 
 	/**

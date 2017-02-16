@@ -38,8 +38,7 @@ public class Robot extends IterativeRobot {
 	private Command autoCommand;
 
 	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
+	 * This function is for robot-wide initialization code.
 	 */
 	@Override
 	public void robotInit() {

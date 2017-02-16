@@ -2,14 +2,22 @@ package org.team537.robot.commands;
 
 import org.team537.robot.Robot;
 
+import com.ctre.CANTalon;
+
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveAngle extends Command {
+	private Timer timer;
 	private double angle;
+	private boolean addToNavX;
 	
-	public DriveAngle(double angle) {
+	public DriveAngle(double angle, boolean addToNavX) {
 		requires(Robot.drive);
+		setInterruptible(true);
+		this.timer = new Timer();
 		this.angle = angle;
+		this.addToNavX = addToNavX;
 	}
 
 	/**
@@ -17,7 +25,16 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected void initialize() {
+		Robot.drive.setToMode(CANTalon.TalonControlMode.PercentVbus);
+
+		if (addToNavX) {
+			Robot.ahrs.reset();
+		}
+		
 		Robot.drive.angle(angle);
+		
+		timer.reset();
+		timer.start();
 	}
 
 	/**
@@ -32,7 +49,7 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.atTarget();
+		return Robot.drive.atTarget() || timer.get() > 2.0;
 	}
 
 	/**
@@ -41,6 +58,8 @@ public class DriveAngle extends Command {
 	@Override
 	protected void end() {
 		Robot.drive.stop();
+		timer.reset();
+		timer.stop();
 	}
 
 	/**
@@ -48,5 +67,6 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected void interrupted() {
+		this.end();
 	}
 }

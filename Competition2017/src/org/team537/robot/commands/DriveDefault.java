@@ -2,13 +2,16 @@ package org.team537.robot.commands;
 
 import org.team537.robot.Robot;
 import org.team537.robot.RobotMap;
+import org.team537.robot.toolbox.Maths;
+
+import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveDefault extends Command {
 	public DriveDefault() {
 		requires(Robot.drive);
-		this.setInterruptible(true);
+		setInterruptible(true);
 	}
 
 	/**
@@ -16,6 +19,7 @@ public class DriveDefault extends Command {
 	 */
 	@Override
 	protected void initialize() {
+		Robot.drive.setToMode(CANTalon.TalonControlMode.PercentVbus);
 	}
 
 	/**
@@ -23,8 +27,10 @@ public class DriveDefault extends Command {
 	 */
 	@Override
 	protected void execute() {
-		double left = Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxes.LEFT_Y);
-		double right = Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxes.RIGHT_Y);
+		double left = -Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y);
+		double right = -Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y);
+		left = Maths.deadband(RobotMap.Robot.DRIVE_SPEED_MIN, left);
+		right = Maths.deadband(RobotMap.Robot.DRIVE_SPEED_MIN, right);
 		Robot.drive.speed(left, right);
 	}
 

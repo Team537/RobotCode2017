@@ -1,12 +1,14 @@
 package org.team537.robot.commands;
 
 import org.team537.robot.Robot;
+import org.team537.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class CollectorDefault extends Command {
 	public CollectorDefault() {
 		requires(Robot.collector);
+		setInterruptible(true);
 	}
 
 	/**
@@ -45,5 +47,6 @@ public class CollectorDefault extends Command {
 	 */
 	@Override
 	protected void interrupted() {
+		this.end();
 	}
 }

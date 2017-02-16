@@ -2,6 +2,8 @@ package org.team537.robot.commands;
 
 import org.team537.robot.Robot;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveDistance extends Command {
@@ -10,6 +12,7 @@ public class DriveDistance extends Command {
 	
 	public DriveDistance(double distanceLeft, double distanceRight) {
 		requires(Robot.drive);
+		setInterruptible(true);
 		this.distanceLeft = distanceLeft;
 		this.distanceRight = distanceRight;
 	}
@@ -19,6 +22,12 @@ public class DriveDistance extends Command {
 	 */
 	@Override
 	protected void initialize() {
+		Robot.drive.setToMode(CANTalon.TalonControlMode.Position);
+		Robot.drive.setPIDF(
+				1.0, 0.0, 0.0, 1.0,
+				1.0, 0.0, 0.0, 1.0
+		);
+		Robot.drive.reset();
 		Robot.drive.distance(distanceLeft, distanceRight);
 	}
 
@@ -50,5 +59,6 @@ public class DriveDistance extends Command {
 	 */
 	@Override
 	protected void interrupted() {
+		this.end();
 	}
 }

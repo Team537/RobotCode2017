@@ -32,8 +32,8 @@ public class Maths {
 	/**
 	 * Gets the minimum value.
 	 *
-	 * @param fs
-	 *            The values to sort though.
+	 * @param fs The values to sort though.
+	 * 
 	 * @return The minimum value.
 	 */
 	public static double minValue(double... fs) {

@@ -9,6 +9,7 @@ import org.team537.robot.subsystems.Climber;
 import org.team537.robot.subsystems.Collector;
 import org.team537.robot.subsystems.Drive;
 import org.team537.robot.subsystems.GRIP;
+import org.team537.robot.subsystems.Lidar;
 import org.team537.robot.subsystems.Shooter;
 import org.team537.robot.toolbox.Maths;
 
@@ -38,6 +39,7 @@ public class Robot extends IterativeRobot {
 
 	// Subsystems.
 	public static GRIP grip;
+	public static Lidar lidar;
 	public static Collector collector;
 	public static Climber climber;
 	public static Drive drive;
@@ -62,11 +64,11 @@ public class Robot extends IterativeRobot {
 			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
 		}
 
-		camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
-		camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH, RobotMap.GRIP.IMAGE_HEIGHT);
+	//	camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
+	//	camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH, RobotMap.GRIP.IMAGE_HEIGHT);
 
-		mjpegServer = new MjpegServer("server_cam0", 1181);
-		mjpegServer.setSource(camera);
+	//	mjpegServer = new MjpegServer("server_cam0", 1181);
+	//	mjpegServer.setSource(camera);
 
 		Timer timerDashboard = new Timer();
 		timerDashboard.schedule(new TimerTask() {
@@ -84,12 +86,15 @@ public class Robot extends IterativeRobot {
 
 				if (camera != null) {
 					SmartDashboard.putBoolean("Camera Conected", Robot.camera.isConnected());
+				} else {
+					SmartDashboard.putBoolean("Camera Conected", false);
 				}
 			}
 		}, 0, 100);
 
 		// Subsystems.
 		grip = new GRIP();
+		lidar = new Lidar();
 		collector = new Collector();
 		climber = new Climber();
 		drive = new Drive();

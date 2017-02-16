@@ -13,12 +13,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Climber extends Subsystem {
-	private final CANTalon climber1 = new CANTalon(RobotMap.CAN.CLIMBER_1);
+	private final CANTalon climber = new CANTalon(RobotMap.CAN.CLIMBER);
 
 	public Climber() {
-		climber1.disable();
-		climber1.changeControlMode(TalonControlMode.PercentVbus);
-		climber1.enable();
+		climber.disable();
+		climber.changeControlMode(TalonControlMode.PercentVbus);
+		climber.enable();
 
 		Timer timerDashboard = new Timer();
 		timerDashboard.schedule(new TimerTask() {
@@ -41,19 +41,19 @@ public class Climber extends Subsystem {
 	 */
 	public void climb(double rate) {
 		SmartDashboard.putNumber("Climber Rate", rate);
-		climber1.set(rate);
+		climber.set(rate);
 	}
 
 	public void reset() {
-		climber1.set(0.0);
-		climber1.enable();
+		climber.set(0.0);
+		climber.enable();
 	}
 
 	public void stop() {
-		climber1.set(0.0);
+		climber.set(0.0);
 	}
 
-	public void dashboard() {
-		SmartDashboard.putNumber("Climber Voltage", climber1.getBusVoltage());
+	private void dashboard() {
+		SmartDashboard.putNumber("Climber Voltage", climber.getBusVoltage());
 	}
 }
