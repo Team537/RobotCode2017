@@ -1,13 +1,12 @@
 package org.team537.robot.commands;
 
 import org.team537.robot.Robot;
-import org.team537.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ClimberDefault extends Command {
-	public ClimberDefault() {
-		requires(Robot.climber);
+public class FeederDefault extends Command {
+	public FeederDefault() {
+		requires(Robot.feeder);
 		setInterruptible(true);
 	}
 
@@ -16,7 +15,7 @@ public class ClimberDefault extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		Robot.climber.reset();
+		Robot.feeder.reset();
 	}
 
 	/**
@@ -24,7 +23,7 @@ public class ClimberDefault extends Command {
 	 */
 	@Override
 	protected void execute() {
-		Robot.climber.climb(Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxes.RIGHT_Y));
+		Robot.feeder.feed(0.0);
 	}
 
 	/**
@@ -40,7 +39,7 @@ public class ClimberDefault extends Command {
 	 */
 	@Override
 	protected void end() {
-		Robot.climber.stop();
+		Robot.feeder.stop();
 	}
 
 	/**

@@ -5,7 +5,6 @@ import java.util.TimerTask;
 
 import org.team537.robot.RobotMap;
 import org.team537.robot.commands.ShooterDefault;
-import org.team537.robot.toolbox.Maths;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
@@ -60,7 +59,8 @@ public class Shooter extends Subsystem {
 	 * @param rate The input speed.
 	 */
 	public void shoot(double rate) {
-		shooterMaster.set(rate);
+		// IF RATE IS NEGATIVE: THE ROBOT WILL KILL ITSELF. 
+		shooterMaster.set(Math.abs(rate)); 
 	}
 
 	public void reset() {

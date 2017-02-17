@@ -4,6 +4,7 @@ import org.team537.robot.commands.CollectorIntake;
 import org.team537.robot.commands.CollectorSquarewave;
 import org.team537.robot.commands.DriveArcade;
 import org.team537.robot.commands.ShooterAutoFire;
+import org.team537.robot.commands.ShooterClimb;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -29,6 +30,7 @@ public class OI {
 	//		new JoystickButton(joystickSecondary, RobotMap.JoystickKeysX3D.STICK_3).whenPressed(new DriveSpeed(0.2, -0.2, 4.20));
 
 		new JoystickButton(joystickPrimary, RobotMap.JoystickKeysX3D.INDEX_TRIGGER).whileHeld(new ShooterAutoFire());
+		new JoystickButton(joystickPrimary, RobotMap.JoystickKeysX3D.BASE_10).whileHeld(new ShooterClimb());
 
 		new JoystickButton(joystickPrimary, RobotMap.JoystickKeysX3D.STICK_6).whileHeld(new CollectorIntake(false));
 		new JoystickButton(joystickPrimary, RobotMap.JoystickKeysX3D.STICK_4).whileHeld(new CollectorIntake(true));

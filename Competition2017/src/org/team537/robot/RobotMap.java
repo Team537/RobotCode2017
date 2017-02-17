@@ -22,7 +22,7 @@ public class RobotMap {
 	public static class Robot {
 		public static final double DRIVE_SPEED_MIN = 0.1; 
 		public static final double DRIVE_SPEED = 1.0;
-		public static final double CLIMB_SPEED = 1.0;
+		public static final double FEEDER_SPEED = 1.0;
 		public static final double COLLECT_SPEED = 1.0;
 	}
 
@@ -122,8 +122,6 @@ public class RobotMap {
 		public static final int COLLECTOR = 9;
 		
 		public static final int FEEDER = 10;
-		
-		public static final int CLIMBER = 11;
 	}
 
 	/**

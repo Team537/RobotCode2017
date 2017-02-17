@@ -5,9 +5,9 @@ import java.util.TimerTask;
 
 import org.team537.robot.autonomous.BlueDefault;
 import org.team537.robot.autonomous.RedDefault;
-import org.team537.robot.subsystems.Climber;
 import org.team537.robot.subsystems.Collector;
 import org.team537.robot.subsystems.Drive;
+import org.team537.robot.subsystems.Feeder;
 import org.team537.robot.subsystems.GRIP;
 import org.team537.robot.subsystems.Lidar;
 import org.team537.robot.subsystems.Shooter;
@@ -17,7 +17,6 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI.Port;
@@ -41,7 +40,7 @@ public class Robot extends IterativeRobot {
 	public static GRIP grip;
 	public static Lidar lidar;
 	public static Collector collector;
-	public static Climber climber;
+	public static Feeder feeder;
 	public static Drive drive;
 	public static Shooter shooter;
 
@@ -96,7 +95,7 @@ public class Robot extends IterativeRobot {
 		grip = new GRIP();
 		lidar = new Lidar();
 		collector = new Collector();
-		climber = new Climber();
+		feeder = new Feeder();
 		drive = new Drive();
 		shooter = new Shooter();
 

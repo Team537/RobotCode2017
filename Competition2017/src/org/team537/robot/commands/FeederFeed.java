@@ -1,15 +1,13 @@
-package org.team539.robot.commands;
+package org.team537.robot.commands;
 
-import org.team539.robot.Robot;
+import org.team537.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveAngle extends Command {
-	private double angle;
-	
-	public DriveAngle(double angle) {
-		requires(Robot.drive);
-		this.angle = angle;
+public class FeederFeed extends Command {
+	public FeederFeed() {
+		requires(Robot.feeder);
+		setInterruptible(true);
 	}
 
 	/**
@@ -17,14 +15,15 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		Robot.drive.angle(angle);
+		Robot.feeder.reset();
 	}
 
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is cancelled.
+	 * The execute method is called repeatedly until this Command either finishes or is canceled.
 	 */
 	@Override
 	protected void execute() {
+		Robot.feeder.feed(1.0);
 	}
 
 	/**
@@ -32,7 +31,7 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.atTarget();
+		return false;
 	}
 
 	/**
@@ -40,7 +39,7 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected void end() {
-		Robot.drive.stop();
+		Robot.feeder.stop();
 	}
 
 	/**
@@ -48,5 +47,6 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected void interrupted() {
+		this.end();
 	}
 }

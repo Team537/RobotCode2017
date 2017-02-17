@@ -45,4 +45,5 @@
 <fullyQualifiedTypeName name="org.team537.robot.subsystems.Lidar"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.Robot"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.DriveArcade"/>
+<fullyQualifiedTypeName name="org.team537.robot.commands.CollectorSquarewave"/>
 </qualifiedTypeNameHistroy>
