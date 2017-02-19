@@ -4,10 +4,13 @@ import org.team537.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShooterAutoFire extends Command {
-	public ShooterAutoFire() {
-		requires(Robot.shooter);
+public class AgitatorAgitate extends Command {
+	private boolean forwards;
+	
+	public AgitatorAgitate(boolean forwards) {
+		requires(Robot.agitator);
 		setInterruptible(true);
+		this.forwards = forwards;
 	}
 
 	/**
@@ -15,7 +18,7 @@ public class ShooterAutoFire extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		Robot.shooter.reset();
+		Robot.agitator.reset();
 	}
 
 	/**
@@ -23,8 +26,7 @@ public class ShooterAutoFire extends Command {
 	 */
 	@Override
 	protected void execute() {
-	//	Robot.shooter.shoot(Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y));
-		Robot.shooter.shoot(3400.0);
+		Robot.agitator.agitate(forwards ? 1.0 : -1.0);
 	}
 
 	/**
@@ -40,7 +42,7 @@ public class ShooterAutoFire extends Command {
 	 */
 	@Override
 	protected void end() {
-		Robot.shooter.stop();
+		Robot.agitator.stop();
 	}
 
 	/**

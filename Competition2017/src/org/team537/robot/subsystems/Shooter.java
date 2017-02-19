@@ -29,11 +29,11 @@ public class Shooter extends Subsystem {
 		shooterMaster.configEncoderCodesPerRev(14);
 		// shooter2.setPulseWidthPosition(4);
 		shooterMaster.setPID(
-				0.34, 
+				32.0, 
 				0.0, 
 				0.0
 		);
-		shooterMaster.setF(1023.0 / 610.0);
+		shooterMaster.setF(1023.0 / 590.0);
 		shooterMaster.configPeakOutputVoltage(+12.0, 0.0);
 		shooterMaster.enable();
 		
@@ -62,6 +62,10 @@ public class Shooter extends Subsystem {
 		// IF RATE IS NEGATIVE: THE ROBOT WILL KILL ITSELF. 
 		shooterMaster.set(Math.abs(rate)); 
 	}
+	
+	public double getSetpoint() {
+		return shooterMaster.getSetpoint();
+	}
 
 	public void reset() {
 		shooterMaster.set(0.0);
@@ -73,7 +77,6 @@ public class Shooter extends Subsystem {
 
 	public void stop() {
 		shooterMaster.set(0.0);
-		
 	}
 
 	private void dashboard() {
@@ -81,8 +84,5 @@ public class Shooter extends Subsystem {
 		SmartDashboard.putNumber("Shooter Encoder Speed", shooterMaster.getEncVelocity()); // Native units.
 		SmartDashboard.putNumber("Shooter Encoder Error", shooterMaster.getError() * 4.0f);
 		SmartDashboard.putNumber("Shooter Encoder Position", shooterMaster.getEncPosition());
-
-		SmartDashboard.putNumber("Shooter Voltage", shooterMaster.getBusVoltage());
-		SmartDashboard.putNumber("Shooter Setpoint", shooterMaster.getSetpoint());
 	}
 }

@@ -54,6 +54,10 @@ public class Collector extends Subsystem {
 		collector.set(-rate * RobotMap.Robot.COLLECT_SPEED);
 	}
 
+	public double getSetpoint() {
+		return collector.getSetpoint();
+	}
+
 	public void reset() {
 		collector.set(0.0);
 		collector.enable();
@@ -64,12 +68,8 @@ public class Collector extends Subsystem {
 	}
 
 	private void dashboard() {
-		SmartDashboard.putNumber("Collector Speed", collector.getSpeed());
 		SmartDashboard.putNumber("Collector Encoder Speed", collector.getEncVelocity()); // Native units.
 		SmartDashboard.putNumber("Collector Encoder Error", collector.getError() * 4.0f);
 		SmartDashboard.putNumber("Collector Encoder Position", collector.getEncPosition());
-
-		SmartDashboard.putNumber("Collector Voltage", collector.getBusVoltage());
-		SmartDashboard.putNumber("Collector Setpoint", collector.getSetpoint());
 	}
 }

@@ -27,11 +27,11 @@ public class DriveSpecial extends Command {
 	 */
 	@Override
 	protected void execute() {
-		double x = Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_X);
-		double y = -Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y);
+		double x = Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxes.STICK_X);
+		double y = -Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxes.STICK_Y);
 		double t = Maths.normalizeAngle(Math.toDegrees(Math.atan2(y, x)));
 		
-		if (Robot.oi.joystickPrimary.getRawButton(RobotMap.JoystickKeysX3D.INDEX_TRIGGER)) {
+		if (Robot.oi.joystickPrimary.getRawButton(RobotMap.JoystickKeys.INDEX_TRIGGER)) {
 			Robot.drive.angle(t);
 			System.out.println(x + ", " + y + " = " + t);
 		}

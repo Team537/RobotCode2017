@@ -20,10 +20,11 @@ public class RobotMap {
 	 * A class that holds static values for extra robot constants.
 	 */
 	public static class Robot {
-		public static final double DRIVE_SPEED_MIN = 0.1; 
-		public static final double DRIVE_SPEED = 1.0;
+		public static final double DRIVE_SPEED_MIN = 0.08; 
+		public static final double DRIVE_SPEED = 0.8;
 		public static final double FEEDER_SPEED = 1.0;
-		public static final double COLLECT_SPEED = 1.0;
+		public static final double AGITATOR_SPEED = 1.0;
+		public static final double COLLECT_SPEED = 0.7;
 	}
 
 	/**
@@ -44,37 +45,9 @@ public class RobotMap {
 	}
 
 	/**
-	 * A class that holds static values for joystick keys (Logitech F310).
-	 */
-	public static class JoystickKeys {
-		public static final int A = 1;
-		public static final int B = 2;
-		public static final int X = 3;
-		public static final int Y = 4;
-		public static final int BUMPER_LEFT = 5;
-		public static final int BUMPER_RIGHT = 6;
-		public static final int BACK = 7;
-		public static final int START = 8;
-		public static final int LEFT = 9;
-		public static final int RIGHT = 10;
-	}
-
-	/**
-	 * A class that holds static values for joystick axes (Logitech F310).
-	 */
-	public static class JoystickAxes {
-		public static final int LEFT_X = 0;
-		public static final int LEFT_Y = 1;
-		public static final int TRIGGER_LEFT = 2;
-		public static final int TRIGGER_RIGHT = 3;
-		public static final int RIGHT_X = 4;
-		public static final int RIGHT_Y = 5;
-	}
-
-	/**
 	 * A class that holds static values for joystick keys (Logitech X3D Pro).
 	 */
-	public static class JoystickKeysX3D {
+	public static class JoystickKeys {
 		public static final int INDEX_TRIGGER = 1;
 		public static final int THUMB_TRIGGER = 2;
 		public static final int STICK_3 = 3;
@@ -88,11 +61,21 @@ public class RobotMap {
 		public static final int BASE_11 = 11;
 		public static final int BASE_12 = 12;
 	}
+	
+	public static class ControlBox {
+		public static final int FIRE_BUTTON = 1;
+		public static final int CLIMB_TOGGLE = 2;
+		public static final int FLYWHEEL_TOGGLE = 4;
+		public static final int COLLECTOR_IN = 5;
+		public static final int COLLECTOR_OUT = 6;
+		public static final int AGRIGATOR_IN = 7;
+		public static final int AGRIGATOR_OUT = 8;
+	}
 
 	/**
 	 * A class that holds static values for joystick axes (Logitech X3D Pro).
 	 */
-	public static class JoystickAxesX3D {
+	public static class JoystickAxes {
 		public static final int STICK_X = 0;
 		public static final int STICK_Y = 1;
 		public static final int STICK_Z = 2;
@@ -120,8 +103,10 @@ public class RobotMap {
 		public static final int SHOOTER_SLAVE = 8;
 		
 		public static final int COLLECTOR = 9;
-		
+
 		public static final int FEEDER = 10;
+		
+		public static final int AGITATOR = 11;
 	}
 
 	/**

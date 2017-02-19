@@ -27,8 +27,8 @@ public class DriveDefault extends Command {
 	 */
 	@Override
 	protected void execute() {
-		double left = -Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y);
-		double right = -Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y);
+		double left = -Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxes.STICK_Y);
+		double right = -Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxes.STICK_Y);
 		left = Maths.deadband(RobotMap.Robot.DRIVE_SPEED_MIN, left);
 		right = Maths.deadband(RobotMap.Robot.DRIVE_SPEED_MIN, right);
 		Robot.drive.speed(left, right);

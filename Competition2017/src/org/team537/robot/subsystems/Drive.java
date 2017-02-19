@@ -233,17 +233,14 @@ public class Drive extends Subsystem implements PIDOutput {
 	}
 
 	private void dashboard() {
-		SmartDashboard.putBoolean("Drive Enabled Left", driveLeft1.isEnabled());
-		SmartDashboard.putBoolean("Drive Enabled Right", driveRight1.isEnabled());
-
 		SmartDashboard.putNumber("Drive Setpoint Left", driveLeft1.getSetpoint());
 		SmartDashboard.putNumber("Drive Setpoint Right", driveRight1.getSetpoint());
 
 		SmartDashboard.putNumber("Drive Error Left", driveLeft1.getError() * 4.0);
 		SmartDashboard.putNumber("Drive Error Right", driveRight1.getError() * 4.0);
 
-		SmartDashboard.putNumber("Drive Speed Left", driveLeft1.getSpeed());
-		SmartDashboard.putNumber("Drive Speed Right", driveRight1.getSpeed());
+		SmartDashboard.putNumber("Drive Encoder Speed Left", driveLeft1.getEncVelocity());
+		SmartDashboard.putNumber("Drive Encoder Speed Right", driveRight1.getEncVelocity());
 
 		SmartDashboard.putNumber("Drive Encoder Pos Left", driveLeft1.getEncPosition());
 		SmartDashboard.putNumber("Drive Encoder Pos Right", driveRight1.getEncPosition());

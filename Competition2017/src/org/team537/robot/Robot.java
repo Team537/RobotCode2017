@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 import org.team537.robot.autonomous.BlueDefault;
 import org.team537.robot.autonomous.RedDefault;
+import org.team537.robot.subsystems.Agitator;
 import org.team537.robot.subsystems.Collector;
 import org.team537.robot.subsystems.Drive;
 import org.team537.robot.subsystems.Feeder;
@@ -40,6 +41,7 @@ public class Robot extends IterativeRobot {
 	public static GRIP grip;
 	public static Lidar lidar;
 	public static Collector collector;
+	public static Agitator agitator;
 	public static Feeder feeder;
 	public static Drive drive;
 	public static Shooter shooter;
@@ -95,6 +97,7 @@ public class Robot extends IterativeRobot {
 		grip = new GRIP();
 		lidar = new Lidar();
 		collector = new Collector();
+		agitator = new Agitator();
 		feeder = new Feeder();
 		drive = new Drive();
 		shooter = new Shooter();
