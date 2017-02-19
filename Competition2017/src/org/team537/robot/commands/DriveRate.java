@@ -4,22 +4,18 @@ import org.team537.robot.Robot;
 
 import com.ctre.CANTalon;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveRate extends Command {
-	private Timer timer;
 	private double rateLeft;
 	private double rateRight;
-	private double time;
 	
 	public DriveRate(double rateLeft, double rateRight, double time) {
 		requires(Robot.drive);
 		setInterruptible(true);
-		this.timer = new Timer();
+		setTimeout(time);
 		this.rateLeft = rateLeft;
 		this.rateRight = rateRight;
-		this.time = time;
 	}
 
 	/**
@@ -32,8 +28,6 @@ public class DriveRate extends Command {
 				0.0, 0.0, 0.0, 1023.0 / 640.0,
 				0.0, 0.0, 0.0, 1023.0 / 640.0
 		);
-		timer.reset();
-		timer.start();
 		Robot.drive.rate(rateLeft, rateRight);
 	}
 
@@ -49,7 +43,7 @@ public class DriveRate extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return timer.get() > time;
+		return this.isTimedOut();
 	}
 
 	/**
@@ -57,7 +51,6 @@ public class DriveRate extends Command {
 	 */
 	@Override
 	protected void end() {
-		timer.stop();
 		Robot.drive.stop();
 	}
 

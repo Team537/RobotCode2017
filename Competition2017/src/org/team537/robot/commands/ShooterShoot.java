@@ -24,7 +24,7 @@ public class ShooterShoot extends Command {
 	@Override
 	protected void execute() {
 	//	Robot.shooter.shoot(Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y));
-		Robot.shooter.shoot(3042.0);
+		Robot.shooter.shoot(3050.0);
 		// 3300RPM is good!
 	}
 

@@ -1,14 +1,11 @@
 package org.team537.robot;
 
 import org.team537.robot.commands.AgitatorAgitate;
-import org.team537.robot.commands.CollectorDefault;
 import org.team537.robot.commands.CollectorIntake;
 import org.team537.robot.commands.DriveArcade;
-import org.team537.robot.commands.DriveRate;
-import org.team537.robot.commands.DriveSpeed;
 import org.team537.robot.commands.FeederFeed;
-import org.team537.robot.commands.ShooterShoot;
 import org.team537.robot.commands.ShooterClimb;
+import org.team537.robot.commands.ShooterShoot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

@@ -18,6 +18,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI.Port;
@@ -65,11 +66,11 @@ public class Robot extends IterativeRobot {
 			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
 		}
 
-	//	camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
-	//	camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH, RobotMap.GRIP.IMAGE_HEIGHT);
+		camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
+		camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH, RobotMap.GRIP.IMAGE_HEIGHT);
 
-	//	mjpegServer = new MjpegServer("server_cam0", 1181);
-	//	mjpegServer.setSource(camera);
+		mjpegServer = new MjpegServer("server_cam0", 1181);
+		mjpegServer.setSource(camera);
 
 		Timer timerDashboard = new Timer();
 		timerDashboard.schedule(new TimerTask() {

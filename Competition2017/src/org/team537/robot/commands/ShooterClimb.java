@@ -1,8 +1,10 @@
 package org.team537.robot.commands;
 
 import org.team537.robot.Robot;
+import org.team537.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShooterClimb extends Command {
 	public ShooterClimb() {
@@ -23,7 +25,12 @@ public class ShooterClimb extends Command {
 	 */
 	@Override
 	protected void execute() {
-		Robot.shooter.shoot(4000.0);
+		double speed = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxes.SLIDER);
+		if (speed < 0) {
+			speed = 0;
+		}
+		SmartDashboard.putNumber("Climb Speed %", speed);
+		Robot.shooter.shoot(3200.0 * speed);
 	}
 
 	/**

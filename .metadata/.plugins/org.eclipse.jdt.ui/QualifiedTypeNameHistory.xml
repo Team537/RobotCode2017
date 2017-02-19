@@ -20,7 +20,6 @@
 <fullyQualifiedTypeName name="org.team537.robot.commands.ClimberDefault"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickKeys"/>
 <fullyQualifiedTypeName name="org.team537.robot.subsystems.Collector"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CameraServer"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.smartdashboard.SmartDashboard"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDController"/>
@@ -48,7 +47,8 @@
 <fullyQualifiedTypeName name="org.team537.robot.Robot"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.CollectorDefault"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.DriveSpeed"/>
-<fullyQualifiedTypeName name="org.team537.robot.commands.DriveRate"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickAxes"/>
+<fullyQualifiedTypeName name="org.team537.robot.commands.DriveRate"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CameraServer"/>
 </qualifiedTypeNameHistroy>

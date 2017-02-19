@@ -1,10 +1,8 @@
 package org.team537.robot.commands;
 
 import org.team537.robot.Robot;
-import org.team537.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CollectorIntake extends Command {
 	private boolean forwards;

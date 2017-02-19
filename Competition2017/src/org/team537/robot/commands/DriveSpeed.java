@@ -4,22 +4,18 @@ import org.team537.robot.Robot;
 
 import com.ctre.CANTalon;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveSpeed extends Command {
-	private Timer timer;
 	private double speedLeft;
 	private double speedRight;
-	private double time;
 	
 	public DriveSpeed(double speedLeft, double speedRight, double time) {
 		requires(Robot.drive);
 		setInterruptible(true);
-		this.timer = new Timer();
+		setTimeout(time);
 		this.speedLeft = speedLeft;
 		this.speedRight = speedRight;
-		this.time = time;
 	}
 
 	/**
@@ -28,9 +24,6 @@ public class DriveSpeed extends Command {
 	@Override
 	protected void initialize() {
 		Robot.drive.setToMode(CANTalon.TalonControlMode.PercentVbus);
-		timer.stop();
-		timer.reset();
-		timer.start();
 		Robot.drive.speed(speedLeft, speedRight);
 	}
 
@@ -46,7 +39,7 @@ public class DriveSpeed extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return timer.get() > time;
+		return super.isTimedOut();
 	}
 
 	/**
@@ -54,7 +47,6 @@ public class DriveSpeed extends Command {
 	 */
 	@Override
 	protected void end() {
-		timer.stop();
 		Robot.drive.stop();
 	}
 

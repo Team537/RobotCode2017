@@ -1,5 +1,8 @@
 package org.team537.robot.subsystems;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -9,16 +12,26 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Lidar extends Subsystem {
 	private I2C lidar;
+	private boolean connected;
 	private double range;
 	
 	private Thread thread;
 
 	public Lidar() {
 		this.lidar = new I2C(I2C.Port.kOnboard, 0x30);
+		this.connected = false;
 		this.range = 0.0;
 		
 		this.thread = new Thread(this::threadRun);
 		this.thread.start();
+
+		Timer timerDashboard = new Timer();
+		timerDashboard.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				dashboard();
+			}
+		}, 0, 100);
 	}
 
 	@Override
@@ -35,6 +48,7 @@ public class Lidar extends Subsystem {
 			lidar.read(0x61, 3, buffer);
 			found = ((byte) 0xa1 == buffer[0]);
 			System.out.println(String.format("Rangefinder found %s val 0x%2x", (found ? "true" : "false"), buffer[0]));
+			connected = true;
 
 			try {
 				Thread.sleep(50);
@@ -51,7 +65,6 @@ public class Lidar extends Subsystem {
 			
 			synchronized (this) {
 				range = metres;
-				SmartDashboard.putNumber("Lidar Range (Metres)", range);
 			}
 			
 			try {
@@ -71,5 +84,10 @@ public class Lidar extends Subsystem {
 		synchronized (this) {
 			return range;
 		}
+	}
+
+	private void dashboard() {
+		SmartDashboard.putBoolean("Lidar Connected", connected);
+		SmartDashboard.putNumber("Lidar Range (Metres)", range);
 	}
 }
