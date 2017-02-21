@@ -14,7 +14,7 @@ public class DriveAngle extends Command {
 	
 	public DriveAngle(double angle, boolean addToNavX) {
 		requires(Robot.drive);
-		setInterruptible(true);
+		setInterruptible(false);
 		this.timer = new Timer();
 		this.angle = angle;
 		this.addToNavX = addToNavX;

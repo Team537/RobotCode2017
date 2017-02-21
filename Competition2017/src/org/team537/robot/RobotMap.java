@@ -14,17 +14,19 @@ public class RobotMap {
 		public static final int TERTIARY_PORT = 2;
 
 		public static final boolean ARCADE_DRIVE = false;
+		public static final double SENSITIVITY = 0.65;
 	}
 
 	/**
 	 * A class that holds static values for extra robot constants.
 	 */
 	public static class Robot {
-		public static final double DRIVE_SPEED_MIN = 0.08; 
+		public static final double DRIVE_SPEED_MIN = 0.075; 
 		public static final double DRIVE_SPEED = 1.0;
-		public static final double FEEDER_SPEED = 1.0;
 		public static final double AGITATOR_SPEED = 1.0;
 		public static final double COLLECT_SPEED = 0.8;
+		public static final double FEEDER_SPEED = 1.0;
+		public static final double SHOOTER_MAX_ERROR = 50.0;
 	}
 
 	/**

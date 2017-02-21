@@ -16,6 +16,7 @@ public class ShooterShoot extends Command {
 	@Override
 	protected void initialize() {
 		Robot.shooter.reset();
+		Robot.shooter.setBreakmode(false);
 	}
 
 	/**
@@ -23,9 +24,7 @@ public class ShooterShoot extends Command {
 	 */
 	@Override
 	protected void execute() {
-	//	Robot.shooter.shoot(Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y));
-		Robot.shooter.shoot(3050.0);
-		// 3300RPM is good!
+		Robot.shooter.shoot(3075.0);
 	}
 
 	/**

@@ -12,7 +12,7 @@ public class DriveDistance extends Command {
 	
 	public DriveDistance(double distanceLeft, double distanceRight) {
 		requires(Robot.drive);
-		setInterruptible(true);
+		setInterruptible(false);
 		this.distanceLeft = distanceLeft;
 		this.distanceRight = distanceRight;
 	}
@@ -24,8 +24,8 @@ public class DriveDistance extends Command {
 	protected void initialize() {
 		Robot.drive.setToMode(CANTalon.TalonControlMode.Position);
 		Robot.drive.setPIDF(
-				1.0, 0.0, 0.0, 1.0,
-				1.0, 0.0, 0.0, 1.0
+				0.085, 0.0, 0.0, 0.0,
+				0.085, 0.0, 0.0, 0.0
 		);
 		Robot.drive.reset();
 		Robot.drive.distance(distanceLeft, distanceRight);

@@ -3,6 +3,7 @@ package org.team537.robot.subsystems;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.team537.robot.Robot;
 import org.team537.robot.RobotMap;
 import org.team537.robot.commands.FeederDefault;
 
@@ -41,6 +42,10 @@ public class Feeder extends Subsystem {
 	 * @param rate The input speed.
 	 */
 	public void feed(double rate) {
+		if (!Robot.shooter.nearSpeed()) {
+			rate = 0.0;
+		}
+		
 		SmartDashboard.putNumber("Feeder Rate", rate);
 		feeder.set(-rate * RobotMap.Robot.FEEDER_SPEED);
 	}

@@ -29,7 +29,7 @@ public class Shooter extends Subsystem {
 		shooterMaster.configEncoderCodesPerRev(14);
 		// shooter2.setPulseWidthPosition(4);
 		shooterMaster.setPID(
-				32.0, 
+				40.0, 
 				0.0, 
 				0.0
 		);
@@ -63,8 +63,16 @@ public class Shooter extends Subsystem {
 		shooterMaster.set(Math.abs(rate)); 
 	}
 	
+	public void setBreakmode(boolean enabled) {
+		shooterMaster.enableBrakeMode(enabled);
+	}
+	
 	public double getSetpoint() {
 		return shooterMaster.getSetpoint();
+	}
+	
+	public boolean nearSpeed() {
+		return Math.abs(shooterMaster.getError()) < RobotMap.Robot.SHOOTER_MAX_ERROR;
 	}
 
 	public void reset() {
@@ -80,9 +88,13 @@ public class Shooter extends Subsystem {
 	}
 
 	private void dashboard() {
+	//	System.out.println("[Shooter] Error: " + shooterMaster.getError() + " Current: " + shooterMaster.getOutputCurrent());
+		
+		SmartDashboard.putNumber("Shooter Amps", shooterMaster.getOutputCurrent());
 		SmartDashboard.putNumber("Shooter Speed", shooterMaster.getSpeed());
+		SmartDashboard.putBoolean("Shooter Near Speed", nearSpeed());
 		SmartDashboard.putNumber("Shooter Encoder Speed", shooterMaster.getEncVelocity()); // Native units.
-		SmartDashboard.putNumber("Shooter Encoder Error", shooterMaster.getError() * 4.0f);
+		SmartDashboard.putNumber("Shooter Encoder Error", shooterMaster.getError());
 		SmartDashboard.putNumber("Shooter Encoder Position", shooterMaster.getEncPosition());
 	}
 }

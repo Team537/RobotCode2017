@@ -31,6 +31,8 @@ public class DriveArcade extends Command {
 		double axisX = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxes.STICK_X);
 		double left = axisY + axisX;
 		double right = axisY - axisX;
+		left = ((1.0 - RobotMap.Driver.SENSITIVITY) * left) + (RobotMap.Driver.SENSITIVITY * Math.pow(left, 3.0));
+		right = ((1.0 - RobotMap.Driver.SENSITIVITY) * right) + (RobotMap.Driver.SENSITIVITY * Math.pow(right, 3.0));
 		left = Maths.deadband(RobotMap.Robot.DRIVE_SPEED_MIN, left);
 		right = Maths.deadband(RobotMap.Robot.DRIVE_SPEED_MIN, right);
 		Robot.drive.speed(left, right);

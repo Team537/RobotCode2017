@@ -18,6 +18,7 @@ public class ShooterClimb extends Command {
 	@Override
 	protected void initialize() {
 		Robot.shooter.reset();
+		Robot.shooter.setBreakmode(true);
 	}
 
 	/**
@@ -26,11 +27,13 @@ public class ShooterClimb extends Command {
 	@Override
 	protected void execute() {
 		double speed = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxes.SLIDER);
+		
 		if (speed < 0) {
 			speed = 0;
 		}
+		
 		SmartDashboard.putNumber("Climb Speed %", speed);
-		Robot.shooter.shoot(3200.0 * speed);
+		Robot.shooter.shoot(3750.0 * speed);
 	}
 
 	/**

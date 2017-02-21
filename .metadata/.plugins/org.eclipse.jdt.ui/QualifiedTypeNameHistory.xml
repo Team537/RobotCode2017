@@ -29,7 +29,6 @@
 <fullyQualifiedTypeName name="org.team537.robot.subsystems.Drive"/>
 <fullyQualifiedTypeName name="org.team537.robot.toolbox.Maths"/>
 <fullyQualifiedTypeName name="org.team537.toolbox.Maths"/>
-<fullyQualifiedTypeName name="org.team537.robot.RobotMap.Driver"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.I2C"/>
 <fullyQualifiedTypeName name="org.team537.robot.subsystems.RangeFinder"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickKeysX3D"/>
@@ -41,14 +40,17 @@
 <fullyQualifiedTypeName name="org.team537.robot.commands.CollectorSquarewave"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.ShooterClimb"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.FeederDefault"/>
-<fullyQualifiedTypeName name="org.team537.robot.RobotMap.Robot"/>
 <fullyQualifiedTypeName name="com.ctre.CANTalon.FeedbackDevice"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.FeederFeed"/>
-<fullyQualifiedTypeName name="org.team537.robot.Robot"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.CollectorDefault"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.DriveSpeed"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickAxes"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.DriveRate"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CameraServer"/>
+<fullyQualifiedTypeName name="org.team537.robot.commands.DriveAngle"/>
+<fullyQualifiedTypeName name="org.team537.robot.commands.DriveDistance"/>
+<fullyQualifiedTypeName name="org.team537.robot.Robot"/>
+<fullyQualifiedTypeName name="org.team537.robot.RobotMap.Robot"/>
+<fullyQualifiedTypeName name="org.team537.robot.RobotMap.Driver"/>
 </qualifiedTypeNameHistroy>
