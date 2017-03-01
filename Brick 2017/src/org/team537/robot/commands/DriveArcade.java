@@ -1,20 +1,14 @@
-package org.team539.robot.commands;
+package org.team537.robot.commands;
 
-import org.team539.robot.Robot;
+import org.team537.robot.Robot;
+import org.team537.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveTimed extends Command {
-	private Timer timer;
-	private double speed;
-	private double time;
-	
-	public DriveTimed(double speed, double time) {
+public class DriveArcade extends Command {
+	public DriveArcade() {
 		requires(Robot.drive);
-		this.timer = new Timer();
-		this.speed = speed;
-		this.time = time;
+		this.setInterruptible(true);
 	}
 
 	/**
@@ -22,10 +16,6 @@ public class DriveTimed extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		timer.stop();
-		timer.reset();
-		timer.start();
-		Robot.drive.speed(speed, speed);
 	}
 
 	/**
@@ -33,6 +23,9 @@ public class DriveTimed extends Command {
 	 */
 	@Override
 	protected void execute() {
+		double axisY = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y);
+		double axisX = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_X);
+		Robot.drive.speed(-(axisY + axisX), -(axisY - axisX));
 	}
 
 	/**
@@ -40,7 +33,7 @@ public class DriveTimed extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return timer.get() > time;
+		return false;
 	}
 
 	/**
@@ -48,7 +41,6 @@ public class DriveTimed extends Command {
 	 */
 	@Override
 	protected void end() {
-		timer.stop();
 		Robot.drive.stop();
 	}
 
@@ -57,5 +49,6 @@ public class DriveTimed extends Command {
 	 */
 	@Override
 	protected void interrupted() {
+		this.end();
 	}
 }

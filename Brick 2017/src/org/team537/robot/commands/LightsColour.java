@@ -1,14 +1,19 @@
-package org.team539.robot.commands;
+package org.team537.robot.commands;
 
-import org.team539.robot.Robot;
-import org.team539.robot.RobotMap;
+import org.team537.robot.Robot;
+import org.team537.robot.subsystems.Lights.Colour;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveDefault extends Command {
-	public DriveDefault() {
+public class LightsColour extends Command {
+	private Command listener;
+	private Colour colour;
+
+	public LightsColour(Command listener, Colour colour) {
 		requires(Robot.drive);
-		this.setInterruptible(true);
+		setInterruptible(true);
+		this.listener = listener;
+		this.colour = colour;
 	}
 
 	/**
@@ -16,6 +21,7 @@ public class DriveDefault extends Command {
 	 */
 	@Override
 	protected void initialize() {
+		Robot.lights.set(colour);
 	}
 
 	/**
@@ -23,9 +29,6 @@ public class DriveDefault extends Command {
 	 */
 	@Override
 	protected void execute() {
-		double left = Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y);
-		double right = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y);
-		Robot.drive.speed(left, right);
 	}
 
 	/**
@@ -33,7 +36,7 @@ public class DriveDefault extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return (listener != null) ? !listener.isRunning() : false;
 	}
 
 	/**
@@ -41,7 +44,7 @@ public class DriveDefault extends Command {
 	 */
 	@Override
 	protected void end() {
-		Robot.drive.stop();
+		Robot.lights.set(Colour.getDefault());
 	}
 
 	/**
@@ -49,6 +52,5 @@ public class DriveDefault extends Command {
 	 */
 	@Override
 	protected void interrupted() {
-		this.end();
 	}
 }

@@ -1,15 +1,15 @@
-package org.team539.robot.commands;
+package org.team537.robot.commands;
 
-import org.team539.robot.Robot;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveAngle extends Command {
-	private double angle;
-	
-	public DriveAngle(double angle) {
-		requires(Robot.drive);
-		this.angle = angle;
+public class Delay extends Command {
+	private Timer timer;
+	private double time;
+
+	public Delay(double time) {
+		timer = new Timer();
+		this.time = time;
 	}
 
 	/**
@@ -17,11 +17,13 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		Robot.drive.angle(angle);
+		timer.stop();
+		timer.reset();
+		timer.start();
 	}
 
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is cancelled.
+	 * The execute method is called repeatedly until this Command either finishes or is canceled.
 	 */
 	@Override
 	protected void execute() {
@@ -32,7 +34,7 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.atTarget();
+		return timer.get() > time;
 	}
 
 	/**
@@ -40,7 +42,7 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected void end() {
-		Robot.drive.stop();
+		timer.stop();
 	}
 
 	/**

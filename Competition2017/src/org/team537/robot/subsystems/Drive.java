@@ -28,7 +28,7 @@ public class Drive extends Subsystem implements PIDOutput {
 	private final CANTalon driveRight2 = new CANTalon(RobotMap.CAN.DRIVE_RIGHT_NORMAL);
 	private final CANTalon driveRight1 = new CANTalon(RobotMap.CAN.DRIVE_RIGHT_MASTER);
 	
-	private final PIDController anglePID = new PIDController(-0.015, 0.0, 0.0210, 1.0, Robot.ahrs, this);
+	private final PIDController anglePID = new PIDController(-0.004, 0.0, -0.15, 0.0, Robot.ahrs, this);
 
 	public Drive() {
 		driveLeft3.changeControlMode(CANTalon.TalonControlMode.Follower);
@@ -40,7 +40,7 @@ public class Drive extends Subsystem implements PIDOutput {
 		driveLeft1.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		driveLeft1.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		driveLeft1.configEncoderCodesPerRev(255);
-		driveLeft1.setVoltageRampRate(10.0); // 0V to 10V in one second.
+		driveLeft1.setVoltageRampRate(9.0); // 0V to 9V in one second.
 		driveLeft1.reverseOutput(false);
 		driveLeft1.reverseSensor(false);
 		driveLeft1.setPID(0.0, 0.0, 0.0);
@@ -55,7 +55,7 @@ public class Drive extends Subsystem implements PIDOutput {
 		driveRight1.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		driveRight1.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		driveRight1.configEncoderCodesPerRev(255);
-		driveRight1.setVoltageRampRate(10.0); // 0V to 10V in one second.
+		driveRight1.setVoltageRampRate(9.0); // 0V to 9V in one second.
 		driveRight1.reverseOutput(false);
 		driveRight1.reverseSensor(false);
 		driveRight1.setPID(0.0, 0.0, 0.0);
@@ -179,8 +179,8 @@ public class Drive extends Subsystem implements PIDOutput {
 		SmartDashboard.putNumber("Drive PID Output", output);
 		
 		// (NEGATIVE -> LEFT), (POSITIVE -> RIGHT).
-		driveLeft1.set(output);
-		driveRight1.set(output);
+		driveLeft1.set(output * RobotMap.Robot.DRIVE_SPEED);
+		driveRight1.set(output * RobotMap.Robot.DRIVE_SPEED);
 	}
 	
 	/**
@@ -190,8 +190,8 @@ public class Drive extends Subsystem implements PIDOutput {
 	 */
 	public boolean atTarget() {
 		if (driveLeft1.getControlMode().equals(CANTalon.TalonControlMode.Position)) { // Distance.
-			if (Maths.nearTarget(driveLeft1.getEncPosition(), driveLeft1.getSetpoint(), 3.0 * RobotMap.Digital.DRIVE_IN_TO_ENCODER)) {
-				if (Maths.nearTarget(driveRight1.getEncPosition(), driveRight1.getSetpoint(), 3.0 * RobotMap.Digital.DRIVE_IN_TO_ENCODER)) {
+			if (Maths.nearTarget(driveLeft1.getEncPosition(), driveLeft1.getSetpoint(), 0.07 * RobotMap.Digital.DRIVE_IN_TO_ENCODER)) {
+				if (Maths.nearTarget(driveRight1.getEncPosition(), driveRight1.getSetpoint(), 0.07 * RobotMap.Digital.DRIVE_IN_TO_ENCODER)) {
 					return true;
 				}
 			}
@@ -207,16 +207,18 @@ public class Drive extends Subsystem implements PIDOutput {
 	 */
 	public void reset() {
 		driveLeft1.reset();
-		driveLeft1.setPosition(0);
 		driveLeft1.setPID(0.0, 0.0, 0.0);
 		driveLeft1.setF(0.0);
 		driveLeft1.enable();
+		driveLeft1.setPosition(0.0);
+		driveLeft1.set(0.0);
 		
 		driveRight1.reset();
-		driveRight1.setPosition(0);
 		driveRight1.setPID(0.0, 0.0, 0.0);
 		driveRight1.setF(0.0);
 		driveRight1.enable();
+		driveRight1.setPosition(0.0);
+		driveRight1.set(0.0);
 
 		anglePID.reset();
 	}

@@ -1,4 +1,4 @@
-package org.team539.robot;
+package org.team537.robot;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name.
@@ -21,6 +21,14 @@ public class RobotMap {
 	 */
 	public static class Robot {
 		public static final double DRIVE_SPEED = 0.5;
+	}
+
+	/**
+	 * A class that holds static values for GRIP image processing.
+	 */
+	public static class GRIP {
+		public static final int IMAGE_WIDTH = 320;
+		public static final int IMAGE_HEIGHT = 240;
 	}
 
 	/**
@@ -80,6 +88,8 @@ public class RobotMap {
 	 * A class that holds static values for Analog Inputs.
 	 */
 	public static class Analog {
+		public static final int LIGHT_SPIKE_1 = 1;
+		public static final int LIGHT_SPIKE_2 = 2;
 	}
 
 	/**

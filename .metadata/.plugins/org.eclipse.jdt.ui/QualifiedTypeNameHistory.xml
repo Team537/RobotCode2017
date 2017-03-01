@@ -48,9 +48,9 @@
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickAxes"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.DriveRate"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CameraServer"/>
-<fullyQualifiedTypeName name="org.team537.robot.commands.DriveAngle"/>
-<fullyQualifiedTypeName name="org.team537.robot.commands.DriveDistance"/>
 <fullyQualifiedTypeName name="org.team537.robot.Robot"/>
-<fullyQualifiedTypeName name="org.team537.robot.RobotMap.Robot"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.Driver"/>
+<fullyQualifiedTypeName name="org.team537.robot.commands.DriveAngle"/>
+<fullyQualifiedTypeName name="org.team537.robot.RobotMap.Robot"/>
+<fullyQualifiedTypeName name="org.team537.robot.commands.DriveDistance"/>
 </qualifiedTypeNameHistroy>

@@ -29,7 +29,7 @@ public class Shooter extends Subsystem {
 		shooterMaster.configEncoderCodesPerRev(14);
 		// shooter2.setPulseWidthPosition(4);
 		shooterMaster.setPID(
-				40.0, 
+				42.0, 
 				0.0, 
 				0.0
 		);

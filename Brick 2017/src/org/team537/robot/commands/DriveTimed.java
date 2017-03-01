@@ -1,14 +1,19 @@
-package org.team539.robot.commands;
+package org.team537.robot.commands;
+
+import org.team537.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Delay extends Command {
+public class DriveTimed extends Command {
 	private Timer timer;
+	private double speed;
 	private double time;
-
-	public Delay(double time) {
-		timer = new Timer();
+	
+	public DriveTimed(double speed, double time) {
+		requires(Robot.drive);
+		this.timer = new Timer();
+		this.speed = speed;
 		this.time = time;
 	}
 
@@ -20,10 +25,11 @@ public class Delay extends Command {
 		timer.stop();
 		timer.reset();
 		timer.start();
+		Robot.drive.speed(speed, speed);
 	}
 
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is canceled.
+	 * The execute method is called repeatedly until this Command either finishes or is cancelled.
 	 */
 	@Override
 	protected void execute() {
@@ -43,6 +49,7 @@ public class Delay extends Command {
 	@Override
 	protected void end() {
 		timer.stop();
+		Robot.drive.stop();
 	}
 
 	/**

@@ -1,12 +1,12 @@
-package org.team539.robot.commands;
+package org.team537.robot.commands;
 
-import org.team539.robot.Robot;
-import org.team539.robot.RobotMap;
+import org.team537.robot.Robot;
+import org.team537.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveArcade extends Command {
-	public DriveArcade() {
+public class DriveDefault extends Command {
+	public DriveDefault() {
 		requires(Robot.drive);
 		this.setInterruptible(true);
 	}
@@ -23,9 +23,9 @@ public class DriveArcade extends Command {
 	 */
 	@Override
 	protected void execute() {
-		double axisY = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y);
-		double axisX = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_X);
-		Robot.drive.speed(-(axisY + axisX), -(axisY - axisX));
+		double left = Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y);
+		double right = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxesX3D.STICK_Y);
+		Robot.drive.speed(left, right);
 	}
 
 	/**

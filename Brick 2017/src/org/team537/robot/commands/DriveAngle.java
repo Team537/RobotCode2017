@@ -1,17 +1,15 @@
-package org.team539.robot.commands;
+package org.team537.robot.commands;
 
-import org.team539.robot.Robot;
+import org.team537.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveDistance extends Command {
-	private double distanceLeft;
-	private double distanceRight;
+public class DriveAngle extends Command {
+	private double angle;
 	
-	public DriveDistance(double distanceLeft, double distanceRight) {
+	public DriveAngle(double angle) {
 		requires(Robot.drive);
-		this.distanceLeft = distanceLeft;
-		this.distanceRight = distanceRight;
+		this.angle = angle;
 	}
 
 	/**
@@ -19,7 +17,7 @@ public class DriveDistance extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		Robot.drive.distance(distanceLeft, distanceRight);
+		Robot.drive.angle(angle);
 	}
 
 	/**
