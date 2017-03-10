@@ -21,7 +21,6 @@
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickKeys"/>
 <fullyQualifiedTypeName name="org.team537.robot.subsystems.Collector"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Timer"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.smartdashboard.SmartDashboard"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDController"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDOutput"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.livewindow.LiveWindow"/>
@@ -48,9 +47,11 @@
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickAxes"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.DriveRate"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CameraServer"/>
-<fullyQualifiedTypeName name="org.team537.robot.Robot"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.Driver"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.DriveAngle"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.Robot"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.DriveDistance"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
+<fullyQualifiedTypeName name="org.team537.robot.Robot"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.smartdashboard.SmartDashboard"/>
 </qualifiedTypeNameHistroy>

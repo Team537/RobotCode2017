@@ -1,15 +1,19 @@
 package org.team537.robot.commands;
 
 import org.team537.robot.Robot;
-import org.team537.robot.subsystems.Lights;
+import org.team537.robot.subsystems.Lights.Colour;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
-public class ShooterShoot extends Command {
-	public ShooterShoot() {
-		requires(Robot.shooter);
+public class LightsColour extends Command {
+	private Command listener;
+	private Colour colour;
+
+	public LightsColour(Command listener, Colour colour) {
+		requires(Robot.lights);
 		setInterruptible(true);
+		this.listener = listener;
+		this.colour = colour;
 	}
 
 	/**
@@ -17,17 +21,14 @@ public class ShooterShoot extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		Robot.shooter.reset();
-		Robot.shooter.setBreakmode(false);
-		Scheduler.getInstance().add(new LightsColour(this, Lights.Colour.GREEN));
 	}
-
+	
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is canceled.
+	 * The execute method is called repeatedly until this Command either finishes or is cancelled.
 	 */
 	@Override
 	protected void execute() {
-		Robot.shooter.shoot(3075.0);
+		Robot.lights.set(colour);
 	}
 
 	/**
@@ -35,7 +36,7 @@ public class ShooterShoot extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return (listener != null) ? !listener.isRunning() : false;
 	}
 
 	/**
@@ -43,7 +44,7 @@ public class ShooterShoot extends Command {
 	 */
 	@Override
 	protected void end() {
-		Robot.shooter.stop();
+		Robot.lights.set(Colour.getDefault());
 	}
 
 	/**

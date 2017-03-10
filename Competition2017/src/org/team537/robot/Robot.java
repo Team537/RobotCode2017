@@ -11,6 +11,7 @@ import org.team537.robot.subsystems.Drive;
 import org.team537.robot.subsystems.Feeder;
 import org.team537.robot.subsystems.GRIP;
 import org.team537.robot.subsystems.Lidar;
+import org.team537.robot.subsystems.Lights;
 import org.team537.robot.subsystems.Shooter;
 import org.team537.robot.toolbox.Maths;
 
@@ -20,6 +21,7 @@ import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.command.Command;
@@ -39,12 +41,13 @@ public class Robot extends IterativeRobot {
 	public static MjpegServer mjpegServer;
 
 	// Subsystems.
+	public static Agitator agitator;
+	public static Collector collector;
+	public static Drive drive;
+	public static Feeder feeder;
 	public static GRIP grip;
 	public static Lidar lidar;
-	public static Collector collector;
-	public static Agitator agitator;
-	public static Feeder feeder;
-	public static Drive drive;
+	public static Lights lights;
 	public static Shooter shooter;
 
 	// OI.
@@ -95,12 +98,13 @@ public class Robot extends IterativeRobot {
 		}, 0, 100);
 
 		// Subsystems.
+		agitator = new Agitator();
+		collector = new Collector();
+		drive = new Drive();
+		feeder = new Feeder();
 		grip = new GRIP();
 		lidar = new Lidar();
-		collector = new Collector();
-		agitator = new Agitator();
-		feeder = new Feeder();
-		drive = new Drive();
+		lights = new Lights();
 		shooter = new Shooter();
 
 		// OI.
@@ -108,9 +112,31 @@ public class Robot extends IterativeRobot {
 
 		// Autonomous chooser to display on the dashboard.
 		autoChooser = new SendableChooser<>();
-		autoChooser.addObject("Nothing", null);
-		autoChooser.addObject("Blue Default", new BlueDefault());
-		autoChooser.addObject("Red Default", new RedDefault());
+		
+		Alliance alliance = null;
+		
+		if (DriverStation.getInstance() != null) {
+			alliance = DriverStation.getInstance().getAlliance();
+		}
+
+		switch (alliance) {
+			case Red:
+				autoChooser.addObject("Nothing", null);
+				autoChooser.addObject("Blue Default", new BlueDefault());
+				autoChooser.addDefault("Red Default", new RedDefault());
+				break;
+			case Blue:
+				autoChooser.addObject("Nothing", null);
+				autoChooser.addDefault("Blue Default", new BlueDefault());
+				autoChooser.addObject("Red Default", new RedDefault());
+				break;
+			default:
+				autoChooser.addObject("Nothing", null);
+				autoChooser.addObject("Blue Default", new BlueDefault());
+				autoChooser.addObject("Red Default", new RedDefault());
+				break;
+		}
+		
 		SmartDashboard.putData("Autonomous", autoChooser);
 		
 		SmartDashboard.putData(shooter);

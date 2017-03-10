@@ -1,17 +1,22 @@
 package org.team537.robot.commands;
 
 import org.team537.robot.Robot;
-import org.team537.robot.RobotMap;
 import org.team537.robot.subsystems.Lights;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class ShooterClimb extends Command {
-	public ShooterClimb() {
+public class ShooterAutomatic extends Command {
+	private Timer timer;
+	
+	public ShooterAutomatic() {
+		requires(Robot.agitator);
 		requires(Robot.shooter);
-		setInterruptible(true);
+		requires(Robot.feeder);
+		setInterruptible(false);
+		
+		this.timer = new Timer();
 	}
 
 	/**
@@ -19,9 +24,13 @@ public class ShooterClimb extends Command {
 	 */
 	@Override
 	protected void initialize() {
+		Robot.agitator.reset();
 		Robot.shooter.reset();
-		Robot.shooter.setBreakmode(true);
-		Scheduler.getInstance().add(new LightsColour(this, Lights.Colour.MAGENTA));
+		Robot.shooter.setBreakmode(false);
+		Scheduler.getInstance().add(new LightsColour(this, Lights.Colour.GREEN));
+		
+		timer.reset();
+		timer.start();
 	}
 
 	/**
@@ -29,14 +38,12 @@ public class ShooterClimb extends Command {
 	 */
 	@Override
 	protected void execute() {
-		double speed = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxes.SLIDER);
+		Robot.shooter.shoot(3075.0);
 		
-		if (speed < 0) {
-			speed = 0;
+		if (timer.get() > 1.75) {
+			Robot.agitator.agitate(-1.0);
+			Robot.feeder.feed(1.0);
 		}
-		
-		SmartDashboard.putNumber("Climb Speed %", speed);
-		Robot.shooter.shoot(3750.0 * speed);
 	}
 
 	/**
@@ -44,7 +51,7 @@ public class ShooterClimb extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return timer.get() > 5.0;
 	}
 
 	/**
@@ -52,7 +59,11 @@ public class ShooterClimb extends Command {
 	 */
 	@Override
 	protected void end() {
+		Robot.agitator.stop();
+		Robot.feeder.stop();
 		Robot.shooter.stop();
+		
+		timer.stop();
 	}
 
 	/**

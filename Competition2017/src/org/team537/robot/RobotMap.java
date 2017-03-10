@@ -122,6 +122,8 @@ public class RobotMap {
 	 * A class that holds static values for Analog Inputs.
 	 */
 	public static class Analog {
+		public static final int LIGHT_SPIKE_1 = 0;
+		public static final int LIGHT_SPIKE_2 = 1;
 	}
 
 	/**

@@ -17,13 +17,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.team537.robot.subsystems.Drive;
 import org.team537.robot.subsystems.GRIP;
 import org.team537.robot.subsystems.Lidar;
 import org.team537.robot.subsystems.Lights;
 import org.team537.robot.toolbox.Maths;
-
-import com.kauailabs.navx.frc.AHRS;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as described in the IterativeRobot documentation. 
@@ -31,13 +28,12 @@ import com.kauailabs.navx.frc.AHRS;
  */
 public class Robot extends IterativeRobot {
 	// Interfaces.
-	public static AHRS ahrs;
+//	public static AHRS ahrs;
 	public static UsbCamera camera;
 	public static MjpegServer mjpegServer;
 	public static Compressor compressor;
 
 	// Subsystems.
-	public static Drive drive;
 	public static GRIP grip;
 	public static Lidar lidar;
 	public static Lights lights;
@@ -55,21 +51,21 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// Interfaces.
-		try {
+	/*	try {
 			ahrs = new AHRS(Port.kMXP);
 		} catch (final RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
-		}
+		}*/
 
-		camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
-		camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH, RobotMap.GRIP.IMAGE_HEIGHT);
+	//	camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
+	//	camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH, RobotMap.GRIP.IMAGE_HEIGHT);
 	//	camera.setExposureManual(1);
 	//	camera.setBrightness(1);
 
-		mjpegServer = new MjpegServer("server_cam0", 1181);
-		mjpegServer.setSource(camera);
+	//	mjpegServer = new MjpegServer("server_cam0", 1181);
+	//	mjpegServer.setSource(camera);
 
-		Timer timerDashboard = new Timer();
+	/*	Timer timerDashboard = new Timer();
 		timerDashboard.schedule(new TimerTask() {
 			@Override
 			public void run() {
@@ -89,13 +85,12 @@ public class Robot extends IterativeRobot {
 					SmartDashboard.putBoolean("Camera Conected", false);
 				}
 			}
-		}, 0, 100);
+		}, 0, 100);*/
 
-		compressor = new Compressor();
-		compressor.setClosedLoopControl(true);
+	//	compressor = new Compressor();
+	//	compressor.setClosedLoopControl(true);
 
 		// Subsystems.
-		drive = new Drive();
 		grip = new GRIP();
 		lidar = new Lidar();
 		lights = new Lights();
