@@ -7077,3 +7077,27 @@ Caused by: java.lang.IllegalArgumentException: assertion failed.
 
 !ENTRY WPILib_Java_Robot_Development 1 0 2017-03-10 16:35:10.785
 !MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-03-11 08:09:22.636
+!MESSAGE Running ant file: C:\Users\Code\Documents\RobotCode2017\Competition2017\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-03-11 08:09:22.637
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-03-11 08:11:18.751
+!MESSAGE Running ant file: C:\Users\Code\Documents\RobotCode2017\Competition2017\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-03-11 08:11:18.752
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-03-11 09:13:02.252
+!MESSAGE Running ant file: C:\Users\Code\Documents\RobotCode2017\Competition2017\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-03-11 09:13:02.253
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-03-11 09:19:08.061
+!MESSAGE Running ant file: C:\Users\Code\Documents\RobotCode2017\Competition2017\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-03-11 09:19:08.062
+!MESSAGE Targets: deploy, Mode: run

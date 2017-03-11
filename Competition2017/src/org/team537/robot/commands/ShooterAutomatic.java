@@ -38,11 +38,11 @@ public class ShooterAutomatic extends Command {
 	 */
 	@Override
 	protected void execute() {
-		Robot.shooter.shoot(3000.0); // further distance than usual
+		Robot.shooter.shoot(3075.0); // further distance than usual
 		
-		if (timer.get() > 2.25) {
+		if (timer.get() > 2.2) {
 			Robot.agitator.agitate(-1.0);
-			Robot.feeder.feed(0.7);
+			Robot.feeder.feed(0.8);
 		}
 	}
 
@@ -51,7 +51,7 @@ public class ShooterAutomatic extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return timer.get() > 5.0;
+		return timer.get() > 5.85;
 	}
 
 	/**

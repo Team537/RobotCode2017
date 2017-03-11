@@ -36,7 +36,7 @@ public class ShooterClimb extends Command {
 		}
 		
 		SmartDashboard.putNumber("Climb Speed %", speed);
-		Robot.shooter.shoot(4450.0 * speed);
+		Robot.shooter.shoot(4200.0 * speed);
 	}
 
 	/**
