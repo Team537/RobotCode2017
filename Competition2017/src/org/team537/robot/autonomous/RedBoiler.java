@@ -5,8 +5,8 @@ import org.team537.robot.commands.ShooterAutomatic;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class RedDefault extends CommandGroup {
-	public RedDefault() {
+public class RedBoiler extends CommandGroup {
+	public RedBoiler() {
 		addSequential(new ShooterAutomatic());
 		addSequential(new DriveRate(-120.0, -120.0, 1.0));
 		addSequential(new DriveRate(-120.0, 120.0, 1.2));

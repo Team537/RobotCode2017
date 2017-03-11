@@ -3,8 +3,10 @@ package org.team537.robot;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.team537.robot.autonomous.BlueDefault;
-import org.team537.robot.autonomous.RedDefault;
+import org.team537.robot.autonomous.BlueBoiler;
+import org.team537.robot.autonomous.BlueRight;
+import org.team537.robot.autonomous.RedBoiler;
+import org.team537.robot.autonomous.RedLeft;
 import org.team537.robot.subsystems.Agitator;
 import org.team537.robot.subsystems.Collector;
 import org.team537.robot.subsystems.Drive;
@@ -120,24 +122,28 @@ public class Robot extends IterativeRobot {
 		switch (alliance) {
 			case Red:
 				autoChooser.addObject("Nothing", null);
-				autoChooser.addObject("Blue Default", new BlueDefault());
-				autoChooser.addDefault("Red Default", new RedDefault());
+				autoChooser.addObject("Blue Boiler", new BlueBoiler());
+				autoChooser.addObject("Blue Right", new BlueRight());
+				autoChooser.addObject("Red Boiler", new RedBoiler());
+				autoChooser.addDefault("Red Left", new RedLeft());
 				break;
 			case Blue:
 				autoChooser.addObject("Nothing", null);
-				autoChooser.addDefault("Blue Default", new BlueDefault());
-				autoChooser.addObject("Red Default", new RedDefault());
+				autoChooser.addObject("Blue Boiler", new BlueBoiler());
+				autoChooser.addDefault("Blue Right", new BlueRight());
+				autoChooser.addObject("Red Boiler", new RedBoiler());
+				autoChooser.addObject("Red Left", new RedLeft());
 				break;
 			default:
-				autoChooser.addObject("Nothing", null);
-				autoChooser.addObject("Blue Default", new BlueDefault());
-				autoChooser.addObject("Red Default", new RedDefault());
+				autoChooser.addObject("Nothing", null); // addDefault
+				autoChooser.addObject("Blue Boiler", new BlueBoiler());
+				autoChooser.addObject("Blue Right", new BlueRight());
+				autoChooser.addObject("Red Boiler", new RedBoiler());
+				autoChooser.addDefault("Red Left", new RedLeft());
 				break;
 		}
 		
 		SmartDashboard.putData("Autonomous", autoChooser);
-		
-		SmartDashboard.putData(shooter);
 	}
 
 	/**

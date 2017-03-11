@@ -37,7 +37,7 @@ public class Drive extends Subsystem implements PIDOutput {
 		driveLeft1.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		driveLeft1.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		driveLeft1.configEncoderCodesPerRev(255);
-		driveLeft1.setVoltageRampRate(9.0); // 0V to 9V in one second.
+		driveLeft1.setVoltageRampRate(10.0); // 0V to 10V in one second.
 		driveLeft1.reverseOutput(false);
 		driveLeft1.reverseSensor(false);
 		driveLeft1.setPID(0.0, 0.0, 0.0);
@@ -52,7 +52,7 @@ public class Drive extends Subsystem implements PIDOutput {
 		driveRight1.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		driveRight1.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		driveRight1.configEncoderCodesPerRev(255);
-		driveRight1.setVoltageRampRate(9.0); // 0V to 9V in one second.
+		driveRight1.setVoltageRampRate(10.0); // 0V to 10V in one second.
 		driveRight1.reverseOutput(false);
 		driveRight1.reverseSensor(false);
 		driveRight1.setPID(0.0, 0.0, 0.0);
