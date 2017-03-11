@@ -1,23 +1,28 @@
 package org.team537.robot.commands;
 
 import org.team537.robot.Robot;
-
-import com.ctre.CANTalon;
+import org.team537.robot.subsystems.Lights.Colour;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveAngle extends Command {
-	private Timer timer;
-	private double angle;
-	private boolean addToNavX;
+public class LightsCycle extends Command {
+	private Command listener;
+	private double period;
+	private Colour[] colours;
 	
-	public DriveAngle(double angle, boolean addToNavX) {
-		requires(Robot.drive);
-		setInterruptible(false);
+	private Timer timer;
+	private int colourStage;
+
+	public LightsCycle(Command listener, double period, Colour... colours) {
+		requires(Robot.lights);
+		setInterruptible(true);
+		this.listener = listener;
+		this.period = period;
+		this.colours = colours;
+		
 		this.timer = new Timer();
-		this.angle = angle;
-		this.addToNavX = addToNavX;
+		this.colourStage = 0;
 	}
 
 	/**
@@ -25,24 +30,26 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		Robot.drive.reset();
-		Robot.drive.setToMode(CANTalon.TalonControlMode.PercentVbus);
-
-		if (addToNavX) {
-			Robot.ahrs.reset();
-		}
-		
-	//	Robot.drive.angle(angle);
-		
 		timer.reset();
 		timer.start();
+		Robot.lights.set(colours[0]);
 	}
-
+	
 	/**
 	 * The execute method is called repeatedly until this Command either finishes or is cancelled.
 	 */
 	@Override
 	protected void execute() {
+		if (timer.get() > period) {
+			colourStage++;
+			
+			if (colourStage >= colours.length) {
+				colourStage = 0;
+			}
+			
+			Robot.lights.set(colours[colourStage]);			
+			timer.reset();
+		}
 	}
 
 	/**
@@ -50,7 +57,7 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.atTarget() || timer.get() > 2.0;
+		return (listener != null) ? !listener.isRunning() : false;
 	}
 
 	/**
@@ -58,9 +65,8 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected void end() {
-		Robot.drive.stop();
-		timer.reset();
 		timer.stop();
+		Robot.lights.set(Colour.getDefault());
 	}
 
 	/**

@@ -3,17 +3,14 @@ package org.team537.robot.subsystems;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.team537.robot.Robot;
 import org.team537.robot.RobotMap;
 import org.team537.robot.commands.DriveDefault;
 import org.team537.robot.toolbox.Maths;
 
 import com.ctre.CANTalon;
 
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -28,7 +25,7 @@ public class Drive extends Subsystem implements PIDOutput {
 	private final CANTalon driveRight2 = new CANTalon(RobotMap.CAN.DRIVE_RIGHT_NORMAL);
 	private final CANTalon driveRight1 = new CANTalon(RobotMap.CAN.DRIVE_RIGHT_MASTER);
 	
-	private final PIDController anglePID = new PIDController(-0.004, 0.0, -0.15, 0.0, Robot.ahrs, this);
+//	private final PIDController anglePID = new PIDController(0.002, 0.0, 0.0, 0.0, Robot.ahrs, this);
 
 	public Drive() {
 		driveLeft3.changeControlMode(CANTalon.TalonControlMode.Follower);
@@ -61,11 +58,11 @@ public class Drive extends Subsystem implements PIDOutput {
 		driveRight1.setPID(0.0, 0.0, 0.0);
 		driveRight1.setF(0.0);
 		
-		anglePID.setInputRange(-180.0, 180.0);
+		/*anglePID.setInputRange(-180.0, 180.0);
 		anglePID.setOutputRange(-1.0, 1.0);
 		anglePID.setAbsoluteTolerance(2.0);
 		anglePID.setContinuous(true);
-	    LiveWindow.addActuator("Drive", "Angle PID", anglePID);
+	    LiveWindow.addActuator("Drive", "Angle PID", anglePID);*/
 	    
 	    reset(); ////// TODO: REMOVE //////
 	    
@@ -160,16 +157,16 @@ public class Drive extends Subsystem implements PIDOutput {
 	 * 
 	 * @param angle The angle to go to (degrees), this is a absolute angle (this + robotAngle = setpoint).
 	 */
-	public void angle(double angle) {
+	/*public void angle(double angle) {
 		if (!anglePID.isEnabled()) {
 			anglePID.enable();
 		}
 		
-		anglePID.setSetpoint(angle);
+		anglePID.setSetpoint(-angle);
 		
 		driveLeft1.set(anglePID.get());
 		driveRight1.set(anglePID.get());
-	}
+	}*/
 
 	/**
 	 * A method from PID Source used to output from the angle PID to the drive systems.
@@ -177,10 +174,13 @@ public class Drive extends Subsystem implements PIDOutput {
 	@Override
 	public void pidWrite(double output) {
 		SmartDashboard.putNumber("Drive PID Output", output);
+
+		double speedLeft = output * RobotMap.Robot.DRIVE_SPEED;
+		double speedRight = output * RobotMap.Robot.DRIVE_SPEED;
 		
 		// (NEGATIVE -> LEFT), (POSITIVE -> RIGHT).
-		driveLeft1.set(output * RobotMap.Robot.DRIVE_SPEED);
-		driveRight1.set(output * RobotMap.Robot.DRIVE_SPEED);
+		driveLeft1.set(Math.max(speedLeft, 0.4));
+		driveRight1.set(Math.max(speedRight, 0.4));
 	}
 	
 	/**
@@ -195,9 +195,9 @@ public class Drive extends Subsystem implements PIDOutput {
 					return true;
 				}
 			}
-		} else if (anglePID.isEnabled()) { // Angle
+		}/* else if (anglePID.isEnabled()) { // Angle
 			return anglePID.onTarget();
-		}
+		}*/
 
 		return false;
 	}
@@ -220,7 +220,7 @@ public class Drive extends Subsystem implements PIDOutput {
 		driveRight1.setPosition(0.0);
 		driveRight1.set(0.0);
 
-		anglePID.reset();
+	//	anglePID.reset();
 	}
 
 	/**
@@ -231,7 +231,7 @@ public class Drive extends Subsystem implements PIDOutput {
 		
 		driveRight1.set(0.0);
 		
-		anglePID.disable();
+	//	anglePID.disable();
 	}
 
 	private void dashboard() {
@@ -247,10 +247,10 @@ public class Drive extends Subsystem implements PIDOutput {
 		SmartDashboard.putNumber("Drive Encoder Pos Left", driveLeft1.getEncPosition());
 		SmartDashboard.putNumber("Drive Encoder Pos Right", driveRight1.getEncPosition());
 
-		SmartDashboard.putNumber("Drive PID Setpoint", anglePID.getSetpoint());
-		SmartDashboard.putString("Drive PID", anglePID.getP() + ", " + anglePID.getI() + ", " + anglePID.getD());
-		SmartDashboard.putNumber("Drive PID Error", anglePID.getError());
-		SmartDashboard.putBoolean("Drive PID On Target", anglePID.onTarget());
+	//	SmartDashboard.putNumber("Drive PID Setpoint", anglePID.getSetpoint());
+	//	SmartDashboard.putString("Drive PID", anglePID.getP() + ", " + anglePID.getI() + ", " + anglePID.getD());
+	//	SmartDashboard.putNumber("Drive PID Error", anglePID.getError());
+	//	SmartDashboard.putBoolean("Drive PID On Target", anglePID.onTarget());
 	}
 }
 

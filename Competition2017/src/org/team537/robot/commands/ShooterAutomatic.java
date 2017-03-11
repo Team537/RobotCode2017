@@ -27,7 +27,7 @@ public class ShooterAutomatic extends Command {
 		Robot.agitator.reset();
 		Robot.shooter.reset();
 		Robot.shooter.setBreakmode(false);
-		Scheduler.getInstance().add(new LightsColour(this, Lights.Colour.GREEN));
+		Scheduler.getInstance().add(new LightsCycle(this, 0.4, Lights.Colour.values()));
 		
 		timer.reset();
 		timer.start();
@@ -38,11 +38,11 @@ public class ShooterAutomatic extends Command {
 	 */
 	@Override
 	protected void execute() {
-		Robot.shooter.shoot(3075.0);
+		Robot.shooter.shoot(3000.0); // further distance than usual
 		
-		if (timer.get() > 1.75) {
+		if (timer.get() > 2.25) {
 			Robot.agitator.agitate(-1.0);
-			Robot.feeder.feed(1.0);
+			Robot.feeder.feed(0.7);
 		}
 	}
 

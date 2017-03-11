@@ -23,7 +23,7 @@ public class FeederFeed extends Command {
 	 */
 	@Override
 	protected void execute() {
-		Robot.feeder.feed(1.0);
+		Robot.feeder.feed(0.7);
 	}
 
 	/**

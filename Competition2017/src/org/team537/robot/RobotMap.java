@@ -13,7 +13,6 @@ public class RobotMap {
 		public static final int SECONDARY_PORT = 1;
 		public static final int TERTIARY_PORT = 2;
 
-		public static final boolean ARCADE_DRIVE = false;
 		public static final double SENSITIVITY = 0.5;
 	}
 
@@ -21,7 +20,7 @@ public class RobotMap {
 	 * A class that holds static values for extra robot constants.
 	 */
 	public static class Robot {
-		public static final double DRIVE_SPEED_MIN = 0.075; 
+		public static final double DRIVE_SPEED_MIN = 0.05; 
 		public static final double DRIVE_SPEED = 1.0;
 		public static final double AGITATOR_SPEED = 1.0;
 		public static final double COLLECT_SPEED = 1.0;

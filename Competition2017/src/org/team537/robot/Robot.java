@@ -9,8 +9,6 @@ import org.team537.robot.subsystems.Agitator;
 import org.team537.robot.subsystems.Collector;
 import org.team537.robot.subsystems.Drive;
 import org.team537.robot.subsystems.Feeder;
-import org.team537.robot.subsystems.GRIP;
-import org.team537.robot.subsystems.Lidar;
 import org.team537.robot.subsystems.Lights;
 import org.team537.robot.subsystems.Shooter;
 import org.team537.robot.toolbox.Maths;
@@ -45,8 +43,8 @@ public class Robot extends IterativeRobot {
 	public static Collector collector;
 	public static Drive drive;
 	public static Feeder feeder;
-	public static GRIP grip;
-	public static Lidar lidar;
+	// public static GRIP grip;
+	// public static Lidar lidar;
 	public static Lights lights;
 	public static Shooter shooter;
 
@@ -102,8 +100,8 @@ public class Robot extends IterativeRobot {
 		collector = new Collector();
 		drive = new Drive();
 		feeder = new Feeder();
-		grip = new GRIP();
-		lidar = new Lidar();
+		// grip = new GRIP();
+		// lidar = new Lidar();
 		lights = new Lights();
 		shooter = new Shooter();
 

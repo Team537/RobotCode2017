@@ -2,9 +2,6 @@ package org.team537.robot;
 
 import org.team537.robot.commands.AgitatorAgitate;
 import org.team537.robot.commands.CollectorIntake;
-import org.team537.robot.commands.DriveAngle;
-import org.team537.robot.commands.DriveArcade;
-import org.team537.robot.commands.DriveDistance;
 import org.team537.robot.commands.FeederFeed;
 import org.team537.robot.commands.ShooterClimb;
 import org.team537.robot.commands.ShooterShoot;
@@ -21,18 +18,6 @@ public class OI {
 	public final Joystick joystickTertiary = new Joystick(RobotMap.Driver.TERTIARY_PORT);
 
 	public OI() {
-		// new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.X).whileHeld(new ClimberAction(true));
-		// new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.Y).whileHeld(new ClimberAction(false));
-		// new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.A).whileHeld(new ShooterShoot());
-
-		// new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.INDEX_TRIGGER).whileHeld(new DriveArcade());
-		new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.THUMB_TRIGGER).whenPressed(new DriveAngle(90.0f, true));
-		//	new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.THUMB_TRIGGER).whenPressed(new DriveAngle(180.0f, true));
-		//	new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.INDEX_TRIGGER).whileHeld(new DriveRange(60.0f));
-			new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.INDEX_TRIGGER).whenPressed(new DriveDistance(2.0, 2.0));
-		//	new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.BASE_8).whenPressed(new DriveRate(200.0, 200.0, 3.0));
-		//	new JoystickButton(joystickSecondary, RobotMap.JoystickKeys.BASE_7).whenPressed(new DriveSpeed(0.2, -0.2, 4.20));
-
 		new JoystickButton(joystickTertiary, RobotMap.ControlBox.COLLECTOR_IN).whileHeld(new CollectorIntake(true));
 		new JoystickButton(joystickTertiary, RobotMap.ControlBox.COLLECTOR_OUT).whileHeld(new CollectorIntake(false));
 		

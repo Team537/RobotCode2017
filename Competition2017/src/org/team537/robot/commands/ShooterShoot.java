@@ -19,7 +19,7 @@ public class ShooterShoot extends Command {
 	protected void initialize() {
 		Robot.shooter.reset();
 		Robot.shooter.setBreakmode(false);
-		Scheduler.getInstance().add(new LightsColour(this, Lights.Colour.GREEN));
+		Scheduler.getInstance().add(new LightsCycle(this, 0.4, Lights.Colour.values()));
 	}
 
 	/**
@@ -27,7 +27,7 @@ public class ShooterShoot extends Command {
 	 */
 	@Override
 	protected void execute() {
-		Robot.shooter.shoot(3075.0);
+		Robot.shooter.shoot(2950.0);
 	}
 
 	/**

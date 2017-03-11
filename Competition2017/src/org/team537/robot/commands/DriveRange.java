@@ -5,7 +5,6 @@ import org.team537.robot.Robot;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveRange extends Command {
 	private double range;
@@ -34,10 +33,10 @@ public class DriveRange extends Command {
 			return;
 		}
 		
-		double distance = Robot.lidar.getRange() - range;
-		double speed = Math.cbrt(distance / 3.0) / 3.0;
-		Robot.drive.speed(-speed, -speed);
-		SmartDashboard.putNumber("Drive Range Distance", distance);
+	//	double distance = Robot.lidar.getRange() - range;
+	//	double speed = Math.cbrt(distance / 3.0) / 3.0;
+	//	Robot.drive.speed(-speed, -speed);
+	//	SmartDashboard.putNumber("Drive Range Distance", distance);
 	}
 
 	/**
