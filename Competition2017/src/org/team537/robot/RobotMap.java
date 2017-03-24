@@ -11,7 +11,6 @@ public class RobotMap {
 	public static class Driver {
 		public static final int PRIMARY_PORT = 0;
 		public static final int SECONDARY_PORT = 1;
-		public static final int TERTIARY_PORT = 2;
 
 		public static final double SENSITIVITY = 0.5;
 	}
@@ -77,10 +76,11 @@ public class RobotMap {
 	 * A class that holds static values for joystick axes (Logitech X3D Pro).
 	 */
 	public static class JoystickAxes {
-		public static final int STICK_X = 0;
-		public static final int STICK_Y = 1;
-		public static final int STICK_Z = 2;
-		public static final int SLIDER = 3;
+		public static final int STICK_LEFT_X = 0;
+		public static final int STICK_LEFT_Y = 1;
+		public static final int STICK_RIGHT_X = 4;
+		public static final int STICK_RIGHT_Y = 5;
+		public static final int THROTTLE = 3;
 	}
 
 	/**

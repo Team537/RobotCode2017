@@ -18,7 +18,7 @@ public class Agitator extends Subsystem {
 	public Agitator() {
 		agitator.changeControlMode(TalonControlMode.PercentVbus);
 		agitator.enable();
-
+		
 		Timer timerDashboard = new Timer();
 		timerDashboard.schedule(new TimerTask() {
 			@Override

@@ -1,19 +1,15 @@
 package org.team537.robot.commands;
 
-import org.team537.robot.Robot;
-import org.team537.robot.subsystems.Lights.Colour;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class LightsColour extends Command {
-	private Command listener;
-	private Colour colour;
+public class Delay extends Command {
+	private Timer timer;
+	private double time;
 
-	public LightsColour(Command listener, Colour colour) {
-		requires(Robot.lights);
-		setInterruptible(true);
-		this.listener = listener;
-		this.colour = colour;
+	public Delay(double time) {
+		timer = new Timer();
+		this.time = time;
 	}
 
 	/**
@@ -21,11 +17,13 @@ public class LightsColour extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		Robot.lights.set(colour);
+		timer.stop();
+		timer.reset();
+		timer.start();
 	}
 
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is cancelled.
+	 * The execute method is called repeatedly until this Command either finishes or is canceled.
 	 */
 	@Override
 	protected void execute() {
@@ -36,7 +34,7 @@ public class LightsColour extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return (listener != null) ? !listener.isRunning() : false;
+		return timer.get() > time;
 	}
 
 	/**
@@ -44,7 +42,7 @@ public class LightsColour extends Command {
 	 */
 	@Override
 	protected void end() {
-		Robot.lights.set(Colour.getDefault());
+		timer.stop();
 	}
 
 	/**

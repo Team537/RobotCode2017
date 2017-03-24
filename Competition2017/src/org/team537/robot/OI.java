@@ -15,17 +15,18 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	public final Joystick joystickPrimary = new Joystick(RobotMap.Driver.PRIMARY_PORT);
 	public final Joystick joystickSecondary = new Joystick(RobotMap.Driver.SECONDARY_PORT);
-	public final Joystick joystickTertiary = new Joystick(RobotMap.Driver.TERTIARY_PORT);
 
 	public OI() {
-		new JoystickButton(joystickTertiary, RobotMap.ControlBox.COLLECTOR_IN).whileHeld(new CollectorIntake(true));
-		new JoystickButton(joystickTertiary, RobotMap.ControlBox.COLLECTOR_OUT).whileHeld(new CollectorIntake(false));
+		new JoystickButton(joystickSecondary, RobotMap.ControlBox.COLLECTOR_IN).whileHeld(new CollectorIntake(true));
+		new JoystickButton(joystickSecondary, RobotMap.ControlBox.COLLECTOR_OUT).whileHeld(new CollectorIntake(false));
 		
-		new JoystickButton(joystickTertiary, RobotMap.ControlBox.AGRIGATOR_IN).whileHeld(new AgitatorAgitate(true));
-		new JoystickButton(joystickTertiary, RobotMap.ControlBox.AGRIGATOR_OUT).whileHeld(new AgitatorAgitate(false));
-		new JoystickButton(joystickTertiary, RobotMap.ControlBox.FLYWHEEL_TOGGLE).whileHeld(new ShooterShoot());
-		new JoystickButton(joystickTertiary, RobotMap.ControlBox.FIRE_BUTTON).whileHeld(new FeederFeed());
+		new JoystickButton(joystickSecondary, RobotMap.ControlBox.AGRIGATOR_IN).whileHeld(new AgitatorAgitate(true));
+		new JoystickButton(joystickSecondary, RobotMap.ControlBox.AGRIGATOR_OUT).whileHeld(new AgitatorAgitate(false));
+		new JoystickButton(joystickSecondary, RobotMap.ControlBox.FLYWHEEL_TOGGLE).whileHeld(new ShooterShoot());
+		new JoystickButton(joystickSecondary, RobotMap.ControlBox.FIRE_BUTTON).whileHeld(new FeederFeed());
 		
-		new JoystickButton(joystickTertiary, RobotMap.ControlBox.CLIMB_TOGGLE).whileHeld(new ShooterClimb());
+		new JoystickButton(joystickSecondary, RobotMap.ControlBox.CLIMB_TOGGLE).whileHeld(new ShooterClimb());
+		
+		
 	}
 }

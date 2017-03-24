@@ -29,7 +29,7 @@ public class ShooterClimb extends Command {
 	 */
 	@Override
 	protected void execute() {
-		double speed = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxes.SLIDER);
+		double speed = Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxes.THROTTLE);
 		
 		if (speed < 0.0) {
 			speed = 0.0;

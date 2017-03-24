@@ -27,8 +27,8 @@ public class DriveArcade extends Command {
 	 */
 	@Override
 	protected void execute() {
-		double axisY = -Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxes.STICK_Y);
-		double axisX = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxes.STICK_X);
+		double axisY = -Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxes.STICK_LEFT_Y);
+		double axisX = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxes.STICK_LEFT_X);
 		double left = axisY + axisX;
 		double right = axisY - axisX;
 		left = ((1.0 - RobotMap.Driver.SENSITIVITY) * left) + (RobotMap.Driver.SENSITIVITY * Math.pow(left, 3.0));

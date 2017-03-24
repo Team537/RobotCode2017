@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class OI {
 	public final Joystick joystickPrimary = new Joystick(RobotMap.Driver.PRIMARY_PORT);
-	public final Joystick joystickSecondary = new Joystick(RobotMap.Driver.SECONDARY_PORT);
 
 	public OI() {
 		//// Space for creating buttons.

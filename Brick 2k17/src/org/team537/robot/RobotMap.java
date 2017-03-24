@@ -12,7 +12,8 @@ public class RobotMap {
 		public static final int PRIMARY_PORT = 0;
 		public static final int SECONDARY_PORT = 1;
 		public static final int TERTIARY_PORT = 2;
-		
+
+		public static final double SENSITIVITY = 0.5;
 		public static final boolean ARCADE_DRIVE = false;
 	}
 
@@ -20,7 +21,8 @@ public class RobotMap {
 	 * A class that holds static values for extra robot constants.
 	 */
 	public static class Robot {
-		public static final double DRIVE_SPEED = 0.5;
+		public static final double DRIVE_SPEED_MIN = 0.05; 
+		public static final double DRIVE_SPEED = 1.0;
 	}
 
 	/**
@@ -32,31 +34,31 @@ public class RobotMap {
 	}
 
 	/**
-	 * A class that holds static values for joystick keys (Logitech X3D Pro).
+	 * A class that holds static values for joystick keys (Logitech F310).
 	 */
-	public static class JoystickKeysX3D {
-		public static final int INDEX_TRIGGER = 1;
-		public static final int THUMB_TRIGGER = 2;
-		public static final int STICK_3 = 3;
-		public static final int STICK_4 = 4;
-		public static final int STICK_5 = 5;
-		public static final int STICK_6 = 6;
-		public static final int BASE_7 = 7;
-		public static final int BASE_8 = 8;
-		public static final int BASE_9 = 9;
-		public static final int BASE_10 = 10;
-		public static final int BASE_11 = 11;
-		public static final int BASE_12 = 12;
+	public static class JoystickKeys {
+		public static final int A = 1;
+		public static final int B = 2;
+		public static final int X = 3;
+		public static final int Y = 4;
+		public static final int BUMPER_LEFT = 5;
+		public static final int BUMPER_RIGHT = 6;
+		public static final int BACK = 7;
+		public static final int START = 8;
+		public static final int LEFT = 9;
+		public static final int RIGHT = 10;
 	}
 
 	/**
-	 * A class that holds static values for joystick axes (Logitech X3D Pro).
+	 * A class that holds static values for joystick axes (Logitech F310).
 	 */
-	public static class JoystickAxesX3D {
-		public static final int STICK_X = 0;
-		public static final int STICK_Y = 1;
-		public static final int STICK_Z = 2;
-		public static final int SLIDER = 3;
+	public static class JoystickAxes {
+		public static final int LEFT_X = 0;
+		public static final int LEFT_Y = 1;
+		public static final int TRIGGER_LEFT = 2;
+		public static final int TRIGGER_RIGHT = 3;
+		public static final int RIGHT_X = 4;
+		public static final int RIGHT_Y = 5;
 	}
 
 	/**
@@ -69,12 +71,12 @@ public class RobotMap {
 	 * A class that holds static values for CAN bus Channels.
 	 */
 	public static class CAN {
-		public static final int DRIVE_LEFT_1 = 0;
-		public static final int DRIVE_LEFT_2 = 1;
-		public static final int DRIVE_LEFT_3 = 2;
-		public static final int DRIVE_RIGHT_1 = 3;
+		public static final int DRIVE_LEFT_1 = 1;
+		public static final int DRIVE_LEFT_2 = 3;
+		public static final int DRIVE_LEFT_3 = 5;
+		public static final int DRIVE_RIGHT_1 = 2;
 		public static final int DRIVE_RIGHT_2 = 4;
-		public static final int DRIVE_RIGHT_3 = 5;
+		public static final int DRIVE_RIGHT_3 = 6;
 	}
 
 	/**
@@ -88,8 +90,6 @@ public class RobotMap {
 	 * A class that holds static values for Analog Inputs.
 	 */
 	public static class Analog {
-		public static final int LIGHT_SPIKE_1 = 0;
-		public static final int LIGHT_SPIKE_2 = 1;
 	}
 
 	/**
