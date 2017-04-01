@@ -1,10 +1,15 @@
 package org.team537.robot;
 
+import org.team537.robot.commands.AgitationAuto;
 import org.team537.robot.commands.AgitatorAgitate;
 import org.team537.robot.commands.CollectorIntake;
 import org.team537.robot.commands.FeederFeed;
+import org.team537.robot.commands.LightsColour;
+import org.team537.robot.commands.LightsCycle;
+import org.team537.robot.subsystems.Lights;
 import org.team537.robot.commands.ShooterClimb;
 import org.team537.robot.commands.ShooterShoot;
+
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -20,13 +25,13 @@ public class OI {
 		new JoystickButton(joystickSecondary, RobotMap.ControlBox.COLLECTOR_IN).whileHeld(new CollectorIntake(true));
 		new JoystickButton(joystickSecondary, RobotMap.ControlBox.COLLECTOR_OUT).whileHeld(new CollectorIntake(false));
 		
-		new JoystickButton(joystickSecondary, RobotMap.ControlBox.AGRIGATOR_IN).whileHeld(new AgitatorAgitate(true));
-		new JoystickButton(joystickSecondary, RobotMap.ControlBox.AGRIGATOR_OUT).whileHeld(new AgitatorAgitate(false));
+		new JoystickButton(joystickSecondary, RobotMap.ControlBox.AGRIGATOR_IN).whileHeld(new AgitatorAgitate(false));
+		new JoystickButton(joystickSecondary, RobotMap.ControlBox.AGRIGATOR_OUT).whileHeld(new AgitationAuto());
 		new JoystickButton(joystickSecondary, RobotMap.ControlBox.FLYWHEEL_TOGGLE).whileHeld(new ShooterShoot());
 		new JoystickButton(joystickSecondary, RobotMap.ControlBox.FIRE_BUTTON).whileHeld(new FeederFeed());
 		
 		new JoystickButton(joystickSecondary, RobotMap.ControlBox.CLIMB_TOGGLE).whileHeld(new ShooterClimb());
 		
-		
+		new JoystickButton(joystickPrimary, RobotMap.JoystickKeys.A_BUTTON).whileHeld(new LightsCycle(null, 5, Lights.Colour.WHITE, Lights.Colour.BLUE, Lights.Colour.YELLOW, Lights.Colour.GREEN, Lights.Colour.RED, Lights.Colour.MAGENTA));
 	}
 }

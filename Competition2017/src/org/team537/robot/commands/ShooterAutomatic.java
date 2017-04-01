@@ -51,7 +51,7 @@ public class ShooterAutomatic extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return timer.get() > 5.85;
+		return timer.get() > 9;
 	}
 
 	/**

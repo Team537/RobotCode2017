@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class NewRedBoiler extends CommandGroup {
 	public NewRedBoiler() {
-		addSequential(new DriveRate(450.0, 450.0, 2.0)); //fwd 12ft
+		addSequential(new DriveRate(300.0, 300.0, 2.5)); //fwd 12ft
 		addSequential(new CollectorIntake(true), 2); //collect 2 sec
 		addSequential(new DriveRate(-100.0, -100.0, 0.62)); //back 0.5ft
 		addSequential(new DriveRate(120.0, -120.0, 0.8)); //left 90deg

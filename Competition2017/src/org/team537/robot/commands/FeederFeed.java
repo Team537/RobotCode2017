@@ -23,8 +23,11 @@ public class FeederFeed extends Command {
 	 */
 	@Override
 	protected void execute() {
-		Robot.feeder.feed(0.8);
+		if (Robot.shooter.nearSpeed()){
+			Robot.feeder.feed(0.8);
+		}
 	}
+		
 
 	/**
 	 * This returns true when this Command no longer needs to run execute.

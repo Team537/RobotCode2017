@@ -23,8 +23,8 @@ public class RobotMap {
 		public static final double DRIVE_SPEED = 1.0;
 		public static final double AGITATOR_SPEED = 1.0;
 		public static final double COLLECT_SPEED = 1.0;
-		public static final double FEEDER_SPEED = 0.8;
-		public static final double SHOOTER_MAX_ERROR = 20.0;
+		public static final double FEEDER_SPEED = 0.9;
+		public static final double SHOOTER_MAX_ERROR = 40.0;
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class RobotMap {
 	 * A class that holds static values for joystick keys (Logitech X3D Pro).
 	 */
 	public static class JoystickKeys {
-		public static final int INDEX_TRIGGER = 1;
+		public static final int A_BUTTON = 1;
 		public static final int THUMB_TRIGGER = 2;
 		public static final int STICK_3 = 3;
 		public static final int STICK_4 = 4;
@@ -68,8 +68,8 @@ public class RobotMap {
 		public static final int FLYWHEEL_TOGGLE = 4;
 		public static final int COLLECTOR_IN = 5;
 		public static final int COLLECTOR_OUT = 6;
-		public static final int AGRIGATOR_IN = 7;
-		public static final int AGRIGATOR_OUT = 8;
+		public static final int AGRIGATOR_IN = 8;
+		public static final int AGRIGATOR_OUT = 7;
 	}
 
 	/**

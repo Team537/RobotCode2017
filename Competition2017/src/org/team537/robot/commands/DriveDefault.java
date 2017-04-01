@@ -33,7 +33,12 @@ public class DriveDefault extends Command {
 		right = ((1.0 - RobotMap.Driver.SENSITIVITY) * right) + (RobotMap.Driver.SENSITIVITY * Math.pow(right, 3.0));
 		left = Maths.deadband(RobotMap.Robot.DRIVE_SPEED_MIN, left);
 		right = Maths.deadband(RobotMap.Robot.DRIVE_SPEED_MIN, right);
+		if(Robot.oi.joystickPrimary.getRawButton(5)){
+			left = left*0.5;
+			right = right*0.5;
+		}
 		Robot.drive.speed(left, right);
+		
 	}
 
 	/**

@@ -72,7 +72,7 @@ public class Shooter extends Subsystem {
 	}
 	
 	public boolean nearSpeed() {
-		return Math.abs(shooterMaster.getError()) < RobotMap.Robot.SHOOTER_MAX_ERROR;
+		return getSetpoint() > 0 && Math.abs(shooterMaster.getError()) < RobotMap.Robot.SHOOTER_MAX_ERROR;
 	}
 
 	public void reset() {
@@ -97,4 +97,6 @@ public class Shooter extends Subsystem {
 		SmartDashboard.putNumber("Shooter Encoder Error", shooterMaster.getError());
 		SmartDashboard.putNumber("Shooter Encoder Position", shooterMaster.getEncPosition());
 	}
+	
+	
 }
