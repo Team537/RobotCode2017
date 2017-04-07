@@ -1,12 +1,17 @@
 package org.team537.robot;
 
+import org.team537.robot.autonomous.AutoTest;
 import org.team537.robot.subsystems.Drive;
+
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -19,6 +24,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 	// Interfaces.
+	public static AHRS ahrs;
 	public static UsbCamera camera;
 	public static MjpegServer mjpegServer;
 	public static Compressor compressor;
@@ -38,8 +44,14 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		// Interfaces.
+		try {
+			ahrs = new AHRS(Port.kMXP);
+		} catch (final RuntimeException ex) {
+			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
+		}
+
 		camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
-		camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH, RobotMap.GRIP.IMAGE_HEIGHT);
 
 		mjpegServer = new MjpegServer("server_cam0", 1181);
 		mjpegServer.setSource(camera);
@@ -56,6 +68,7 @@ public class Robot extends IterativeRobot {
 		// Autonomous chooser to display on the dashboard.
 		autoChooser = new SendableChooser<>();
 		autoChooser.addObject("Nothing", null);
+		autoChooser.addDefault("Testing", new AutoTest());
 		SmartDashboard.putData("Autonomous", autoChooser);
 	}
 
@@ -88,6 +101,8 @@ public class Robot extends IterativeRobot {
 		if (autoCommand != null) {
 			autoCommand.start();
 		}
+		
+		ahrs.reset();
 	}
 
 	/**
@@ -108,6 +123,8 @@ public class Robot extends IterativeRobot {
 			autoCommand.cancel();
 			autoCommand = null;
 		}
+		
+		ahrs.reset();
 	}
 
 	/**

@@ -10,11 +10,8 @@ public class RobotMap {
 	 */
 	public static class Driver {
 		public static final int PRIMARY_PORT = 0;
-		public static final int SECONDARY_PORT = 1;
-		public static final int TERTIARY_PORT = 2;
 
 		public static final double SENSITIVITY = 0.5;
-		public static final boolean ARCADE_DRIVE = false;
 	}
 
 	/**
@@ -23,14 +20,6 @@ public class RobotMap {
 	public static class Robot {
 		public static final double DRIVE_SPEED_MIN = 0.05; 
 		public static final double DRIVE_SPEED = 1.0;
-	}
-
-	/**
-	 * A class that holds static values for GRIP image processing.
-	 */
-	public static class GRIP {
-		public static final int IMAGE_WIDTH = 320;
-		public static final int IMAGE_HEIGHT = 240;
 	}
 
 	/**

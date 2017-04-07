@@ -15,17 +15,12 @@ import org.team537.robot.subsystems.Drive;
 import org.team537.robot.subsystems.Feeder;
 import org.team537.robot.subsystems.Lights;
 import org.team537.robot.subsystems.Shooter;
-import org.team537.robot.toolbox.Maths;
 
-//import com.kauailabs.navx.frc.AHRS;
-
-import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;

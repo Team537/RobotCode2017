@@ -26,8 +26,8 @@ public class DriveDistance extends Command {
 		Robot.drive.reset();
 		Robot.drive.setToMode(CANTalon.TalonControlMode.Position);
 		Robot.drive.setPIDF(
-				0.30, 0.0, 0.15, 0.0,
-				0.30, 0.0, 0.15, 0.0
+				0.30, 0.0, 0.15, 0.0, //left
+				0.30, 0.0, 0.15, 0.0  //right
 		);
 		Robot.drive.distance(distanceLeft, distanceRight);
 	}

@@ -1,15 +1,11 @@
 package org.team537.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Delay extends Command {
-	private Timer timer;
-	private double time;
-
 	public Delay(double time) {
-		timer = new Timer();
-		this.time = time;
+		setInterruptible(false);
+		setTimeout(time);
 	}
 
 	/**
@@ -17,9 +13,6 @@ public class Delay extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		timer.stop();
-		timer.reset();
-		timer.start();
 	}
 
 	/**
@@ -34,7 +27,7 @@ public class Delay extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return timer.get() > time;
+		return super.isTimedOut();
 	}
 
 	/**
@@ -42,7 +35,6 @@ public class Delay extends Command {
 	 */
 	@Override
 	protected void end() {
-		timer.stop();
 	}
 
 	/**
@@ -50,5 +42,6 @@ public class Delay extends Command {
 	 */
 	@Override
 	protected void interrupted() {
+		super.end();
 	}
 }
