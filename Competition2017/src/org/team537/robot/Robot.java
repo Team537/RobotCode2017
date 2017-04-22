@@ -16,11 +16,14 @@ import org.team537.robot.subsystems.Feeder;
 import org.team537.robot.subsystems.Lights;
 import org.team537.robot.subsystems.Shooter;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -35,7 +38,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 	// Interfaces.
-	//public static AHRS ahrs;
+	public static AHRS ahrs;
 	public static UsbCamera camera;
 	//public static MjpegServer mjpegServer;
 
@@ -63,7 +66,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		// Interfaces.
 		try {
-			//ahrs = new AHRS(Port.kMXP);
+			ahrs = new AHRS(Port.kMXP);
 		} catch (final RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
 		}

@@ -5,6 +5,7 @@ import org.team537.robot.Robot;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveRate extends Command {
 	private double rateLeft;
@@ -41,12 +42,14 @@ public class DriveRate extends Command {
         double rightSpeed = rateRight;
         
         if (Math.abs(gyroError) >= 3.0) {
-	        if (gyroError < 0.0)  {
-	        	leftSpeed -= gyroError * (1.0 / 180.0) * 0.01;
+	        if (gyroError > 0.0)  {
+	        	leftSpeed += 10*gyroError;// * (1.0f / 180.0) * 0.01;
+	        	rightSpeed -= 10*gyroError;
 	        }
 	
-	        if (gyroError > 0.0) {
-	        	rightSpeed += gyroError * (1.0f / 180.0) * 0.01;
+	        if (gyroError < 0.0) {
+	        	rightSpeed += gyroError;// * (1.0f / 180.0) * 0.01;
+	        	leftSpeed -= gyroError;
 	        }
         }
         

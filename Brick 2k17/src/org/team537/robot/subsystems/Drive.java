@@ -3,12 +3,14 @@ package org.team537.robot.subsystems;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.team537.robot.Robot;
 import org.team537.robot.RobotMap;
 import org.team537.robot.commands.DriveDefault;
 import org.team537.robot.toolbox.Maths;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -54,7 +56,7 @@ public class Drive extends Subsystem {
 		driveRight1.reverseSensor(false);
 		driveRight1.setPID(0.0, 0.0, 0.0);
 		driveRight1.setF(0.0);
-
+		
 		shifter.set(false);
 
 	    reset(); ////// TODO: REMOVE //////
@@ -95,6 +97,7 @@ public class Drive extends Subsystem {
 	 * @param ir Right I.
 	 * @param dr Right D.
 	 * @param fr Right f.
+	 * 
 	 */
 	public void setPIDF(double pl, double il, double dl, double fl, double pr, double ir, double dr, double fr) {
 		driveLeft1.setPID(pl, il, dl);
@@ -126,7 +129,7 @@ public class Drive extends Subsystem {
 		driveLeft1.set(left);
 		driveRight1.set(-right);
 	}
-
+	
 	/**
 	 * Drives the drive train to a left and right encoder distance.
 	 * 
@@ -173,6 +176,7 @@ public class Drive extends Subsystem {
 		driveRight1.enable();
 		driveRight1.setPosition(0.0);
 		driveRight1.set(0.0);
+
 	}
 
 	/**
@@ -196,6 +200,8 @@ public class Drive extends Subsystem {
 
 		SmartDashboard.putNumber("Drive Encoder Pos Left", driveLeft1.getEncPosition());
 		SmartDashboard.putNumber("Drive Encoder Pos Right", driveRight1.getEncPosition());
+		
+		SmartDashboard.putNumber("NavX Yaw", Robot.ahrs.getYaw());
 	}
 }
 

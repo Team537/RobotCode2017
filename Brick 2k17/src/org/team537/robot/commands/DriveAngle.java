@@ -6,18 +6,18 @@ import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveAngle extends Command {
 	private Timer timer;
 	private double angle;
 	private boolean addToNavX;
 	
-	public DriveAngle(double angle, boolean addToNavX) {
+	public DriveAngle(double angle) {
 		requires(Robot.drive);
 		setInterruptible(false);
 		this.timer = new Timer();
 		this.angle = angle;
-		this.addToNavX = addToNavX;
 	}
 
 	/**
@@ -28,9 +28,7 @@ public class DriveAngle extends Command {
 		Robot.drive.reset();
 		Robot.drive.setToMode(CANTalon.TalonControlMode.PercentVbus);
 
-		if (addToNavX) {
-			Robot.ahrs.reset();
-		}
+		Robot.ahrs.reset();
 		
 		timer.reset();
 		timer.start();
@@ -41,6 +39,17 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected void execute() {
+		double error = angle - Robot.ahrs.getYaw();
+		double left = 0; 
+		double right = 0;
+		double Kp = 0.0085;
+		
+		left = -error * Kp;
+		right = error * Kp;
+		
+		SmartDashboard.putNumber("angle error", error);
+		
+		Robot.drive.rate(left, right);
 	}
 
 	/**
@@ -48,7 +57,7 @@ public class DriveAngle extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.atTarget() || timer.get() > 2.0;
+		return Robot.drive.atTarget() || timer.get() > 5.0;
 	}
 
 	/**

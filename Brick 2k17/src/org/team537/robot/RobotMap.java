@@ -43,11 +43,11 @@ public class RobotMap {
 	 */
 	public static class JoystickAxes {
 		public static final int LEFT_X = 0;
-		public static final int LEFT_Y = 1;
+		public static final int LEFT_Y = 5;
 		public static final int TRIGGER_LEFT = 2;
 		public static final int TRIGGER_RIGHT = 3;
 		public static final int RIGHT_X = 4;
-		public static final int RIGHT_Y = 5;
+		public static final int RIGHT_Y = 1;
 	}
 
 	/**
