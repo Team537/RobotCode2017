@@ -84,11 +84,6 @@ public class Robot extends IterativeRobot {
 					//SmartDashboard.putNumber("NavX Velocity Z", Maths.roundToPlace((double) ahrs.getVelocityZ(), 3));
 				//}
 
-				if (camera != null) {
-					SmartDashboard.putBoolean("Camera Conected", Robot.camera.isConnected());
-				} else {
-					SmartDashboard.putBoolean("Camera Conected", false);
-				}
 			}
 		}, 0, 100);
 
