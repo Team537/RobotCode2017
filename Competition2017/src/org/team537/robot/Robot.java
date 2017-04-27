@@ -39,8 +39,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	// Interfaces.
 	public static AHRS ahrs;
-	public static UsbCamera camera;
-	//public static MjpegServer mjpegServer;
 
 	// Subsystems.
 	public static Agitator agitator;
@@ -70,9 +68,6 @@ public class Robot extends IterativeRobot {
 		} catch (final RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
 		}
-
-		camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
-		camera.setResolution(RobotMap.GRIP.IMAGE_WIDTH, RobotMap.GRIP.IMAGE_HEIGHT);
 		
 
 		Timer timerDashboard = new Timer();
