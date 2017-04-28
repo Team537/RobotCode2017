@@ -10,7 +10,7 @@ public class BlueBoiler extends CommandGroup {
 		addSequential(new ShooterAutomatic()); //Shoot
 		addSequential(new DriveRate(-120.0, -120.0, 1.0)); //Back away from boiler
 		addSequential(new DriveRate(120.0, -120.0, 1.2)); //Turn around
-		addSequential(new DriveRate(120.0, 120.0, 4.15)); //Drive to hopper
+		addSequential(new DriveRate(120.0, 120.0, 4)); //Drive to hopper
 		//addSequential(new DriveRate(-120.0, 120.0, 1.1)); //Turn to face hopper
 		//addSequential(new DriveRate(315.0, 315.0, 1.7)); //Drive into hopper
 	}

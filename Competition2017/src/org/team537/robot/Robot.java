@@ -9,12 +9,14 @@ import org.team537.robot.autonomous.BlueRight;
 import org.team537.robot.autonomous.RedBoiler;
 import org.team537.robot.autonomous.NewRedBoiler;
 import org.team537.robot.autonomous.RedLeft;
+import org.team537.robot.autonomous.StraightGear;
 import org.team537.robot.subsystems.Agitator;
 import org.team537.robot.subsystems.Collector;
 import org.team537.robot.subsystems.Drive;
 import org.team537.robot.subsystems.Feeder;
 import org.team537.robot.subsystems.Lights;
 import org.team537.robot.subsystems.Shooter;
+
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -118,6 +120,7 @@ public class Robot extends IterativeRobot {
 				autoChooser.addDefault("Red Left", new RedLeft());
 				autoChooser.addObject("Old Blue Boiler", new BlueBoiler());
 				autoChooser.addObject("Old Red Boiler", new RedBoiler());
+				autoChooser.addObject("Straight", new StraightGear());
 				break;
 			case Blue:
 				autoChooser.addObject("Nothing", null);
@@ -127,6 +130,7 @@ public class Robot extends IterativeRobot {
 				autoChooser.addObject("Red Left", new RedLeft());
 				autoChooser.addObject("Old Blue Boiler", new BlueBoiler());
 				autoChooser.addObject("Old Red Boiler", new RedBoiler());
+				autoChooser.addObject("Straight", new StraightGear());
 				break;
 			default:
 				autoChooser.addObject("Nothing", null); // addDefault
@@ -136,6 +140,7 @@ public class Robot extends IterativeRobot {
 				autoChooser.addDefault("Red Left", new RedLeft());
 				autoChooser.addObject("Old Blue Boiler", new BlueBoiler());
 				autoChooser.addObject("Old Red Boiler", new RedBoiler());
+				autoChooser.addObject("Straight", new StraightGear());
 				break;
 		}
 		
