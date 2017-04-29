@@ -27,7 +27,7 @@ public class ShooterShoot extends Command {
 	 */
 	@Override
 	protected void execute() {
-		Robot.shooter.shoot(2950.0);
+		Robot.shooter.shoot(3000.0);
 	}
 
 	/**

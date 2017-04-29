@@ -24,7 +24,7 @@ public class FeederFeed extends Command {
 	@Override
 	protected void execute() {
 		if (Robot.shooter.nearSpeed()){
-			Robot.feeder.feed(0.8);
+			Robot.feeder.feed(0.9);
 		}
 	}
 		
