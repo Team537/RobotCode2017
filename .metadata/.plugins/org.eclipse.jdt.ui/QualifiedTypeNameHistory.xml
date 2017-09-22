@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="edu.wpi.cscore.VideoMode"/>
-<fullyQualifiedTypeName name="org.team537.robot.autonomous.ShootCross"/>
-<fullyQualifiedTypeName name="org.team537.robot.autonomous.BlueDefault"/>
-<fullyQualifiedTypeName name="edu.wpi.cscore.MjpegServer"/>
-<fullyQualifiedTypeName name="edu.wpi.cscore.CvSink"/>
-<fullyQualifiedTypeName name="edu.wpi.cscore.CvSource"/>
-<fullyQualifiedTypeName name="edu.wpi.cscore.VideoMode.PixelFormat"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.buttons.JoystickButton"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.command.Command"/>
-<fullyQualifiedTypeName name="org.team537.robot.commands.ShooterEnableWheel1"/>
-<fullyQualifiedTypeName name="org.team537.robot.commands.ShooterEnableWheel2"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.ShooterAddSpeedWheel1"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.ShooterAutoFire"/>
 <fullyQualifiedTypeName name="org.team537.robot.subsystems.Climber"/>
@@ -18,7 +7,6 @@
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickKeys"/>
 <fullyQualifiedTypeName name="org.team537.robot.subsystems.Collector"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDController"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDOutput"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.livewindow.LiveWindow"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickAxesX3D"/>
 <fullyQualifiedTypeName name="org.team537.robot.subsystems.Drive"/>
@@ -28,7 +16,6 @@
 <fullyQualifiedTypeName name="org.team537.robot.subsystems.RangeFinder"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickKeysX3D"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.CollectorIntake"/>
-<fullyQualifiedTypeName name="com.ctre.CANTalon"/>
 <fullyQualifiedTypeName name="com.ctre.CANTalon.TalonControlMode"/>
 <fullyQualifiedTypeName name="org.team537.robot.subsystems.Lidar"/>
 <fullyQualifiedTypeName name="org.team537.robot.commands.DriveArcade"/>
@@ -41,9 +28,7 @@
 <fullyQualifiedTypeName name="org.team537.robot.commands.DriveSpeed"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.CameraServer"/>
-<fullyQualifiedTypeName name="org.team537.robot.RobotMap.Driver"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.Robot"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.smartdashboard.SmartDashboard"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.command.Scheduler"/>
 <fullyQualifiedTypeName name="org.team537.robot.subsystems.Lights"/>
@@ -60,4 +45,19 @@
 <fullyQualifiedTypeName name="org.team537.robot.commands.DriveDistance"/>
 <fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDSource"/>
 <fullyQualifiedTypeName name="org.team537.robot.RobotMap.JoystickAxes"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Joystick"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team537.robot.RobotMap.Driver"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team537.robot.RobotMap.ControlBox"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team537.robot.RobotMap.CAN"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.PIDOutput"/>
+<fullyQualifiedTypeName name="org.team537.robot.RobotMap.Driver"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.command.Subsystem"/>
+<fullyQualifiedTypeName name="com.ctre.CANTalon"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.command.Command"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team537.robot.OI"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team537.robot.Robot"/>
+<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.buttons.JoystickButton"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team537.robot.commands.AgitatorPercentCommand"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team537.robot.subsystems.Agitator"/>
+<fullyQualifiedTypeName name="org.usfirst.frc.team537.robot.RobotMap"/>
 </qualifiedTypeNameHistroy>

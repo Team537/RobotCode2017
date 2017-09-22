@@ -32,7 +32,7 @@ public class ShooterAutomatic extends Command {
 		timer.reset();
 		timer.start();
 	}
-
+	
 	/**
 	 * The execute method is called repeatedly until this Command either finishes or is canceled.
 	 */
