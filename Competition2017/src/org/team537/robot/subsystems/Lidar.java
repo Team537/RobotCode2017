@@ -14,14 +14,14 @@ public class Lidar extends Subsystem {
 	private I2C lidar;
 	private boolean connected;
 	private double range;
-	
+
 	private Thread thread;
 
 	public Lidar() {
 		this.lidar = new I2C(I2C.Port.kOnboard, 0x30);
 		this.connected = false;
 		this.range = 0.0;
-		
+
 		this.thread = new Thread(this::threadRun);
 		this.thread.start();
 
@@ -62,11 +62,11 @@ public class Lidar extends Subsystem {
 
 			int rmm = (buffer[0] << 8) + buffer[1];
 			double metres = rmm * 1000.0;
-			
+
 			synchronized (this) {
 				range = metres;
 			}
-			
+
 			try {
 				Thread.sleep(10);
 			} catch (Exception e) {
@@ -74,7 +74,7 @@ public class Lidar extends Subsystem {
 			}
 		}
 	}
-	
+
 	/**
 	 * Gets the currently read range in metres.
 	 * 

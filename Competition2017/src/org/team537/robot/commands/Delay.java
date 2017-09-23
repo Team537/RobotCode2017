@@ -16,7 +16,8 @@ public class Delay extends Command {
 	}
 
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is canceled.
+	 * The execute method is called repeatedly until this Command either
+	 * finishes or is canceled.
 	 */
 	@Override
 	protected void execute() {
@@ -38,7 +39,8 @@ public class Delay extends Command {
 	}
 
 	/**
-	 * Called when another command which requires one or more of the same subsystems is scheduled to run.
+	 * Called when another command which requires one or more of the same
+	 * subsystems is scheduled to run.
 	 */
 	@Override
 	protected void interrupted() {

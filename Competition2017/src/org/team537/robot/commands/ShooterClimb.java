@@ -21,7 +21,7 @@ public class ShooterClimb extends Command {
 	protected void initialize() {
 		Robot.shooter.reset();
 		Robot.shooter.setBreakmode(true);
-		Scheduler.getInstance().add(new LightsColour(this, Lights.Colour.MAGENTA));
+	//	Scheduler.getInstance().add(new LightsColour(this, Lights.Colour.MAGENTA));
 	}
 
 	/**
@@ -29,14 +29,24 @@ public class ShooterClimb extends Command {
 	 */
 	@Override
 	protected void execute() {
-		double speed = Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxes.THROTTLE);
+		double speed = 0.0f;
+		
+		switch (RobotMap.Driver.CONTROL)
+		{
+		case F310:
+			speed = Robot.oi.joystickPrimary.getRawAxis(RobotMap.AxesF310.THROTTLE);
+			break;
+		case EXTREME:
+			speed = Robot.oi.joystickSecondary.getRawAxis(RobotMap.AxesExtreme.SLIDER);
+			break;
+		}
 		
 		if (speed < 0.0) {
 			speed = 0.0;
 		}
 		
 		SmartDashboard.putNumber("Climb Speed %", speed);
-		Robot.shooter.shoot(4200.0 * speed);
+		Robot.shooter.shoot(RobotMap.Robot.SHOOTER_SPEED_CLIMB * speed);
 	}
 
 	/**

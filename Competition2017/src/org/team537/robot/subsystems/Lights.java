@@ -13,14 +13,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Lights extends Subsystem {
-	private final Relay relay1 = new Relay(RobotMap.Analog.LIGHT_SPIKE_1); // +blue -common
-	private final Relay relay2 = new Relay(RobotMap.Analog.LIGHT_SPIKE_2); // +red -green
-	
+	private final Relay relay1 = new Relay(RobotMap.Analog.LIGHT_SPIKE_1); // +blue
+																			// -common
+	private final Relay relay2 = new Relay(RobotMap.Analog.LIGHT_SPIKE_2); // +red
+																			// -green
+
 	private Colour currentColour;
-	
+
 	public Lights() {
 		this.currentColour = null;
-		
+
 		set(Colour.getDefault());
 
 		Timer timerDashboard = new Timer();
@@ -36,10 +38,10 @@ public class Lights extends Subsystem {
 	protected void initDefaultCommand() {
 		setDefaultCommand(new LightsColour(null, Colour.getDefault()));
 	}
-	
+
 	public void set(Colour colour) {
 		this.currentColour = colour;
-		
+
 		if (colour != null) {
 			relay1.set(colour.value1);
 			relay2.set(colour.value2);
@@ -57,17 +59,14 @@ public class Lights extends Subsystem {
 	}
 
 	public enum Colour {
-		WHITE(Relay.Value.kReverse, Relay.Value.kOff), 
-		RED(Relay.Value.kOn, Relay.Value.kReverse),
-		BLUE(Relay.Value.kReverse, Relay.Value.kOn), 
-		GREEN(Relay.Value.kOn, Relay.Value.kForward), 
-		YELLOW(Relay.Value.kOn, Relay.Value.kOff), 
-		CYAN(Relay.Value.kReverse, Relay.Value.kForward), 
-		MAGENTA(Relay.Value.kReverse, Relay.Value.kReverse);
-		
+		WHITE(Relay.Value.kReverse, Relay.Value.kOff), RED(Relay.Value.kOn, Relay.Value.kReverse), BLUE(
+				Relay.Value.kReverse, Relay.Value.kOn), GREEN(Relay.Value.kOn,
+						Relay.Value.kForward), YELLOW(Relay.Value.kOn, Relay.Value.kOff), CYAN(Relay.Value.kReverse,
+								Relay.Value.kForward), MAGENTA(Relay.Value.kReverse, Relay.Value.kReverse);
+
 		private final Relay.Value value1;
 		private final Relay.Value value2;
-		
+
 		Colour(Relay.Value value1, Relay.Value value2) {
 			this.value1 = value1;
 			this.value2 = value2;
@@ -80,21 +79,21 @@ public class Lights extends Subsystem {
 		public Relay.Value getValue2() {
 			return value2;
 		}
-		
+
 		public static Colour getDefault() {
 			Alliance alliance = null;
-			
+
 			if (DriverStation.getInstance() != null) {
 				alliance = DriverStation.getInstance().getAlliance();
 			}
 
 			switch (alliance) {
-				case Red:
-					return RED;
-				case Blue:
-					return BLUE;
-				default:
-					return WHITE;
+			case Red:
+				return RED;
+			case Blue:
+				return BLUE;
+			default:
+				return WHITE;
 			}
 		}
 	}

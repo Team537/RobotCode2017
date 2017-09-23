@@ -19,13 +19,13 @@ public class ShooterDefault extends Command {
 	}
 
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is canceled.
+	 * The execute method is called repeatedly until this Command either
+	 * finishes or is canceled.
 	 */
 	@Override
 	protected void execute() {
 		Robot.shooter.shoot(0.0);
 	}
-	
 
 	/**
 	 * This returns true when this Command no longer needs to run execute.
@@ -44,7 +44,8 @@ public class ShooterDefault extends Command {
 	}
 
 	/**
-	 * Called when another command which requires one or more of the same subsystems is scheduled to run.
+	 * Called when another command which requires one or more of the same
+	 * subsystems is scheduled to run.
 	 */
 	@Override
 	protected void interrupted() {

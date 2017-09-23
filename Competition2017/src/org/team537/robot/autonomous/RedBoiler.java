@@ -11,7 +11,7 @@ public class RedBoiler extends CommandGroup {
 		addSequential(new DriveRate(-120.0, -120.0, 1.0));
 		addSequential(new DriveRate(-120.0, 120.0, 1.2));
 		addSequential(new DriveRate(120.0, 120.0, 4));
-		//addSequential(new DriveRate(120.0, -120.0, 1.1));
-		//addSequential(new DriveRate(315.0, 315.0, 1.7));
+		// addSequential(new DriveRate(120.0, -120.0, 1.1));
+		// addSequential(new DriveRate(315.0, 315.0, 1.7));
 	}
 }

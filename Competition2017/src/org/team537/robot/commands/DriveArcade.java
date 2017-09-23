@@ -27,14 +27,36 @@ public class DriveArcade extends Command {
 	 */
 	@Override
 	protected void execute() {
-		double axisY = -Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxes.STICK_LEFT_Y);
-		double axisX = Robot.oi.joystickSecondary.getRawAxis(RobotMap.JoystickAxes.STICK_LEFT_X);
+		double axisX = 0.0f; 
+		double axisY = 0.0f; 
+		boolean slow = false;
+		
+		switch (RobotMap.Driver.CONTROL)
+		{
+		case F310:
+			axisX = Robot.oi.joystickPrimary.getRawAxis(RobotMap.AxesF310.STICK_LEFT_X);
+			axisY = -Robot.oi.joystickPrimary.getRawAxis(RobotMap.AxesF310.STICK_LEFT_Y);
+			slow = Robot.oi.joystickPrimary.getRawButton(5);
+			break;
+		case EXTREME:
+			axisX = Robot.oi.joystickPrimary.getRawAxis(RobotMap.AxesExtreme.STICK_X);
+			axisY = -Robot.oi.joystickSecondary.getRawAxis(RobotMap.AxesExtreme.STICK_Y);
+		//	slow = Robot.oi.joystickPrimary.getRawButton(5);
+			break;
+		}
+		
 		double left = axisY + axisX;
 		double right = axisY - axisX;
 		left = ((1.0 - RobotMap.Driver.SENSITIVITY) * left) + (RobotMap.Driver.SENSITIVITY * Math.pow(left, 3.0));
 		right = ((1.0 - RobotMap.Driver.SENSITIVITY) * right) + (RobotMap.Driver.SENSITIVITY * Math.pow(right, 3.0));
 		left = Maths.deadband(RobotMap.Robot.DRIVE_SPEED_MIN, left);
 		right = Maths.deadband(RobotMap.Robot.DRIVE_SPEED_MIN, right);
+
+		if (slow) {
+			left = left * 0.5;
+			right = right * 0.5;
+		}
+		
 		Robot.drive.speed(left, right);
 	}
 

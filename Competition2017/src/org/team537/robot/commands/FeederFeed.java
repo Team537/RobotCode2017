@@ -19,15 +19,15 @@ public class FeederFeed extends Command {
 	}
 
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is canceled.
+	 * The execute method is called repeatedly until this Command either
+	 * finishes or is canceled.
 	 */
 	@Override
 	protected void execute() {
-		if (Robot.shooter.nearSpeed()){
+		if (Robot.shooter.nearSpeed()) {
 			Robot.feeder.feed(0.9);
 		}
 	}
-		
 
 	/**
 	 * This returns true when this Command no longer needs to run execute.
@@ -46,7 +46,8 @@ public class FeederFeed extends Command {
 	}
 
 	/**
-	 * Called when another command which requires one or more of the same subsystems is scheduled to run.
+	 * Called when another command which requires one or more of the same
+	 * subsystems is scheduled to run.
 	 */
 	@Override
 	protected void interrupted() {

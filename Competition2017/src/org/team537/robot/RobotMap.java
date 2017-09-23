@@ -1,38 +1,41 @@
 package org.team537.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name.
- * This provides flexibility changing wiring, makes checking the wiring easier and significantly reduces the number of magic numbers floating around.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into
+ * to a variable name. This provides flexibility changing wiring, makes checking
+ * the wiring easier and significantly reduces the number of magic numbers
+ * floating around.
  */
 public class RobotMap {
+	public static enum ControlType {
+		F310, EXTREME
+	}
+
 	/**
 	 * A class that holds static values for driver Controls.
 	 */
 	public static class Driver {
-		public static final int PRIMARY_PORT = 0;
-		public static final int SECONDARY_PORT = 1;
+		public static final int BOX_PORT = 0;
+		public static final int PRIMARY_PORT = 1;
+		public static final int SECONDARY_PORT = 2;
 
 		public static final double SENSITIVITY = 0.5;
+		public static final ControlType CONTROL = ControlType.F310;
+		public static final boolean ARCADE_DRIVE = false;
 	}
 
 	/**
 	 * A class that holds static values for extra robot constants.
 	 */
 	public static class Robot {
-		public static final double DRIVE_SPEED_MIN = 0.05; 
+		public static final double DRIVE_SPEED_MIN = 0.03;
 		public static final double DRIVE_SPEED = 1.0;
 		public static final double AGITATOR_SPEED = 1.0;
 		public static final double COLLECT_SPEED = 1.0;
-		public static final double FEEDER_SPEED = 0.9;
+		public static final double FEEDER_SPEED = 0.8;
 		public static final double SHOOTER_MAX_ERROR = 40.0;
-	}
-
-	/**
-	 * A class that holds static values for GRIP image processing.
-	 */
-	public static class GRIP {
-		public static final int IMAGE_WIDTH = 320;
-		public static final int IMAGE_HEIGHT = 240;
+		public static final double SHOOTER_SPEED = 3000.0;
+		public static final double SHOOTER_SPEED_CLIMB = 5370.0;
 	}
 
 	/**
@@ -47,7 +50,7 @@ public class RobotMap {
 	/**
 	 * A class that holds static values for joystick keys (Logitech X3D Pro).
 	 */
-	public static class JoystickKeys {
+	public static class KeysF310 {
 		public static final int A_BUTTON = 1;
 		public static final int THUMB_TRIGGER = 2;
 		public static final int STICK_3 = 3;
@@ -61,16 +64,44 @@ public class RobotMap {
 		public static final int BASE_11 = 11;
 		public static final int BASE_12 = 12;
 	}
-	
+
 	/**
 	 * A class that holds static values for joystick axes (Logitech X3D Pro).
 	 */
-	public static class JoystickAxes {
+	public static class AxesF310 {
 		public static final int STICK_LEFT_X = 0;
 		public static final int STICK_LEFT_Y = 1;
 		public static final int STICK_RIGHT_X = 4;
 		public static final int STICK_RIGHT_Y = 5;
 		public static final int THROTTLE = 3;
+	}
+
+	/**
+	 * A class that holds static values for joystick keys (Logitech X3D Pro).
+	 */
+	public static class KeysExtreme {
+		public static final int INDEX_TRIGGER = 1;
+		public static final int THUMB_TRIGGER = 2;
+		public static final int STICK_3 = 3;
+		public static final int STICK_4 = 4;
+		public static final int STICK_5 = 5;
+		public static final int STICK_6 = 6;
+		public static final int BASE_7 = 7;
+		public static final int BASE_8 = 8;
+		public static final int BASE_9 = 9;
+		public static final int BASE_10 = 10;
+		public static final int BASE_11 = 11;
+		public static final int BASE_12 = 12;
+	}
+
+	/**
+	 * A class that holds static values for joystick axes (Logitech X3D Pro).
+	 */
+	public static class AxesExtreme {
+		public static final int STICK_X = 0;
+		public static final int STICK_Y = 1;
+		public static final int STICK_Z = 2;
+		public static final int SLIDER = 3;
 	}
 
 	public static class ControlBox {
@@ -102,11 +133,11 @@ public class RobotMap {
 
 		public static final int SHOOTER_MASTER = 7;
 		public static final int SHOOTER_SLAVE = 8;
-		
+
 		public static final int COLLECTOR = 9;
 
 		public static final int FEEDER = 10;
-		
+
 		public static final int AGITATOR = 11;
 	}
 

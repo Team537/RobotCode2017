@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveDistance extends Command {
 	private double distanceLeft;
 	private double distanceRight;
-	
+
 	public DriveDistance(double distanceLeft, double distanceRight) {
 		requires(Robot.drive);
 		setInterruptible(false);
@@ -26,14 +26,15 @@ public class DriveDistance extends Command {
 		Robot.drive.reset();
 		Robot.drive.setToMode(CANTalon.TalonControlMode.Position);
 		Robot.drive.setPIDF(
-				0.30, 0.0, 0.15, 0.0, //left
-				0.30, 0.0, 0.15, 0.0  //right
+				0.30, 0.0, 0.15, 0.0, // Left.
+				0.30, 0.0, 0.15, 0.0 // Right.
 		);
 		Robot.drive.distance(distanceLeft, distanceRight);
 	}
 
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is cancelled.
+	 * The execute method is called repeatedly until this Command either
+	 * finishes or is cancelled.
 	 */
 	@Override
 	protected void execute() {
@@ -44,7 +45,7 @@ public class DriveDistance extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut(); //  Robot.drive.atTarget() || 
+		return isTimedOut(); // Robot.drive.atTarget() ||
 	}
 
 	/**
@@ -56,7 +57,8 @@ public class DriveDistance extends Command {
 	}
 
 	/**
-	 * Called when another command which requires one or more of the same subsystems is scheduled to run.
+	 * Called when another command which requires one or more of the same
+	 * subsystems is scheduled to run.
 	 */
 	@Override
 	protected void interrupted() {

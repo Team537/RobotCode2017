@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveRate extends Command {
 	private double rateLeft;
 	private double rateRight;
-	
+
 	public DriveRate(double rateLeft, double rateRight, double time) {
 		requires(Robot.drive);
 		setInterruptible(true);
@@ -24,15 +24,13 @@ public class DriveRate extends Command {
 	@Override
 	protected void initialize() {
 		Robot.drive.setToMode(CANTalon.TalonControlMode.Speed);
-		Robot.drive.setPIDF(
-				0.0, 0.0, 0.0, 1023.0 / 640.0,
-				0.0, 0.0, 0.0, 1023.0 / 640.0
-		);
+		Robot.drive.setPIDF(0.0, 0.0, 0.0, 1023.0 / 640.0, 0.0, 0.0, 0.0, 1023.0 / 640.0);
 		Robot.drive.rate(rateLeft, rateRight);
 	}
 
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is cancelled.
+	 * The execute method is called repeatedly until this Command either
+	 * finishes or is cancelled.
 	 */
 	@Override
 	protected void execute() {
@@ -55,7 +53,8 @@ public class DriveRate extends Command {
 	}
 
 	/**
-	 * Called when another command which requires one or more of the same subsystems is scheduled to run.
+	 * Called when another command which requires one or more of the same
+	 * subsystems is scheduled to run.
 	 */
 	@Override
 	protected void interrupted() {

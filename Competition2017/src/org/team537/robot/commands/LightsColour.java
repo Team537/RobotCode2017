@@ -22,9 +22,10 @@ public class LightsColour extends Command {
 	@Override
 	protected void initialize() {
 	}
-	
+
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is cancelled.
+	 * The execute method is called repeatedly until this Command either
+	 * finishes or is cancelled.
 	 */
 	@Override
 	protected void execute() {
@@ -48,7 +49,8 @@ public class LightsColour extends Command {
 	}
 
 	/**
-	 * Called when another command which requires one or more of the same subsystems is scheduled to run.
+	 * Called when another command which requires one or more of the same
+	 * subsystems is scheduled to run.
 	 */
 	@Override
 	protected void interrupted() {

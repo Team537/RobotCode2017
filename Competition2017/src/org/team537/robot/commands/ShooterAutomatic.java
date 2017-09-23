@@ -27,7 +27,7 @@ public class ShooterAutomatic extends Command {
 		Robot.agitator.reset();
 		Robot.shooter.reset();
 		Robot.shooter.setBreakmode(false);
-		Scheduler.getInstance().add(new LightsCycle(this, 0.4, Lights.Colour.values()));
+	//	Scheduler.getInstance().add(new LightsCycle(this, 0.4, Lights.Colour.values()));
 		
 		timer.reset();
 		timer.start();

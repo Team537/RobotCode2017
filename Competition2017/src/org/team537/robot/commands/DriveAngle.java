@@ -11,8 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveAngle extends Command {
 	private Timer timer;
 	private double angle;
-	private boolean addToNavX;
-	
+
 	public DriveAngle(double angle) {
 		requires(Robot.drive);
 		setInterruptible(false);
@@ -29,26 +28,27 @@ public class DriveAngle extends Command {
 		Robot.drive.setToMode(CANTalon.TalonControlMode.PercentVbus);
 
 		Robot.ahrs.reset();
-		
+
 		timer.reset();
 		timer.start();
 	}
 
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is cancelled.
+	 * The execute method is called repeatedly until this Command either
+	 * finishes or is cancelled.
 	 */
 	@Override
 	protected void execute() {
 		double error = angle - Robot.ahrs.getYaw();
-		double left = 0; 
+		double left = 0;
 		double right = 0;
 		double Kp = 0.0085;
-		
+
 		left = -error * Kp;
 		right = error * Kp;
-		
-		SmartDashboard.putNumber("angle error", error);
-		
+
+		SmartDashboard.putNumber("Drive Angle Error", error);
+
 		Robot.drive.rate(left, right);
 	}
 
@@ -71,7 +71,8 @@ public class DriveAngle extends Command {
 	}
 
 	/**
-	 * Called when another command which requires one or more of the same subsystems is scheduled to run.
+	 * Called when another command which requires one or more of the same
+	 * subsystems is scheduled to run.
 	 */
 	@Override
 	protected void interrupted() {

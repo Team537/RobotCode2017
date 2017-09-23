@@ -5,12 +5,12 @@ import java.util.TimerTask;
 
 import org.team537.robot.Robot;
 import org.team537.robot.RobotMap;
+import org.team537.robot.commands.DriveArcade;
 import org.team537.robot.commands.DriveDefault;
 import org.team537.robot.toolbox.Maths;
 
 import com.ctre.CANTalon;
 
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -73,13 +73,11 @@ public class Drive extends Subsystem implements PIDOutput {
 
 	@Override
 	protected void initDefaultCommand() {
-	//	if (RobotMap.Driver.ARCADE_DRIVE) {
-	//		setDefaultCommand(new DriveArcade());
-	//	} else {
+		if (RobotMap.Driver.ARCADE_DRIVE) {
+			setDefaultCommand(new DriveArcade());
+		} else {
 			setDefaultCommand(new DriveDefault());
-	//	}
-		
-		//setDefaultCommand(new DriveSpecial());
+		}
 	}
 	
 	/**

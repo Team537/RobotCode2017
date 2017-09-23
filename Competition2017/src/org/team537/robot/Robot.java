@@ -1,8 +1,5 @@
 package org.team537.robot;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import org.team537.robot.autonomous.BlueBoiler;
 import org.team537.robot.autonomous.NewBlueBoiler;
 import org.team537.robot.autonomous.BlueRight;
@@ -14,16 +11,13 @@ import org.team537.robot.subsystems.Agitator;
 import org.team537.robot.subsystems.Collector;
 import org.team537.robot.subsystems.Drive;
 import org.team537.robot.subsystems.Feeder;
+import org.team537.robot.subsystems.Lidar;
 import org.team537.robot.subsystems.Lights;
 import org.team537.robot.subsystems.Shooter;
 
-
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.command.Command;
@@ -35,8 +29,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // Winning code!
 
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as described in the IterativeRobot documentation. 
- * If you change the name of this class or the package after creating this project, you must also update the manifest file in the resource directory.
+ * The VM is configured to automatically run this class, and to call the
+ * functions corresponding to each mode, as described in the IterativeRobot
+ * documentation. If you change the name of this class or the package after
+ * creating this project, you must also update the manifest file in the resource
+ * directory.
  */
 public class Robot extends IterativeRobot {
 	// Interfaces.
@@ -47,8 +44,7 @@ public class Robot extends IterativeRobot {
 	public static Collector collector;
 	public static Drive drive;
 	public static Feeder feeder;
-	// public static GRIP grip;
-	// public static Lidar lidar;
+	public static Lidar lidar;
 	public static Lights lights;
 	public static Shooter shooter;
 
@@ -70,33 +66,14 @@ public class Robot extends IterativeRobot {
 		} catch (final RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
 		}
-		
-
-		Timer timerDashboard = new Timer();
-		timerDashboard.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				//if (ahrs != null) {
-					//SmartDashboard.putNumber("NavX Angle", Maths.roundToPlace(ahrs.getAngle(), 3));
-					//SmartDashboard.putNumber("NavX Angle Pitch", Maths.roundToPlace((double) ahrs.getPitch(), 3));
-					//SmartDashboard.putNumber("NavX Angle Yaw", Maths.roundToPlace((double) ahrs.getYaw(), 3));
-					//SmartDashboard.putNumber("NavX Angle Roll", Maths.roundToPlace((double) ahrs.getRoll(), 3));
-					//SmartDashboard.putNumber("NavX Velocity X", Maths.roundToPlace((double) ahrs.getVelocityX(), 3));
-					//SmartDashboard.putNumber("NavX Velocity Y", Maths.roundToPlace((double) ahrs.getVelocityY(), 3));
-					//SmartDashboard.putNumber("NavX Velocity Z", Maths.roundToPlace((double) ahrs.getVelocityZ(), 3));
-				//}
-
-			}
-		}, 0, 100);
 
 		// Subsystems.
 		agitator = new Agitator();
 		collector = new Collector();
 		drive = new Drive();
 		feeder = new Feeder();
-		// grip = new GRIP();
 		// lidar = new Lidar();
-		lights = new Lights();
+		// lights = new Lights();
 		shooter = new Shooter();
 
 		// OI.
@@ -104,46 +81,14 @@ public class Robot extends IterativeRobot {
 
 		// Autonomous chooser to display on the dashboard.
 		autoChooser = new SendableChooser<>();
-		
-		Alliance alliance = null;
-		
-		if (DriverStation.getInstance() != null) {
-			alliance = DriverStation.getInstance().getAlliance();
-		}
-
-		switch (alliance) {
-			case Red:
-				autoChooser.addObject("Nothing", null);
-				autoChooser.addObject("Blue Boiler", new NewBlueBoiler());
-				autoChooser.addObject("Blue Right", new BlueRight());
-				autoChooser.addObject("Red Boiler", new NewRedBoiler());
-				autoChooser.addDefault("Red Left", new RedLeft());
-				autoChooser.addObject("Old Blue Boiler", new BlueBoiler());
-				autoChooser.addObject("Old Red Boiler", new RedBoiler());
-				autoChooser.addObject("Straight", new StraightGear());
-				break;
-			case Blue:
-				autoChooser.addObject("Nothing", null);
-				autoChooser.addObject("Blue Boiler", new NewBlueBoiler());
-				autoChooser.addDefault("Blue Right", new BlueRight());
-				autoChooser.addObject("Red Boiler", new NewRedBoiler());
-				autoChooser.addObject("Red Left", new RedLeft());
-				autoChooser.addObject("Old Blue Boiler", new BlueBoiler());
-				autoChooser.addObject("Old Red Boiler", new RedBoiler());
-				autoChooser.addObject("Straight", new StraightGear());
-				break;
-			default:
-				autoChooser.addObject("Nothing", null); // addDefault
-				autoChooser.addObject("Blue Boiler", new NewBlueBoiler());
-				autoChooser.addObject("Blue Right", new BlueRight());
-				autoChooser.addObject("Red Boiler", new NewRedBoiler());
-				autoChooser.addDefault("Red Left", new RedLeft());
-				autoChooser.addObject("Old Blue Boiler", new BlueBoiler());
-				autoChooser.addObject("Old Red Boiler", new RedBoiler());
-				autoChooser.addObject("Straight", new StraightGear());
-				break;
-		}
-		
+		autoChooser.addObject("Nothing", null); // addDefault
+		autoChooser.addObject("Blue Boiler", new NewBlueBoiler());
+		autoChooser.addObject("Blue Right", new BlueRight());
+		autoChooser.addObject("Red Boiler", new NewRedBoiler());
+		autoChooser.addObject("Red Left", new RedLeft());
+		autoChooser.addObject("Old Blue Boiler", new BlueBoiler());
+		autoChooser.addObject("Old Red Boiler", new RedBoiler());
+		autoChooser.addDefault("Straight Gear", new StraightGear());
 		SmartDashboard.putData("Autonomous", autoChooser);
 	}
 
@@ -156,7 +101,7 @@ public class Robot extends IterativeRobot {
 			autoCommand.cancel();
 		}
 
-		//ahrs.reset();
+		// ahrs.reset();
 	}
 
 	/**
@@ -179,7 +124,7 @@ public class Robot extends IterativeRobot {
 			autoCommand.start();
 		}
 
-		//ahrs.reset();
+		// ahrs.reset();
 	}
 
 	/**
@@ -202,7 +147,7 @@ public class Robot extends IterativeRobot {
 			autoCommand = null;
 		}
 
-		//ahrs.reset();
+		// ahrs.reset();
 	}
 
 	/**
@@ -221,4 +166,3 @@ public class Robot extends IterativeRobot {
 		LiveWindow.run();
 	}
 }
-

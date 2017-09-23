@@ -23,22 +23,38 @@ public class DriveDefault extends Command {
 	}
 
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is cancelled.
+	 * The execute method is called repeatedly until this Command either
+	 * finishes or is cancelled.
 	 */
 	@Override
 	protected void execute() {
-		double left = -Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxes.STICK_LEFT_Y);
-		double right = -Robot.oi.joystickPrimary.getRawAxis(RobotMap.JoystickAxes.STICK_RIGHT_Y);
+		double left = 0.0f; 
+		double right = 0.0f; 
+		double scalar = 1.0f;
+		
+		switch (RobotMap.Driver.CONTROL)
+		{
+		case F310:
+			left = -Robot.oi.joystickPrimary.getRawAxis(RobotMap.AxesF310.STICK_LEFT_Y);
+			right = -Robot.oi.joystickPrimary.getRawAxis(RobotMap.AxesF310.STICK_RIGHT_Y);
+			break;
+		case EXTREME:
+			left = -Robot.oi.joystickPrimary.getRawAxis(RobotMap.AxesExtreme.STICK_Y);
+			right = -Robot.oi.joystickSecondary.getRawAxis(RobotMap.AxesExtreme.STICK_Y);
+			break;
+		}
+		
+		scalar = Robot.oi.joystickBox.getRawButton(RobotMap.ControlBox.CLIMB_TOGGLE) ? 0.444 : 1.0;
+		
 		left = ((1.0 - RobotMap.Driver.SENSITIVITY) * left) + (RobotMap.Driver.SENSITIVITY * Math.pow(left, 3.0));
 		right = ((1.0 - RobotMap.Driver.SENSITIVITY) * right) + (RobotMap.Driver.SENSITIVITY * Math.pow(right, 3.0));
 		left = Maths.deadband(RobotMap.Robot.DRIVE_SPEED_MIN, left);
 		right = Maths.deadband(RobotMap.Robot.DRIVE_SPEED_MIN, right);
-		if(Robot.oi.joystickPrimary.getRawButton(5)){
-			left = left*0.5;
-			right = right*0.5;
-		}
-		Robot.drive.speed(left, right);
 		
+		left *= scalar;
+		right *= scalar;
+
+		Robot.drive.speed(left, right);
 	}
 
 	/**
@@ -58,7 +74,8 @@ public class DriveDefault extends Command {
 	}
 
 	/**
-	 * Called when another command which requires one or more of the same subsystems is scheduled to run.
+	 * Called when another command which requires one or more of the same
+	 * subsystems is scheduled to run.
 	 */
 	@Override
 	protected void interrupted() {

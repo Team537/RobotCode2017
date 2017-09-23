@@ -22,11 +22,7 @@ public class Collector extends Subsystem {
 		collector.enableBrakeMode(false);
 		collector.configEncoderCodesPerRev(98);
 		// shooter2.setPulseWidthPosition(4);
-		collector.setPID(
-				0.0, 
-				0.0, 
-				0.0
-		);
+		collector.setPID(0.0, 0.0, 0.0);
 		collector.setF(1.0); // 1023.0 / 610.0
 		collector.configPeakOutputVoltage(+12.0, 0.0);
 		collector.enable();
@@ -48,7 +44,8 @@ public class Collector extends Subsystem {
 	/**
 	 * Drives the collector from the input rate.
 	 * 
-	 * @param rate The input speed.
+	 * @param rate
+	 *            The input speed.
 	 */
 	public void collect(double rate) {
 		collector.set(-rate * RobotMap.Robot.COLLECT_SPEED);
@@ -68,7 +65,8 @@ public class Collector extends Subsystem {
 	}
 
 	private void dashboard() {
-		SmartDashboard.putNumber("Collector Encoder Speed", collector.getEncVelocity()); // Native units.
+		SmartDashboard.putNumber("Collector Encoder Speed", collector.getEncVelocity()); // Native
+																							// units.
 		SmartDashboard.putNumber("Collector Encoder Error", collector.getError() * 4.0f);
 		SmartDashboard.putNumber("Collector Encoder Position", collector.getEncPosition());
 	}

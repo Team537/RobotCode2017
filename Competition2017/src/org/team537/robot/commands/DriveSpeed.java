@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveSpeed extends Command {
 	private double speedLeft;
 	private double speedRight;
-	
+
 	public DriveSpeed(double speedLeft, double speedRight, double time) {
 		requires(Robot.drive);
 		setInterruptible(true);
@@ -28,7 +28,8 @@ public class DriveSpeed extends Command {
 	}
 
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is cancelled.
+	 * The execute method is called repeatedly until this Command either
+	 * finishes or is cancelled.
 	 */
 	@Override
 	protected void execute() {
@@ -51,7 +52,8 @@ public class DriveSpeed extends Command {
 	}
 
 	/**
-	 * Called when another command which requires one or more of the same subsystems is scheduled to run.
+	 * Called when another command which requires one or more of the same
+	 * subsystems is scheduled to run.
 	 */
 	@Override
 	protected void interrupted() {

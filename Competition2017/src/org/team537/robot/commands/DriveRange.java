@@ -5,10 +5,11 @@ import org.team537.robot.Robot;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveRange extends Command {
 	private double range;
-	
+
 	public DriveRange(double range) {
 		requires(Robot.drive);
 		setInterruptible(true);
@@ -24,7 +25,8 @@ public class DriveRange extends Command {
 	}
 
 	/**
-	 * The execute method is called repeatedly until this Command either finishes or is cancelled.
+	 * The execute method is called repeatedly until this Command either
+	 * finishes or is cancelled.
 	 */
 	@Override
 	protected void execute() {
@@ -32,11 +34,11 @@ public class DriveRange extends Command {
 			Robot.drive.speed(0.0, 0.0);
 			return;
 		}
-		
-	//	double distance = Robot.lidar.getRange() - range;
-	//	double speed = Math.cbrt(distance / 3.0) / 3.0;
-	//	Robot.drive.speed(-speed, -speed);
-	//	SmartDashboard.putNumber("Drive Range Distance", distance);
+
+		double distance = Robot.lidar.getRange() - range;
+		double speed = Math.cbrt(distance / 3.0) / 3.0;
+		Robot.drive.speed(-speed, -speed);
+		SmartDashboard.putNumber("Drive Range Distance", distance);
 	}
 
 	/**
@@ -44,7 +46,7 @@ public class DriveRange extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return false; // Math.abs(Robot.rangeFinder.getRange() - range) < 2.0f;
+		return Math.abs(Robot.lidar.getRange() - range) < 2.0f;
 	}
 
 	/**
@@ -56,7 +58,8 @@ public class DriveRange extends Command {
 	}
 
 	/**
-	 * Called when another command which requires one or more of the same subsystems is scheduled to run.
+	 * Called when another command which requires one or more of the same
+	 * subsystems is scheduled to run.
 	 */
 	@Override
 	protected void interrupted() {
